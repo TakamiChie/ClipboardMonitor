@@ -1,0 +1,44 @@
+object MainForm: TMainForm
+  Left = 2229
+  Height = 182
+  Top = 658
+  Width = 320
+  AlphaBlend = True
+  AlphaBlendValue = 200
+  Caption = 'MainForm'
+  ClientHeight = 182
+  ClientWidth = 320
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  LCLVersion = '2.0.12.0'
+  object FMonitor: TMemo
+    Left = 0
+    Height = 128
+    Top = 0
+    Width = 320
+    Align = alTop
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderStyle = bsNone
+    Color = clBtnFace
+    Lines.Strings = (
+      'FMonitor'
+    )
+    ReadOnly = True
+    TabOrder = 0
+  end
+  object FStatus: TMemo
+    Left = 0
+    Height = 54
+    Top = 128
+    Width = 320
+    Align = alBottom
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    BorderStyle = bsNone
+    Color = clBtnFace
+    Lines.Strings = (
+      'FMonitor'
+    )
+    ReadOnly = True
+    TabOrder = 1
+  end
+end
