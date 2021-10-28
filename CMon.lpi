@@ -31,7 +31,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="5">
       <Unit0>
         <Filename Value="CMon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -40,12 +40,21 @@
         <Filename Value="main.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
         <Filename Value="clipboardlistener.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="README.md"/>
+        <IsPartOfProject Value="True"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="LICENSE"/>
+        <IsPartOfProject Value="True"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
