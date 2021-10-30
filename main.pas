@@ -6,7 +6,7 @@ interface
 
 uses
  clipboardlistener, Constants, FileUtil, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
- ExtCtrls, Clipbrd, Menus, ActnList, Classes;
+ ExtCtrls, Clipbrd, Menus, ActnList, Classes, Process;
 
 type
 
@@ -54,8 +54,49 @@ begin
 end;
 
 procedure TMainForm.ClipboardChanged(Sender: TObject);
+var
+  OnRunScriptDir, FN, InText: String;
+  MI: TMenuItem;
+  Python: TProcess;
+  TextResult: TStringList;
 begin
   FMonitor.Text:= Clipboard.AsText;
+  FStatus.Text:= '';
+  OnRunScriptDir:= GetOnRunScriptDir;
+  for MI in RunOnCopyMenuRoot do
+  begin
+    if MI.Checked then
+    begin
+      Python := TProcess.Create(nil);
+      Python.Executable:= 'python';
+      FN:=MI.Caption;
+      FN:=OnRunScriptDir + DirectorySeparator + FN;
+      Python.Parameters.Add(FN);
+      Python.Options:= Python.Options + [poUsePipes];
+      Python.ShowWindow:=swoHIDE;
+      Python.Execute;
+      try
+        InText:= FMonitor.Text + #10;
+        Python.Input.Write(InText[1], Length(InText));
+        Python.CloseInput;
+        Python.WaitOnExit(10000);
+        TextResult:= TStringList.Create;
+        try
+          if Python.Output.NumBytesAvailable > 0 then
+          begin
+            TextResult.LoadFromStream(Python.Output);
+            FStatus.Text := TextResult.Text;
+            Break;
+          end;
+        finally
+          TextResult.Free;
+        end;
+      finally
+        Python.Free;
+      end;
+
+    end;
+  end;
 end;
 
 /// <summary>
