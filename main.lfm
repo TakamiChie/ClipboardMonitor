@@ -1,19 +1,19 @@
 object MainForm: TMainForm
-  Left = 2229
-  Height = 182
-  Top = 658
+  Left = 2233
+  Height = 185
+  Top = 622
   Width = 320
   AlphaBlend = True
   AlphaBlendValue = 200
   Caption = 'MainForm'
-  ClientHeight = 182
+  ClientHeight = 185
   ClientWidth = 320
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '2.0.12.0'
   object FMonitor: TMemo
     Left = 0
-    Height = 128
+    Height = 131
     Top = 0
     Width = 320
     Align = alTop
@@ -28,7 +28,7 @@ object MainForm: TMainForm
   end
   object FStatus: TMemo
     Left = 0
-    Height = 54
+    Height = 57
     Top = 128
     Width = 320
     Align = alBottom
@@ -36,7 +36,7 @@ object MainForm: TMainForm
     BorderStyle = bsNone
     Color = clBtnFace
     Lines.Strings = (
-      'FMonitor'
+      'FStatus'
     )
     ReadOnly = True
     TabOrder = 1
