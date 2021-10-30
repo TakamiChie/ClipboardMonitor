@@ -75,8 +75,10 @@ begin
     for s in OnRunScriptFiles do
     begin
       MI := TMenuItem.Create(RunOnCopyMenuRoot);
-      MI.Caption:=s;
-      MI.RadioItem:= True;
+      MI.Caption:= ExtractFileName(s);
+      MI.Checked:= True;
+      MI.AutoCheck:= True;
+      RunOnCopyMenuRoot.Add(MI);
     end;
   finally
     OnRunScriptFiles.Free;
