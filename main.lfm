@@ -23,6 +23,7 @@ object MainForm: TMainForm
     Lines.Strings = (
       'FMonitor'
     )
+    PopupMenu = FPopupMenu
     ReadOnly = True
     TabOrder = 0
   end
@@ -40,5 +41,24 @@ object MainForm: TMainForm
     )
     ReadOnly = True
     TabOrder = 1
+  end
+  object FPopupMenu: TPopupMenu
+    Left = 209
+    Top = 94
+    object RunOnCopyMenuRoot: TMenuItem
+      Caption = '&Run on copy'
+    end
+    object MenuItem1: TMenuItem
+      Action = OpenScriptDir
+    end
+  end
+  object FActionList: TActionList
+    Left = 144
+    Top = 88
+    object OpenScriptDir: TAction
+      Category = 'Scripts'
+      Caption = 'Open Script &Directory'
+      OnExecute = OpenScriptDirExecute
+    end
   end
 end
