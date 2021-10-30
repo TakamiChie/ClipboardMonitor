@@ -44,7 +44,8 @@ procedure TMainForm.FormCreate(Sender: TObject);
 begin
   FClipboardListener:= TClipboardListener.Create;
   FClipboardListener.OnClipboardChange := @ClipboardChanged;
-  LoadScriptMenus;
+  LoadScriptMenus; // TODO: Add a menu that calls this method at any timing.
+  // TODO: Added a process of collectively copying Python scripts named from the underscore to OnRunScriptDir.
   ClipboardChanged(Sender);
 end;
 
@@ -63,6 +64,7 @@ begin
   FMonitor.Text:= Clipboard.AsText;
   FStatus.Text:= '';
   OnRunScriptDir:= GetOnRunScriptDir;
+  // TODO: Externalization because it is long
   for MI in RunOnCopyMenuRoot do
   begin
     if MI.Checked then
@@ -117,7 +119,7 @@ begin
     begin
       MI := TMenuItem.Create(RunOnCopyMenuRoot);
       MI.Caption:= ExtractFileName(s);
-      MI.Checked:= True;
+      MI.Checked:= True; // TODO: Memory of check status
       MI.AutoCheck:= True;
       RunOnCopyMenuRoot.Add(MI);
     end;
