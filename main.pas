@@ -5,7 +5,7 @@ unit main;
 interface
 
 uses
- clipboardlistener, Utils, FileUtil, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+ clipboardlistener, ScriptProcess, Utils, FileUtil, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
  ExtCtrls, Clipbrd, Menus, ActnList, Classes, Process;
 
 type
@@ -47,7 +47,7 @@ procedure TMainForm.FormCreate(Sender: TObject);
 begin
   FClipboardListener:= TClipboardListener.Create;
   FClipboardListener.OnClipboardChange := @ClipboardChanged;
-  CopyToUnderscoreScripts; // TODO: Added a process of collectively copying Python scripts named from the underscore to OnRunScriptDir.
+  CopyToUnderscoreScripts; // DONE: Added a process of collectively copying Python scripts named from the underscore to OnRunScriptDir.
   LoadScriptMenus; // DONE: Add a menu that calls this method at any timing.
   ClipboardChanged(Sender);
 end;
@@ -59,10 +59,11 @@ end;
 
 procedure TMainForm.ClipboardChanged(Sender: TObject);
 var
-  OnRunScriptDir, FN, InText: String;
+  OnRunScriptDir, FN: String;
+  StdOut: String;
+  StdErr: String;
   MI: TMenuItem;
-  Python: TProcess;
-  TextResult: TStringList;
+  Script: TScriptProcess;
 begin
   FMonitor.Text:= Clipboard.AsText;
   FStatus.Text:= '';
@@ -72,34 +73,18 @@ begin
   begin
     if MI.Checked then
     begin
-      Python := TProcess.Create(nil);
-      Python.Executable:= 'python';
-      FN:=MI.Caption;
-      FN:=OnRunScriptDir + DirectorySeparator + FN;
-      Python.Parameters.Add(FN);
-      Python.Options:= Python.Options + [poUsePipes];
-      Python.ShowWindow:=swoHIDE;
-      Python.Execute;
+      Script:= TScriptProcess.Create;
       try
-        InText:= FMonitor.Text + #10;
-        Python.Input.Write(InText[1], Length(InText));
-        Python.CloseInput;
-        Python.WaitOnExit(10000);
-        TextResult:= TStringList.Create;
-        try
-          if Python.Output.NumBytesAvailable > 0 then
-          begin
-            TextResult.LoadFromStream(Python.Output);
-            FStatus.Text := TextResult.Text;
-            Break;
-          end;
-        finally
-          TextResult.Free;
+        Script.Text:= FMonitor.Text;
+        Script.Execute(OnRunScriptDir + DirectorySeparator + MI.Caption, StdOut, StdErr);
+        if StdOut <> '' then
+        begin
+          FStatus.Text:= StdOut;
+          Break;
         end;
       finally
-        Python.Free;
+        Script.Free;
       end;
-
     end;
   end;
 end;

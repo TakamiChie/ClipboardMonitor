@@ -4,13 +4,13 @@
     <PathDelim Value="\"/>
     <Version Value="11"/>
     <BuildModes Active="Default"/>
-    <Units Count="12">
+    <Units Count="16">
       <Unit0>
         <Filename Value="CMon.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="3"/>
-        <CursorPos X="2" Y="10"/>
-        <UsageCount Value="31"/>
+        <EditorIndex Value="6"/>
+        <CursorPos X="54" Y="10"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -21,32 +21,33 @@
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="31"/>
-        <CursorPos Y="51"/>
-        <UsageCount Value="31"/>
+        <TopLine Value="62"/>
+        <CursorPos X="18" Y="64"/>
+        <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="clipboardlistener.pas"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="48"/>
-        <CursorPos Y="78"/>
-        <UsageCount Value="31"/>
+        <EditorIndex Value="5"/>
+        <TopLine Value="4"/>
+        <CursorPos X="23" Y="21"/>
+        <UsageCount Value="32"/>
+        <Loaded Value="True"/>
       </Unit2>
       <Unit3>
         <Filename Value="README.md"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="31" Y="11"/>
-        <UsageCount Value="31"/>
+        <UsageCount Value="32"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit3>
       <Unit4>
         <Filename Value="LICENSE"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="31"/>
+        <UsageCount Value="32"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit4>
       <Unit5>
@@ -55,7 +56,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="2"/>
         <CursorPos Y="14"/>
-        <UsageCount Value="28"/>
+        <UsageCount Value="27"/>
       </Unit5>
       <Unit6>
         <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
@@ -89,9 +90,9 @@
         <Filename Value="utils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Utils"/>
-        <TopLine Value="3"/>
-        <CursorPos X="10" Y="52"/>
-        <UsageCount Value="22"/>
+        <TopLine Value="45"/>
+        <CursorPos Y="77"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
       </Unit10>
       <Unit11>
@@ -99,130 +100,160 @@
         <EditorIndex Value="1"/>
         <TopLine Value="634"/>
         <CursorPos Y="658"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit11>
+      <Unit12>
+        <Filename Value="scriptprocess.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ScriptProcess"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="57"/>
+        <CursorPos X="10" Y="57"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\rtl\win64\windows.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="15"/>
+        <UsageCount Value="10"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\rtl\win64\classes.pp"/>
+        <UnitName Value="Classes"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="53"/>
+        <UsageCount Value="10"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="C:\lazarus\fpc\3.2.0\source\packages\fcl-process\src\process.pp"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="12"/>
+        <CursorPos X="27" Y="48"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit15>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="utils.pas"/>
-        <Caret Line="55" TopLine="28"/>
+        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
+        <Caret Line="651" Column="11" TopLine="634"/>
       </Position1>
       <Position2>
-        <Filename Value="utils.pas"/>
-        <Caret Line="14"/>
+        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
+        <Caret Line="652" TopLine="634"/>
       </Position2>
       <Position3>
-        <Filename Value="main.pas"/>
-        <Caret Line="51" Column="27" TopLine="25"/>
+        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
+        <Caret Line="653" TopLine="634"/>
       </Position3>
       <Position4>
-        <Filename Value="utils.pas"/>
-        <Caret Line="8" Column="26"/>
+        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
+        <Caret Line="654" TopLine="634"/>
       </Position4>
       <Position5>
-        <Filename Value="main.pas"/>
-        <Caret Line="8" Column="28"/>
+        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
+        <Caret Line="653" TopLine="634"/>
       </Position5>
       <Position6>
-        <Filename Value="utils.pas"/>
-        <Caret Line="51" Column="76" TopLine="35"/>
+        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
+        <Caret Line="657" TopLine="634"/>
       </Position6>
       <Position7>
-        <Filename Value="utils.pas"/>
-        <Caret Line="45" Column="5" TopLine="35"/>
+        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
+        <Caret Line="656" TopLine="634"/>
       </Position7>
       <Position8>
-        <Filename Value="utils.pas"/>
-        <Caret Line="47" Column="21" TopLine="35"/>
+        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
+        <Caret Line="657" TopLine="634"/>
       </Position8>
       <Position9>
-        <Filename Value="utils.pas"/>
-        <Caret Line="30" TopLine="14"/>
+        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
+        <Caret Line="650" TopLine="634"/>
       </Position9>
       <Position10>
-        <Filename Value="utils.pas"/>
-        <Caret Line="31" TopLine="14"/>
+        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
+        <Caret Line="658" TopLine="634"/>
       </Position10>
       <Position11>
         <Filename Value="utils.pas"/>
-        <Caret Line="32" TopLine="14"/>
+        <Caret Line="66" TopLine="45"/>
       </Position11>
       <Position12>
         <Filename Value="utils.pas"/>
-        <Caret Line="30" TopLine="14"/>
+        <Caret Line="46" TopLine="40"/>
       </Position12>
       <Position13>
-        <Filename Value="utils.pas"/>
-        <Caret Line="36" TopLine="14"/>
+        <Filename Value="clipboardlistener.pas"/>
+        <Caret Line="14" Column="17"/>
       </Position13>
       <Position14>
-        <Filename Value="utils.pas"/>
-        <Caret Line="30" TopLine="14"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="11" Column="5"/>
       </Position14>
       <Position15>
-        <Filename Value="utils.pas"/>
-        <Caret Line="36" TopLine="23"/>
+        <Filename Value="scriptprocess.pas"/>
+        <Caret Line="31"/>
       </Position15>
       <Position16>
         <Filename Value="utils.pas"/>
-        <Caret Line="48" TopLine="26"/>
+        <Caret Line="52" Column="10" TopLine="3"/>
       </Position16>
       <Position17>
-        <Filename Value="utils.pas"/>
-        <Caret Line="49" TopLine="32"/>
+        <Filename Value="scriptprocess.pas"/>
+        <Caret Line="41" Column="12" TopLine="12"/>
       </Position17>
       <Position18>
-        <Filename Value="utils.pas"/>
-        <Caret Line="50" Column="66" TopLine="32"/>
+        <Filename Value="scriptprocess.pas"/>
+        <Caret Line="24" Column="22" TopLine="7"/>
       </Position18>
       <Position19>
-        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
-        <Caret Line="651" Column="11" TopLine="634"/>
+        <Filename Value="scriptprocess.pas"/>
+        <Caret Line="56" Column="32" TopLine="46"/>
       </Position19>
       <Position20>
-        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
-        <Caret Line="652" TopLine="634"/>
+        <Filename Value="scriptprocess.pas"/>
       </Position20>
       <Position21>
-        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
-        <Caret Line="653" TopLine="634"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="64" TopLine="55"/>
       </Position21>
       <Position22>
-        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
-        <Caret Line="654" TopLine="634"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="8" Column="36"/>
       </Position22>
       <Position23>
-        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
-        <Caret Line="653" TopLine="634"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="84" TopLine="63"/>
       </Position23>
       <Position24>
-        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
-        <Caret Line="657" TopLine="634"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="64" TopLine="59"/>
       </Position24>
       <Position25>
-        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
-        <Caret Line="656" TopLine="634"/>
+        <Filename Value="scriptprocess.pas"/>
+        <Caret Line="23" Column="34" TopLine="8"/>
       </Position25>
       <Position26>
-        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
-        <Caret Line="657" TopLine="634"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="85" Column="11" TopLine="58"/>
       </Position26>
       <Position27>
-        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
-        <Caret Line="650" TopLine="634"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="77" Column="92" TopLine="62"/>
       </Position27>
       <Position28>
-        <Filename Value="C:\lazarus\components\lazutils\fileutil.inc"/>
-        <Caret Line="658" TopLine="634"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="81" Column="17" TopLine="60"/>
       </Position28>
       <Position29>
-        <Filename Value="utils.pas"/>
-        <Caret Line="66" TopLine="45"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="77" Column="88" TopLine="60"/>
       </Position29>
       <Position30>
-        <Filename Value="utils.pas"/>
-        <Caret Line="46" TopLine="40"/>
+        <Filename Value="main.pas"/>
+        <Caret Line="64" Column="18" TopLine="62"/>
       </Position30>
     </JumpHistory>
     <RunParams>

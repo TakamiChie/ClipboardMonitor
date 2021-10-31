@@ -31,7 +31,7 @@
         <PackageName Value="LCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="6">
+    <Units Count="7">
       <Unit0>
         <Filename Value="CMon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -60,6 +60,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Utils"/>
       </Unit5>
+      <Unit6>
+        <Filename Value="scriptprocess.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ScriptProcess"/>
+      </Unit6>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
