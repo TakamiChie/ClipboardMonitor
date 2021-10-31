@@ -13,6 +13,8 @@ type
  { TMainForm }
 
  TMainForm = class(TForm)
+  UpdateScriptMenu: TAction;
+  MenuItem2: TMenuItem;
   OpenScriptDir: TAction;
   FActionList: TActionList;
   FMonitor: TMemo;
@@ -22,6 +24,7 @@ type
   FPopupMenu: TPopupMenu;
   procedure FormCreate(Sender: TObject);
   procedure FormDestroy(Sender: TObject);
+  procedure UpdateScriptMenuExecute(Sender: TObject);
   procedure OpenScriptDirExecute(Sender: TObject);
  private
   FClipboardListener: TClipboardListener;
@@ -136,6 +139,14 @@ end;
 procedure TMainForm.OpenScriptDirExecute(Sender: TObject);
 begin
   ExecuteProcess('explorer', '"' + GetScriptRootDir + '"');
+end;
+
+/// <summary>
+/// Update script menu
+/// </summary>
+procedure TMainForm.UpdateScriptMenuExecute(Sender: TObject);
+begin
+  LoadScriptMenus;
 end;
 
 end.

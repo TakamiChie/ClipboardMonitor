@@ -51,6 +51,9 @@ object MainForm: TMainForm
     object MenuItem1: TMenuItem
       Action = OpenScriptDir
     end
+    object MenuItem2: TMenuItem
+      Action = UpdateScriptMenu
+    end
   end
   object FActionList: TActionList
     Left = 144
@@ -59,6 +62,11 @@ object MainForm: TMainForm
       Category = 'Scripts'
       Caption = 'Open Script &Directory'
       OnExecute = OpenScriptDirExecute
+    end
+    object UpdateScriptMenu: TAction
+      Category = 'Scripts'
+      Caption = '&Update script menu'
+      OnExecute = UpdateScriptMenuExecute
     end
   end
 end
