@@ -1,4 +1,4 @@
-unit Constants;
+unit Utils;
 
 {$mode objfpc}{$H+}
 
@@ -32,6 +32,5 @@ begin
     ForceDirectories(Result);
   end;
 end;
-
 end.
 

@@ -5,7 +5,7 @@ unit main;
 interface
 
 uses
- clipboardlistener, Constants, FileUtil, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+ clipboardlistener, Utils, FileUtil, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
  ExtCtrls, Clipbrd, Menus, ActnList, Classes, Process;
 
 type
