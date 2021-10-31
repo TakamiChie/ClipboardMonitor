@@ -68,7 +68,7 @@ begin
   FMonitor.Text:= Clipboard.AsText;
   FStatus.Text:= '';
   OnRunScriptDir:= GetOnRunScriptDir;
-  // TODO: Externalization because it is long
+  // DONE: Externalization because it is long
   for MI in RunOnCopyMenuRoot do
   begin
     if MI.Checked then
