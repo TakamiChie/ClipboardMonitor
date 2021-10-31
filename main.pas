@@ -47,7 +47,7 @@ procedure TMainForm.FormCreate(Sender: TObject);
 begin
   FClipboardListener:= TClipboardListener.Create;
   FClipboardListener.OnClipboardChange := @ClipboardChanged;
-  LoadScriptMenus; // TODO: Add a menu that calls this method at any timing.
+  LoadScriptMenus; // DONE: Add a menu that calls this method at any timing.
   // TODO: Added a process of collectively copying Python scripts named from the underscore to OnRunScriptDir.
   ClipboardChanged(Sender);
 end;
