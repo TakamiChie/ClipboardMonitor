@@ -1,7 +1,7 @@
 object MainForm: TMainForm
   Left = 2233
   Height = 185
-  Top = 622
+  Top = 278
   Width = 320
   AlphaBlend = True
   AlphaBlendValue = 200
@@ -28,19 +28,24 @@ object MainForm: TMainForm
     ReadOnly = True
     TabOrder = 0
   end
-  object FStatus: TMemo
+  object FStatus: TIpHtmlPanel
     Left = 0
-    Height = 57
-    Top = 128
+    Height = 50
+    Top = 135
     Width = 320
     Align = alBottom
-    Anchors = [akTop, akLeft, akRight, akBottom]
-    BorderStyle = bsNone
-    Color = clBtnFace
-    Lines.Strings = (
-      'FStatus'
-    )
-    ReadOnly = True
+    FixedTypeface = 'Courier New'
+    DefaultTypeFace = 'default'
+    DefaultFontSize = 12
+    FlagErrors = False
+    PrintSettings.MarginLeft = 0.5
+    PrintSettings.MarginTop = 0.5
+    PrintSettings.MarginRight = 0.5
+    PrintSettings.MarginBottom = 0.5
+    PrintSettings.Preview.Left = 480
+    PrintSettings.Preview.Top = 270
+    PrintSettings.Preview.Width = 1440
+    PrintSettings.Preview.Height = 810
     TabOrder = 1
   end
   object FPopupMenu: TPopupMenu

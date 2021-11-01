@@ -5,20 +5,21 @@ unit Main;
 interface
 
 uses
- ClipboardListener, ScriptProcess, Settings, Utils, FileUtil, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
- ExtCtrls, Clipbrd, Menus, ActnList, Classes, Process;
+ ClipboardListener, ScriptProcess, Settings, Utils, FileUtil, IpHtml, SysUtils,
+ Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Clipbrd, Menus,
+ ActnList, Classes, Process;
 
 type
 
  { TMainForm }
 
  TMainForm = class(TForm)
+  FStatus: TIpHtmlPanel;
   UpdateScriptMenu: TAction;
   MenuItem2: TMenuItem;
   OpenScriptDir: TAction;
   FActionList: TActionList;
   FMonitor: TMemo;
-  FStatus: TMemo;
   MenuItem1: TMenuItem;
   RunOnCopyMenuRoot: TMenuItem;
   FPopupMenu: TPopupMenu;
@@ -32,6 +33,7 @@ type
   FSetting: TSetting;
   procedure ClipboardChanged(Sender: TObject);
   procedure LoadScriptMenus;
+  procedure UpdateStatus(HTML: String);
  public
 
  end;
@@ -69,14 +71,14 @@ end;
 
 procedure TMainForm.ClipboardChanged(Sender: TObject);
 var
-  OnRunScriptDir, FN: String;
+  OnRunScriptDir, StatusHTML: String;
   StdOut: String;
   StdErr: String;
   MI: TMenuItem;
   Script: TScriptProcess;
 begin
   FMonitor.Text:= Clipboard.AsText;
-  FStatus.Text:= '';
+  StatusHTML:= '';
   OnRunScriptDir:= GetOnRunScriptDir;
   // DONE: Externalization because it is long
   for MI in RunOnCopyMenuRoot do
@@ -89,7 +91,7 @@ begin
         Script.Execute(OnRunScriptDir + MI.Caption, StdOut, StdErr);
         if StdOut <> '' then
         begin
-          FStatus.Text:= StdOut;
+          StatusHTML:= StdOut;
           Break;
         end;
       finally
@@ -97,6 +99,7 @@ begin
       end;
     end;
   end;
+  UpdateStatus(StatusHTML);
 end;
 
 /// <summary>
@@ -125,6 +128,29 @@ begin
   finally
     OnRunScriptFiles.Free;
   end;
+end;
+
+/// <summary>Update Status text</summary>
+/// <param name="HTML">HTML Text</param>
+procedure TMainForm.UpdateStatus(HTML: String);
+var
+  fs: TStringStream;
+  pHTML: TIpHtml;
+begin
+  try
+    fs:= TStringStream.Create('<html><body>' + HTML + '</body></html>');
+    try
+      pHTML:=TIpHtml.Create;
+      pHTML.LoadFromStream(fs);
+    finally
+      fs.Free;
+    end;
+    FStatus.SetHtml(pHTML);
+  except
+    on E: Exception do MessageDlg('Error:'+ E.Message, mtError, [mbCancel], 0);
+  end;
+
+
 end;
 
 { Begin ActionList }

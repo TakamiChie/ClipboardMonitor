@@ -67,7 +67,7 @@ var
   ScriptRoot, OnRunScriptDir, FN: String;
   FileList: TStringList;
 begin
-  ScriptRoot:= GetAppDir + LowerCase(SCRIPT_ROOT);
+  ScriptRoot:= GetAppDir + LowerCase(SCRIPT_ROOT) + DirectorySeparator;
   OnRunScriptDir:= GetOnRunScriptDir;
   FileList:= TStringList.Create;
   try
