@@ -76,7 +76,7 @@ begin
       Script:= TScriptProcess.Create;
       try
         Script.Text:= FMonitor.Text;
-        Script.Execute(OnRunScriptDir + DirectorySeparator + MI.Caption, StdOut, StdErr);
+        Script.Execute(OnRunScriptDir + MI.Caption, StdOut, StdErr);
         if StdOut <> '' then
         begin
           FStatus.Text:= StdOut;

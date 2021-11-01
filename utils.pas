@@ -7,8 +7,10 @@ interface
 uses
  LazFileUtils, FileUtil, Forms, Classes, SysUtils;
 
+function GetSettingRootDir: String;
 function GetScriptRootDir: String;
 function GetOnRunScriptDir: String;
+function GetAppDir: String;
 procedure CopyToUnderscoreScripts;
 procedure CopyFile(const FromFile: String; const ToFile: String);
 
@@ -17,22 +19,44 @@ implementation
 const SCRIPT_ROOT = 'Scripts';
 const SCRIPT_ONRUN = 'Run';
 
-function GetScriptRootDir: String;
+/// <summary>Get Setting dir</summary>
+/// <returns>The directory path where you want to store application configuration information. Contains directory separator characters at the end.</returns>
+function GetSettingRootDir: String;
 begin
-  Result := GetAppConfigDir(False) + SCRIPT_ROOT;
+  Result := GetAppConfigDir(False);
   if not DirectoryExists(Result) then
   begin
     ForceDirectories(Result);
   end;
 end;
 
-function GetOnRunScriptDir: String;
+/// <summary>Get Script root dir</summary>
+/// <returns>The directory path where you want to store script root. Contains directory separator characters at the end.</returns>
+function GetScriptRootDir: String;
 begin
-  Result := GetAppConfigDir(False) + SCRIPT_ROOT + DirectorySeparator + SCRIPT_ONRUN;
+  Result := GetAppConfigDir(False) + SCRIPT_ROOT + DirectorySeparator;
   if not DirectoryExists(Result) then
   begin
     ForceDirectories(Result);
   end;
+end;
+
+/// <summary>Get On run script dir</summary>
+/// <returns>The directory path where you want to store on run script. Contains directory separator characters at the end.</returns>
+function GetOnRunScriptDir: String;
+begin
+  Result := GetScriptRootDir + SCRIPT_ONRUN + DirectorySeparator;
+  if not DirectoryExists(Result) then
+  begin
+    ForceDirectories(Result);
+  end;
+end;
+
+/// <summary>Get Application EXE dir</summary>
+/// <returns>The directory path where the application executable is located. Contains directory separator characters at the end.</returns>
+function GetAppDir: String;
+begin
+  Result:= ExtractFileDir(Application.ExeName) + DirectorySeparator;
 end;
 
 /// <summary>
@@ -43,12 +67,12 @@ var
   ScriptRoot, OnRunScriptDir, FN: String;
   FileList: TStringList;
 begin
-  ScriptRoot:= ExtractFileDir(Application.ExeName) + DirectorySeparator + LowerCase(SCRIPT_ROOT);
+  ScriptRoot:= GetAppDir + LowerCase(SCRIPT_ROOT);
   OnRunScriptDir:= GetOnRunScriptDir;
   FileList:= TStringList.Create;
   try
-    FindAllFiles(FileList, ScriptRoot + DirectorySeparator + LowerCase(SCRIPT_ONRUN), '*.py', False);
-    for FN in FileList do CopyFile(FN, OnRunScriptDir + DirectorySeparator + ExtractFileName(FN));
+    FindAllFiles(FileList, ScriptRoot + LowerCase(SCRIPT_ONRUN), '*.py', False);
+    for FN in FileList do CopyFile(FN, OnRunScriptDir + ExtractFileName(FN));
   finally
     FileList.Free;
   end;
