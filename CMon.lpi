@@ -42,10 +42,12 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <UnitName Value="Main"/>
       </Unit1>
       <Unit2>
         <Filename Value="clipboardlistener.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="ClipboardListener"/>
       </Unit2>
       <Unit3>
         <Filename Value="README.md"/>

@@ -1,11 +1,11 @@
-unit main;
+unit Main;
 
 {$mode objfpc}{$H+}
 
 interface
 
 uses
- clipboardlistener, ScriptProcess, Utils, FileUtil, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+ ClipboardListener, ScriptProcess, Utils, FileUtil, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
  ExtCtrls, Clipbrd, Menus, ActnList, Classes, Process;
 
 type

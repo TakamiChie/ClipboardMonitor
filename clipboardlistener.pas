@@ -1,4 +1,4 @@
-unit clipboardlistener;
+unit ClipboardListener;
 
 {$mode objfpc}{$H+}
 
