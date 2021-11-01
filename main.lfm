@@ -8,6 +8,7 @@ object MainForm: TMainForm
   Caption = 'MainForm'
   ClientHeight = 185
   ClientWidth = 320
+  OnClose = FormClose
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   LCLVersion = '2.0.12.0'

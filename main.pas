@@ -5,7 +5,7 @@ unit Main;
 interface
 
 uses
- ClipboardListener, ScriptProcess, Utils, FileUtil, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
+ ClipboardListener, ScriptProcess, Settings, Utils, FileUtil, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls,
  ExtCtrls, Clipbrd, Menus, ActnList, Classes, Process;
 
 type
@@ -22,12 +22,14 @@ type
   MenuItem1: TMenuItem;
   RunOnCopyMenuRoot: TMenuItem;
   FPopupMenu: TPopupMenu;
+  procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
   procedure FormCreate(Sender: TObject);
   procedure FormDestroy(Sender: TObject);
   procedure UpdateScriptMenuExecute(Sender: TObject);
   procedure OpenScriptDirExecute(Sender: TObject);
  private
   FClipboardListener: TClipboardListener;
+  FSetting: TSetting;
   procedure ClipboardChanged(Sender: TObject);
   procedure LoadScriptMenus;
  public
@@ -47,9 +49,17 @@ procedure TMainForm.FormCreate(Sender: TObject);
 begin
   FClipboardListener:= TClipboardListener.Create;
   FClipboardListener.OnClipboardChange := @ClipboardChanged;
+  FSetting:= TSetting.Create;
   CopyToUnderscoreScripts; // DONE: Added a process of collectively copying Python scripts named from the underscore to OnRunScriptDir.
   LoadScriptMenus; // DONE: Add a menu that calls this method at any timing.
+  FSetting.SetupWindow(Self);
   ClipboardChanged(Sender);
+end;
+
+procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  FSetting.SaveSettings(Self);
+  CloseAction:=caFree;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -107,10 +117,11 @@ begin
     begin
       MI := TMenuItem.Create(RunOnCopyMenuRoot);
       MI.Caption:= ExtractFileName(s);
-      MI.Checked:= True; // TODO: Memory of check status
+      MI.Checked:= True; // DONE: Memory of check status
       MI.AutoCheck:= True;
       RunOnCopyMenuRoot.Add(MI);
     end;
+    FSetting.SetupOnRunMenu(RunOnCopyMenuRoot);
   finally
     OnRunScriptFiles.Free;
   end;
