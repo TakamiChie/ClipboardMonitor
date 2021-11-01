@@ -34,7 +34,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="8">
+    <Units Count="9">
       <Unit0>
         <Filename Value="CMon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -75,6 +75,10 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="Settings"/>
       </Unit7>
+      <Unit8>
+        <Filename Value="scripts\run\_urlchecker.py"/>
+        <IsPartOfProject Value="True"/>
+      </Unit8>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

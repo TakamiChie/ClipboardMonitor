@@ -20,9 +20,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="72"/>
-        <CursorPos X="14" Y="55"/>
+        <TopLine Value="7"/>
+        <CursorPos X="19" Y="22"/>
         <UsageCount Value="37"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -54,9 +55,8 @@
         <Filename Value="utils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Utils"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="56"/>
-        <CursorPos Y="77"/>
+        <TopLine Value="59"/>
+        <CursorPos X="5" Y="79"/>
         <UsageCount Value="28"/>
         <Loaded Value="True"/>
       </Unit5>
@@ -79,6 +79,7 @@
       </Unit7>
       <Unit8>
         <Filename Value="scripts\run\_urlchecker.py"/>
+        <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="52" Y="10"/>
         <UsageCount Value="20"/>
@@ -163,7 +164,7 @@
         <UsageCount Value="10"/>
       </Unit19>
     </Units>
-    <JumpHistory Count="28" HistoryIndex="27">
+    <JumpHistory Count="29" HistoryIndex="28">
       <Position1>
         <Filename Value="main.pas"/>
         <Caret Line="145" Column="17" TopLine="116"/>
@@ -276,6 +277,10 @@
         <Filename Value="utils.pas"/>
         <Caret Line="8" Column="26"/>
       </Position28>
+      <Position29>
+        <Filename Value="utils.pas"/>
+        <Caret Line="77" TopLine="56"/>
+      </Position29>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
