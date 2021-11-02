@@ -31,9 +31,9 @@ if not sys.stdin.isatty() or len(sys.argv) == 2:
           charset = ct.split("charset=")[-1]if "charset" in ct else "UTF-8"
           t = TitleParser()
           t.feed(responce.read().decode(charset))
-          if t.title != "": print(f"{t.title}")
-        print(f"{responce.status} {responce.reason}")
+          if t.title != "": print(f"<p>{t.title}</p>")
+        print(f"<p>{responce.status} {responce.reason}</p>")
     except urllib.error.HTTPError as err:
-      print(f"{err.code} {err.reason}")
+      print(f"<p style='color: red'>{err.code} {err.reason}</p>")
     except urllib.error.URLError as err:
-      print(f"{err.reason}")
+      print(f"<p style='color: red'>{err.reason}</p>")

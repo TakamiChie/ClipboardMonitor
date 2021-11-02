@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="4"/>
         <CursorPos X="64" Y="10"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
       </Unit0>
       <Unit1>
@@ -22,9 +22,9 @@
         <UnitName Value="Main"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="132"/>
-        <CursorPos X="66" Y="141"/>
-        <UsageCount Value="39"/>
+        <TopLine Value="120"/>
+        <CursorPos X="24" Y="140"/>
+        <UsageCount Value="40"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit1>
@@ -34,21 +34,21 @@
         <UnitName Value="ClipboardListener"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="40"/>
       </Unit2>
       <Unit3>
         <Filename Value="README.md"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="31" Y="11"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="40"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit3>
       <Unit4>
         <Filename Value="LICENSE"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="40"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit4>
       <Unit5>
@@ -57,7 +57,7 @@
         <UnitName Value="Utils"/>
         <TopLine Value="59"/>
         <CursorPos X="5" Y="79"/>
-        <UsageCount Value="30"/>
+        <UsageCount Value="31"/>
         <Loaded Value="True"/>
       </Unit5>
       <Unit6>
@@ -65,9 +65,9 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ScriptProcess"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="59"/>
-        <CursorPos X="10" Y="66"/>
-        <UsageCount Value="28"/>
+        <TopLine Value="58"/>
+        <CursorPos X="9" Y="76"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit6>
       <Unit7>
@@ -77,14 +77,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="50"/>
         <CursorPos X="9" Y="8"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="27"/>
       </Unit7>
       <Unit8>
         <Filename Value="scripts\run\_urlchecker.py"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="3"/>
-        <CursorPos X="32"/>
-        <UsageCount Value="22"/>
+        <CursorPos X="17" Y="12"/>
+        <UsageCount Value="23"/>
         <Loaded Value="True"/>
         <DefaultSyntaxHighlighter Value="Python"/>
       </Unit8>
@@ -170,123 +170,123 @@
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
         <Filename Value="main.pas"/>
-        <Caret Line="102" Column="28" TopLine="70"/>
+        <Caret Line="36" Column="19" TopLine="34"/>
       </Position1>
       <Position2>
         <Filename Value="main.pas"/>
-        <Caret Line="52" TopLine="29"/>
+        <Caret Line="53" TopLine="32"/>
       </Position2>
       <Position3>
         <Filename Value="main.pas"/>
-        <Caret Line="36" Column="19" TopLine="34"/>
+        <Caret Line="54" TopLine="32"/>
       </Position3>
       <Position4>
         <Filename Value="main.pas"/>
-        <Caret Line="53" TopLine="32"/>
+        <Caret Line="55" TopLine="32"/>
       </Position4>
       <Position5>
         <Filename Value="main.pas"/>
-        <Caret Line="54" TopLine="32"/>
+        <Caret Line="56" TopLine="32"/>
       </Position5>
       <Position6>
         <Filename Value="main.pas"/>
-        <Caret Line="55" TopLine="32"/>
+        <Caret Line="57" TopLine="32"/>
       </Position6>
       <Position7>
         <Filename Value="main.pas"/>
-        <Caret Line="56" TopLine="32"/>
+        <Caret Line="58" TopLine="32"/>
       </Position7>
       <Position8>
         <Filename Value="main.pas"/>
-        <Caret Line="57" TopLine="32"/>
+        <Caret Line="141" Column="71" TopLine="134"/>
       </Position8>
       <Position9>
         <Filename Value="main.pas"/>
-        <Caret Line="58" TopLine="32"/>
+        <Caret Line="52" TopLine="36"/>
       </Position9>
       <Position10>
         <Filename Value="main.pas"/>
-        <Caret Line="141" Column="71" TopLine="134"/>
+        <Caret Line="141" TopLine="126"/>
       </Position10>
       <Position11>
         <Filename Value="main.pas"/>
-        <Caret Line="52" TopLine="36"/>
+        <Caret Line="142" TopLine="126"/>
       </Position11>
       <Position12>
         <Filename Value="main.pas"/>
-        <Caret Line="141" TopLine="126"/>
+        <Caret Line="143" TopLine="126"/>
       </Position12>
       <Position13>
         <Filename Value="main.pas"/>
-        <Caret Line="142" TopLine="126"/>
+        <Caret Line="140" Column="6" TopLine="126"/>
       </Position13>
       <Position14>
         <Filename Value="main.pas"/>
-        <Caret Line="143" TopLine="126"/>
+        <Caret Line="55" Column="14" TopLine="42"/>
       </Position14>
       <Position15>
-        <Filename Value="main.pas"/>
-        <Caret Line="140" Column="6" TopLine="126"/>
+        <Filename Value="utils.pas"/>
+        <Caret Line="74" Column="11" TopLine="58"/>
       </Position15>
       <Position16>
-        <Filename Value="main.pas"/>
-        <Caret Line="55" Column="14" TopLine="42"/>
+        <Filename Value="utils.pas"/>
+        <Caret Line="71" TopLine="58"/>
       </Position16>
       <Position17>
         <Filename Value="utils.pas"/>
-        <Caret Line="74" Column="11" TopLine="58"/>
+        <Caret Line="72" TopLine="58"/>
       </Position17>
       <Position18>
         <Filename Value="utils.pas"/>
-        <Caret Line="71" TopLine="58"/>
+        <Caret Line="73" TopLine="58"/>
       </Position18>
       <Position19>
         <Filename Value="utils.pas"/>
-        <Caret Line="72" TopLine="58"/>
+        <Caret Line="75" Column="24" TopLine="58"/>
       </Position19>
       <Position20>
         <Filename Value="utils.pas"/>
-        <Caret Line="73" TopLine="58"/>
+        <Caret Line="74" Column="27" TopLine="58"/>
       </Position20>
       <Position21>
         <Filename Value="utils.pas"/>
-        <Caret Line="75" Column="24" TopLine="58"/>
+        <Caret Line="75" TopLine="58"/>
       </Position21>
       <Position22>
         <Filename Value="utils.pas"/>
-        <Caret Line="74" Column="27" TopLine="58"/>
+        <Caret Line="8" Column="26"/>
       </Position22>
       <Position23>
         <Filename Value="utils.pas"/>
-        <Caret Line="75" TopLine="58"/>
+        <Caret Line="77" TopLine="56"/>
       </Position23>
       <Position24>
-        <Filename Value="utils.pas"/>
-        <Caret Line="8" Column="26"/>
-      </Position24>
-      <Position25>
-        <Filename Value="utils.pas"/>
-        <Caret Line="77" TopLine="56"/>
-      </Position25>
-      <Position26>
         <Filename Value="main.pas"/>
         <Caret Line="91" Column="20" TopLine="71"/>
-      </Position26>
-      <Position27>
+      </Position24>
+      <Position25>
         <Filename Value="scriptprocess.pas"/>
         <Caret Line="79" Column="64" TopLine="57"/>
-      </Position27>
-      <Position28>
+      </Position25>
+      <Position26>
         <Filename Value="scriptprocess.pas"/>
         <Caret Line="76" Column="31" TopLine="57"/>
-      </Position28>
-      <Position29>
+      </Position26>
+      <Position27>
         <Filename Value="main.pas"/>
         <Caret Line="102" Column="12" TopLine="81"/>
+      </Position27>
+      <Position28>
+        <Filename Value="main.pas"/>
+        <Caret Line="36" Column="13" TopLine="20"/>
+      </Position28>
+      <Position29>
+        <Filename Value="scriptprocess.pas"/>
+        <Caret Line="76" Column="9" TopLine="58"/>
       </Position29>
       <Position30>
         <Filename Value="main.pas"/>
-        <Caret Line="36" Column="13" TopLine="20"/>
+        <Caret Line="10" Column="21"/>
       </Position30>
     </JumpHistory>
     <RunParams>
