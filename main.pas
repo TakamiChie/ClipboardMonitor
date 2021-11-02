@@ -133,24 +133,20 @@ end;
 /// <summary>Update Status text</summary>
 /// <param name="HTML">HTML Text</param>
 procedure TMainForm.UpdateStatus(HTML: String);
-var
-  fs: TStringStream;
-  pHTML: TIpHtml;
 begin
   try
-    fs:= TStringStream.Create('<html><body>' + HTML + '</body></html>');
-    try
-      pHTML:=TIpHtml.Create;
-      pHTML.LoadFromStream(fs);
-    finally
-      fs.Free;
-    end;
-    FStatus.SetHtml(pHTML);
+    FStatus.SetHtmlFromStr('<html>' +
+      '<head>' +
+      '<meta http-equiv="content-type" content="text/html; charset=UTF-8">'+
+      '</head>'+
+      '<body>' +
+      HTML +
+      '</body>' +
+      '</html>'
+      );
   except
     on E: Exception do MessageDlg('Error:'+ E.Message, mtError, [mbCancel], 0);
   end;
-
-
 end;
 
 { Begin ActionList }

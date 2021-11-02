@@ -71,12 +71,12 @@ begin
   try
     if FProcess.Output.NumBytesAvailable > 0 then
     begin
-      TextResult.LoadFromStream(FProcess.Output);
+      TextResult.LoadFromStream(FProcess.Output, TEncoding.UTF8);
       StdOut:=TextResult.Text;
     end;
     if FProcess.Stderr.NumBytesAvailable > 0 then
     begin
-      TextResult.LoadFromStream(FProcess.Stderr);
+      TextResult.LoadFromStream(FProcess.Stderr, TEncoding.UTF8);
       StdErr:=TextResult.Text;
     end;
   finally
