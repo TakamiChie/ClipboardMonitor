@@ -5,8 +5,8 @@ unit Main;
 interface
 
 uses
- ClipboardListener, ScriptProcess, Settings, Utils, FileUtil, IpHtml, SysUtils,
- Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Clipbrd, Menus,
+ ClipboardListener, ScriptProcess, Settings, Utils, LResources, FileUtil, IpHtml, SysUtils,
+ Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Clipbrd, Menus, Windows,
  ActnList, Classes, Process;
 
 type
@@ -133,17 +133,33 @@ end;
 /// <summary>Update Status text</summary>
 /// <param name="HTML">HTML Text</param>
 procedure TMainForm.UpdateStatus(HTML: String);
+var
+  r: TResourceStream;
+  s: TStringStream;
 begin
   try
-    FStatus.SetHtmlFromStr('<html>' +
-      '<head>' +
-      '<meta http-equiv="content-type" content="text/html; charset=UTF-8">'+
-      '</head>'+
-      '<body>' +
-      HTML +
-      '</body>' +
-      '</html>'
-      );
+    r := TResourceStream.Create(HINSTANCE, 'STYLE', RT_RCDATA);
+    try
+      s := TStringStream.Create();
+      try
+        s.LoadFromStream(r);
+        FStatus.SetHtmlFromStr('<html>' +
+          '<head>' +
+          '<meta http-equiv="content-type" content="text/html; charset=UTF-8">'+
+          '<style type="text/css">' +
+          s.DataString +
+          '</style>' +
+          '</head>'+
+          '<body>' +
+          HTML +
+          '</body>' +
+          '</html>'
+          );
+      finally
+        s.Free;
+      end;
+    finally
+    end;
   except
     on E: Exception do MessageDlg('Error:'+ E.Message, mtError, [mbCancel], 0);
   end;
