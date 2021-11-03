@@ -35,8 +35,6 @@ type
   procedure ClipboardChanged(Sender: TObject);
   procedure LoadScriptMenus;
   procedure UpdateStatus(HTML: String);
- protected
-  procedure CreateParams(var Params: TCreateParams); override;
  public
 
  end;
@@ -59,13 +57,6 @@ begin
   LoadScriptMenus; // DONE: Add a menu that calls this method at any timing.
   FSetting.SetupWindow(Self);
   ClipboardChanged(Sender);
-  Self.BorderStyle:= bsNone;
-end;
-
-procedure TMainForm.CreateParams(var Params: TCreateParams);
-begin
-  inherited CreateParams(Params);
-  Params.Style := WS_POPUP or WS_THICKFRAME;
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
