@@ -20,7 +20,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 if not sys.stdin.isatty() or len(sys.argv) == 2:
-  url = sys.argv[-1] if len(sys.argv) == 2 else input().lower()
+  url = sys.argv[-1] if len(sys.argv) == 2 else input()
 
   if url.startswith("http://") or url.startswith("https://"):
     try:
