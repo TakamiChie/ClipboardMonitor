@@ -145,6 +145,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit16>
       <Unit17>
         <Filename Value="C:\lazarus\fpc\3.2.0\source\rtl\win64\classes.pp"/>
