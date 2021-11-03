@@ -7,7 +7,7 @@ interface
 uses
  ClipboardListener, ScriptProcess, Settings, Utils, LResources, FileUtil, IpHtml, SysUtils,
  Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Clipbrd, Menus, Windows,
- ActnList, Classes, Process;
+ ActnList, Classes;
 
 type
 
