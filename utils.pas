@@ -11,6 +11,7 @@ function GetSettingRootDir: String;
 function GetScriptRootDir: String;
 function GetOnRunScriptDir: String;
 function GetAppDir: String;
+function EscapeTags(HTML: string): String;
 procedure CopyToUnderscoreScripts;
 procedure CopyFile(const FromFile: String; const ToFile: String);
 
@@ -57,6 +58,23 @@ end;
 function GetAppDir: String;
 begin
   Result:= ExtractFileDir(Application.ExeName) + DirectorySeparator;
+end;
+
+/// <summary>Invalidate HTML tags by converting them to actual references. Some tags will be left intact.</summary>
+/// <param name="HTML">HTML for escaping</param>
+/// <returns>Escaped HTML</returns>
+function EscapeTags(HTML: string): String;
+const
+  UnescapeTags: array of string = ('p', 'a', 'b', 'i', 'pre', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'br');
+var
+  t: String;
+begin
+  Result:= StringReplace(HTML, '<', '&lt;', [rfReplaceAll]);
+  for t in UnescapeTags do
+  begin
+    Result:= StringReplace(Result, '&lt;' + t, '<' + t, [rfReplaceAll]);
+    Result:= StringReplace(Result, '&lt;/' + t, '</' + t, [rfReplaceAll]);
+  end;
 end;
 
 /// <summary>

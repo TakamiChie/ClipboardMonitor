@@ -152,7 +152,7 @@ begin
           '</style>' +
           '</head>'+
           '<body>' +
-          HTML +
+          EscapeTags(HTML) +
           '</body>' +
           '</html>'
           );
