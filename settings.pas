@@ -42,11 +42,16 @@ end;
 /// <summary>Read the window information from the Ini file.</summary>
 /// <param name="Window">Main Window object</param>
 procedure TSetting.SetupWindow(Window: TForm);
+var
+  MainForm: TMainForm;
 begin
+  MainForm:= TMainForm(Window);
   if FIniFile.ValueExists(SECTION_WINDOW, 'Left') then Window.Left:= FIniFile.ReadInt64(SECTION_WINDOW, 'Left', Window.Left);
   if FIniFile.ValueExists(SECTION_WINDOW, 'Top') then Window.Top:= FIniFile.ReadInt64(SECTION_WINDOW, 'Top', Window.Top);
   if FIniFile.ValueExists(SECTION_WINDOW, 'Width') then Window.Width:= FIniFile.ReadInt64(SECTION_WINDOW, 'Width', Window.Width);
   if FIniFile.ValueExists(SECTION_WINDOW, 'Height') then Window.Height:= FIniFile.ReadInt64(SECTION_WINDOW, 'Height', Window.Height);
+  if FIniFile.ValueExists(SECTION_WINDOW, 'SplitterPosition') then
+    MainForm.FMonitor.Height:= FIniFile.ReadInt64(SECTION_WINDOW, 'SplitterPosition', MainForm.FMonitor.Height);
 end;
 
 /// <summary>Update the check state of the script menu when copying.</summary>
@@ -66,12 +71,15 @@ end;
 procedure TSetting.SaveSettings(Window: TForm);
 var
   MI: TMenuItem;
+  MainForm: TMainForm;
 begin
+  MainForm:= TMainForm(Window);
   FIniFile.WriteInt64(SECTION_WINDOW, 'Left', Window.Left);
   FIniFile.WriteInt64(SECTION_WINDOW, 'Top', Window.Top);
   FIniFile.WriteInt64(SECTION_WINDOW, 'Width', Window.Width);
   FIniFile.WriteInt64(SECTION_WINDOW, 'Height', Window.Height);
-  for MI in TMainForm(Window).RunOnCopyMenuRoot do
+  FIniFile.WriteInt64(SECTION_WINDOW, 'SplitterPosition', MainForm.FMonitor.Height);
+  for MI in MainForm.RunOnCopyMenuRoot do
   begin
     FIniFile.WriteBool(SECTION_SCRIPTSTATE_ONRUN, MI.Caption, MI.Checked)
   end;

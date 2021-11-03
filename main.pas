@@ -15,6 +15,7 @@ type
 
  TMainForm = class(TForm)
   FStatus: TIpHtmlPanel;
+  FSplitter: TSplitter;
   UpdateScriptMenu: TAction;
   MenuItem2: TMenuItem;
   OpenScriptDir: TAction;

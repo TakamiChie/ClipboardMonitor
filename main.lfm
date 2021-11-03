@@ -30,10 +30,10 @@ object MainForm: TMainForm
   end
   object FStatus: TIpHtmlPanel
     Left = 0
-    Height = 50
-    Top = 135
+    Height = 46
+    Top = 139
     Width = 320
-    Align = alBottom
+    Align = alClient
     FixedTypeface = 'Courier New'
     DefaultTypeFace = 'default'
     DefaultFontSize = 12
@@ -48,9 +48,18 @@ object MainForm: TMainForm
     PrintSettings.Preview.Height = 810
     TabOrder = 1
   end
+  object FSplitter: TSplitter
+    Left = 0
+    Height = 8
+    Top = 131
+    Width = 320
+    Align = alTop
+    Beveled = True
+    ResizeAnchor = akTop
+  end
   object FPopupMenu: TPopupMenu
-    Left = 209
-    Top = 94
+    Left = 248
+    Top = 40
     object RunOnCopyMenuRoot: TMenuItem
       Caption = '&Run on copy'
     end
@@ -62,8 +71,8 @@ object MainForm: TMainForm
     end
   end
   object FActionList: TActionList
-    Left = 144
-    Top = 88
+    Left = 168
+    Top = 48
     object OpenScriptDir: TAction
       Category = 'Scripts'
       Caption = 'Open Script &Directory'
