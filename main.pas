@@ -92,6 +92,7 @@ begin
         Script.Execute(OnRunScriptDir + MI.Caption, StdOut, StdErr);
         if StdOut <> '' then
         begin
+          // TODO:Is it possible to classify the display by script name?
           StatusHTML:= StatusHTML + StdOut;
         end;
       finally
@@ -118,6 +119,7 @@ begin
     RunOnCopyMenuRoot.Clear;
     for s in OnRunScriptFiles do
     begin
+      // TODO: Is it possible to set a clear title (instead of a file name) for the script?
       MI := TMenuItem.Create(RunOnCopyMenuRoot);
       MI.Caption:= ExtractFileName(s);
       MI.Checked:= True; // DONE: Memory of check status
