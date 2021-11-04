@@ -92,8 +92,7 @@ begin
         Script.Execute(OnRunScriptDir + MI.Caption, StdOut, StdErr);
         if StdOut <> '' then
         begin
-          StatusHTML:= StdOut;
-          Break;
+          StatusHTML:= StatusHTML + StdOut;
         end;
       finally
         Script.Free;
