@@ -22,7 +22,7 @@ if not sys.stdin.isatty() or len(sys.argv) == 2:
   print(f"<p>{len(text) - 1} char(s)</p>")
   try:
     path = subprocess.check_output("where mdwc").decode("UTF-8").split()[-1]
-    with tempfile.NamedTemporaryFile("w") as f:
+    with tempfile.NamedTemporaryFile("w+t", encoding="utf-8") as f:
       f.write(text)
       # DONE: Reflect console color specification.
       ret = subprocess.check_output(f'"{path}" "{f.name}"').decode("UTF-8")
