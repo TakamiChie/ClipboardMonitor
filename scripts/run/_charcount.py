@@ -13,8 +13,7 @@ if not sys.stdin.isatty() or len(sys.argv) == 2:
       f.write(text)
       # TODO: Reflect console color specification.
       ret = subprocess.check_output(f'"{path}" "{f.name}"').decode("UTF-8")
-      print('<p>Markdown<p>')
-      print(f'<pre>{ret}</pre>')
+      print('<p>Markdown</p>')
 
   except:
     pass
