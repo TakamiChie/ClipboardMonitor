@@ -11,6 +11,7 @@ def colortags(m: re.Match) -> str:
   c = COLORS[ci][n % 10]
   return f'<span style="color: {c};">{t}</span>'
 
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
@@ -18,7 +19,7 @@ if not sys.stdin.isatty() or len(sys.argv) == 2:
   text = sys.argv[-1] if len(sys.argv) == 2 else sys.stdin.read()
   p = re.compile(r"\x1b\[([3,9][0-7])m(.*?)\x1b\[([3,9])9m")
 
-  print(f"<p>{len(text)} char(s)</p>")
+  print(f"<p>{len(text) - 1} char(s)</p>")
   try:
     path = subprocess.check_output("where mdwc").decode("UTF-8").split()[-1]
     with tempfile.NamedTemporaryFile("w") as f:
