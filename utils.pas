@@ -65,7 +65,7 @@ end;
 /// <returns>Escaped HTML</returns>
 function EscapeTags(HTML: string): String;
 const
-  UnescapeTags: array of string = ('p', 'a', 'b', 'i', 'pre', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'br');
+  UnescapeTags: array of string = ('p', 'a', 'b', 'i', 'pre', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'br', 'span', 'div');
 var
   t: String;
 begin
