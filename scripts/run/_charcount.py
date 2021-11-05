@@ -28,7 +28,7 @@ if not sys.stdin.isatty() or len(sys.argv) == 2:
       ret = subprocess.check_output(f'"{path}" "{f.name}"').decode("UTF-8")
       ret = p.sub(colortags, ret)
       print('<p>Markdown</p>')
-      print(f'<p>{ret}</p>')
+      print(f'<pre>{ret}</pre>')
 
   except:
     pass
