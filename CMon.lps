@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="64" Y="10"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="54"/>
       </Unit0>
       <Unit1>
         <Filename Value="main.pas"/>
@@ -19,10 +19,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Main"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="148"/>
-        <CursorPos X="12" Y="156"/>
-        <UsageCount Value="50"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="89"/>
+        <CursorPos Y="105"/>
+        <UsageCount Value="54"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit1>
       <Unit2>
         <Filename Value="clipboardlistener.pas"/>
@@ -30,21 +32,21 @@
         <UnitName Value="ClipboardListener"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="16"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="54"/>
       </Unit2>
       <Unit3>
         <Filename Value="README.md"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="31" Y="11"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="54"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit3>
       <Unit4>
         <Filename Value="LICENSE"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="50"/>
+        <UsageCount Value="54"/>
         <DefaultSyntaxHighlighter Value="None"/>
       </Unit4>
       <Unit5>
@@ -54,7 +56,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="63"/>
         <CursorPos X="118" Y="68"/>
-        <UsageCount Value="41"/>
+        <UsageCount Value="45"/>
       </Unit5>
       <Unit6>
         <Filename Value="scriptprocess.pas"/>
@@ -63,7 +65,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="20"/>
         <CursorPos X="7" Y="28"/>
-        <UsageCount Value="39"/>
+        <UsageCount Value="43"/>
       </Unit6>
       <Unit7>
         <Filename Value="settings.pas"/>
@@ -72,15 +74,15 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="58"/>
         <CursorPos X="5" Y="67"/>
-        <UsageCount Value="37"/>
+        <UsageCount Value="41"/>
       </Unit7>
       <Unit8>
         <Filename Value="scripts\run\_urlchecker.py"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="7"/>
+        <TopLine Value="4"/>
         <CursorPos Y="18"/>
-        <UsageCount Value="33"/>
+        <UsageCount Value="37"/>
         <DefaultSyntaxHighlighter Value="Python"/>
       </Unit8>
       <Unit9>
@@ -88,16 +90,15 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="7"/>
-        <UsageCount Value="30"/>
+        <UsageCount Value="34"/>
         <DefaultSyntaxHighlighter Value="CSS"/>
       </Unit9>
       <Unit10>
         <Filename Value="scripts\run\_charcount.py"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="9" Y="15"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="29"/>
         <DefaultSyntaxHighlighter Value="Python"/>
       </Unit10>
       <Unit11>
@@ -217,10 +218,12 @@
         <UsageCount Value="12"/>
       </Unit27>
     </Units>
-    <General>
-      <ActiveWindowIndexAtStart Value="-1"/>
-    </General>
-    <JumpHistory HistoryIndex="-1"/>
+    <JumpHistory Count="1">
+      <Position1>
+        <Filename Value="main.pas"/>
+        <Caret Line="105" TopLine="78"/>
+      </Position1>
+    </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes Count="1" ActiveMode="default">
