@@ -24,6 +24,7 @@ type
   end;
   TScriptList = array of TScriptFile;
   function LoadScriptFiles(Dir: String): TScriptList;
+  function CompareOrder(item1,item2:Pointer):Integer;
 
 implementation
 
@@ -48,6 +49,7 @@ begin
     finally
       ScriptFiles.Free;
     end;
+    Scripts.Sort(@CompareOrder);
     SetLength(Result, Scripts.Count);
     Index:=0;
     for S in Scripts do
@@ -113,6 +115,11 @@ end;
 function TScriptFile.GetFileName: String;
 begin
   Result:= ExtractFileName(FFilePath);
+end;
+
+function CompareOrder(item1,item2:Pointer):Integer;
+begin
+  Result:= TScriptFile(item1).Order - TScriptFile(item2).Order;
 end;
 
 end.
