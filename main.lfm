@@ -4,7 +4,6 @@ object MainForm: TMainForm
   Top = 278
   Width = 320
   AlphaBlend = True
-  AlphaBlendValue = 200
   Caption = 'MainForm'
   ClientHeight = 185
   ClientWidth = 320
