@@ -1,3 +1,11 @@
+"""
+[caption]
+def=Counting characters
+ja=文字数のカウント
+[general]
+order=100
+"""
+
 import sys, io, re, tempfile, subprocess
 
 def colortags(m: re.Match) -> str:

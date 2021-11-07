@@ -5,7 +5,7 @@ unit Settings;
 interface
 
 uses
- Forms, Utils, Classes, Menus, SysUtils, IniFiles;
+ ScriptManager, Forms, Utils, Classes, Menus, SysUtils, IniFiles;
 
 type
   TSetting = class(TObject)
@@ -62,7 +62,7 @@ var
 begin
   for MI in MenuRoot do
   begin
-    MI.Checked:= FIniFile.ReadBool(SECTION_SCRIPTSTATE_ONRUN, MI.Caption, True)
+    MI.Checked:= FIniFile.ReadBool(SECTION_SCRIPTSTATE_ONRUN, TScriptFile(MI.Tag).FileName, True)
   end;
 end;
 
@@ -81,7 +81,7 @@ begin
   FIniFile.WriteInt64(SECTION_WINDOW, 'SplitterPosition', MainForm.FMonitor.Height);
   for MI in MainForm.RunOnCopyMenuRoot do
   begin
-    FIniFile.WriteBool(SECTION_SCRIPTSTATE_ONRUN, MI.Caption, MI.Checked)
+    FIniFile.WriteBool(SECTION_SCRIPTSTATE_ONRUN, TScriptFile(MI.Tag).FileName, MI.Checked)
   end;
   FIniFile.UpdateFile;
 end;

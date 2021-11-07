@@ -5,7 +5,7 @@ unit Main;
 interface
 
 uses
- ClipboardListener, ScriptProcess, Settings, Utils, LResources, FileUtil, IpHtml, SysUtils,
+ ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, LResources, FileUtil, IpHtml, SysUtils,
  Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Clipbrd, Menus, LCLType,
  ActnList, Classes;
 
@@ -31,12 +31,14 @@ type
   procedure OpenScriptDirExecute(Sender: TObject);
  private
   FClipboardListener: TClipboardListener;
+  FOnRunScripts: TScriptList;
   FSetting: TSetting;
+  procedure SetOnRunScripts(Value: TScriptList);
   procedure ClipboardChanged(Sender: TObject);
   procedure LoadScriptMenus;
   procedure UpdateStatus(HTML: String);
  public
-
+  property OnRunScripts: TScriptList read FOnRunScripts write SetOnRunScripts;
  end;
 
 var
@@ -72,7 +74,7 @@ end;
 
 procedure TMainForm.ClipboardChanged(Sender: TObject);
 var
-  OnRunScriptDir, StatusHTML: String;
+  StatusHTML: String;
   StdOut: String;
   StdErr: String;
   MI: TMenuItem;
@@ -80,7 +82,6 @@ var
 begin
   FMonitor.Text:= Clipboard.AsText;
   StatusHTML:= '';
-  OnRunScriptDir:= GetOnRunScriptDir;
   // DONE: Externalization because it is long
   for MI in RunOnCopyMenuRoot do
   begin
@@ -89,7 +90,7 @@ begin
       Script:= TScriptProcess.Create;
       try
         Script.Text:= FMonitor.Text;
-        Script.Execute(OnRunScriptDir + MI.Caption, StdOut, StdErr);
+        Script.Execute(TScriptFile(MI.Tag).FilePath, StdOut, StdErr);
         if StdOut <> '' then
         begin
           // TODO:Is it possible to classify the display by script name?
@@ -103,33 +104,35 @@ begin
   UpdateStatus(StatusHTML);
 end;
 
+procedure TMainForm.SetOnRunScripts(Value: TScriptList);
+var
+  S: TScriptFile;
+begin
+  for S in FOnRunScripts do S.Free;
+  FOnRunScripts:= Value;
+end;
+
 /// <summary>
 /// Initialize the Run Script menu at copy time and the Extended Copy Script menu.
 /// </summary>
 procedure TMainForm.LoadScriptMenus;
 var
-  OnRunScriptDir, s: String;
-  OnRunScriptFiles: TStringList;
+  S: TScriptFile;
   MI: TMenuItem;
 begin
-  OnRunScriptDir:= GetOnRunScriptDir;
-  OnRunScriptFiles:= TStringList.Create;
-  try
-    FindAllFiles(OnRunScriptFiles, OnRunScriptDir, '*.py', False);
-    RunOnCopyMenuRoot.Clear;
-    for s in OnRunScriptFiles do
-    begin
-      // TODO: Is it possible to set a clear title (instead of a file name) for the script?
-      MI := TMenuItem.Create(RunOnCopyMenuRoot);
-      MI.Caption:= ExtractFileName(s);
-      MI.Checked:= True; // DONE: Memory of check status
-      MI.AutoCheck:= True;
-      RunOnCopyMenuRoot.Add(MI);
-    end;
-    FSetting.SetupOnRunMenu(RunOnCopyMenuRoot);
-  finally
-    OnRunScriptFiles.Free;
+  OnRunScripts := LoadScriptFiles(GetOnRunScriptDir);
+  RunOnCopyMenuRoot.Clear;
+  for S in OnRunScripts do
+  begin
+    // DONE: Is it possible to set a clear title (instead of a file name) for the script?
+    MI := TMenuItem.Create(RunOnCopyMenuRoot);
+    MI.Caption:= S.DisplayName;
+    MI.Checked:= True; // DONE: Memory of check status
+    MI.AutoCheck:= True;
+    MI.Tag:=PtrInt(S);
+    RunOnCopyMenuRoot.Add(MI);
   end;
+  FSetting.SetupOnRunMenu(RunOnCopyMenuRoot);
 end;
 
 /// <summary>Update Status text</summary>

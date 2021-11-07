@@ -1,3 +1,11 @@
+"""
+[caption]
+def=URL resolution
+ja=URLの解決
+[general]
+order=0
+"""
+
 import urllib.request, sys, ssl, io
 from html.parser import HTMLParser
 

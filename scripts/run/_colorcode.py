@@ -1,3 +1,10 @@
+"""
+[caption]
+def=Display color codes
+ja=カラーコードの表示
+[general]
+order=0
+"""
 import sys, io, re
 
 sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
