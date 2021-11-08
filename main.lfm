@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 2233
+  Left = 2620
   Height = 185
-  Top = 278
+  Top = 260
   Width = 320
   AlphaBlend = True
   Caption = 'MainForm'
@@ -13,7 +13,7 @@ object MainForm: TMainForm
   LCLVersion = '2.0.12.0'
   object FMonitor: TMemo
     Left = 0
-    Height = 131
+    Height = 96
     Top = 0
     Width = 320
     Align = alTop
@@ -29,8 +29,8 @@ object MainForm: TMainForm
   end
   object FStatus: TIpHtmlPanel
     Left = 0
-    Height = 46
-    Top = 139
+    Height = 57
+    Top = 104
     Width = 320
     Align = alClient
     FixedTypeface = 'Courier New'
@@ -51,11 +51,26 @@ object MainForm: TMainForm
     Cursor = crVSplit
     Left = 0
     Height = 8
-    Top = 131
+    Top = 96
     Width = 320
     Align = alTop
     Beveled = True
     ResizeAnchor = akTop
+  end
+  object FStatusBar: TStatusBar
+    Left = 0
+    Height = 24
+    Top = 161
+    Width = 320
+    Panels = <    
+      item
+        Text = 'in progress'
+        Width = 70
+      end    
+      item
+        Width = 50
+      end>
+    SimplePanel = False
   end
   object FPopupMenu: TPopupMenu
     Left = 248

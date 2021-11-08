@@ -7,7 +7,7 @@ interface
 uses
  ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, LResources, FileUtil, IpHtml, SysUtils,
  Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Clipbrd, Menus, LCLType,
- ActnList, Classes;
+ ActnList, ComCtrls, Classes;
 
 type
 
@@ -16,6 +16,7 @@ type
  TMainForm = class(TForm)
   FStatus: TIpHtmlPanel;
   FSplitter: TSplitter;
+  FStatusBar: TStatusBar;
   UpdateScriptMenu: TAction;
   MenuItem2: TMenuItem;
   OpenScriptDir: TAction;
@@ -41,6 +42,9 @@ type
   property OnRunScripts: TScriptList read FOnRunScripts write SetOnRunScripts;
  end;
 
+const
+ STATUS_READY = 'Ready';
+ STATUS_INPROGRESS = 'In progress';
 var
  MainForm: TMainForm;
 
@@ -59,6 +63,7 @@ begin
   LoadScriptMenus; // DONE: Add a menu that calls this method at any timing.
   FSetting.SetupWindow(Self);
   ClipboardChanged(Sender);
+  FStatusBar.Panels[0].Text:= STATUS_READY;
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -80,13 +85,17 @@ var
   MI: TMenuItem;
   Script: TScriptProcess;
 begin
+  FStatusBar.Panels[0].Text:= STATUS_INPROGRESS;
   FMonitor.Text:= Clipboard.AsText;
+  Application.ProcessMessages;
   StatusHTML:= '';
   // DONE: Externalization because it is long
   for MI in RunOnCopyMenuRoot do
   begin
     if MI.Checked then
     begin
+      FStatusBar.Panels[1].Text:= TScriptFile(MI.Tag).FileName;
+      Application.ProcessMessages;
       Script:= TScriptProcess.Create;
       try
         Script.Text:= FMonitor.Text;
@@ -101,6 +110,8 @@ begin
       end;
     end;
   end;
+  FStatusBar.Panels[0].Text:= STATUS_READY;
+  FStatusBar.Panels[1].Text:= '';
   UpdateStatus(StatusHTML);
 end;
 
