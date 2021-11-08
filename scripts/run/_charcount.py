@@ -6,7 +6,7 @@ ja=文字数のカウント
 order=100
 """
 
-import sys, io, re, tempfile, subprocess
+import sys, io, os, re, tempfile, subprocess
 
 def colortags(m: re.Match) -> str:
   COLORS = [
@@ -28,15 +28,19 @@ if not sys.stdin.isatty() or len(sys.argv) == 2:
   p = re.compile(r"\x1b\[([3,9][0-7])m(.*?)\x1b\[([3,9])9m")
 
   print(f"<p>{len(text) - 1} char(s)</p>")
+  fd, fn = tempfile.mkstemp()
   try:
     path = subprocess.check_output("where mdwc").decode("UTF-8").split()[-1]
-    with tempfile.NamedTemporaryFile("w+t", encoding="utf-8") as f:
+    with open(fn, "w", encoding="utf-8") as f:
       f.write(text)
-      # DONE: Reflect console color specification.
-      ret = subprocess.check_output(f'"{path}" "{f.name}"').decode("UTF-8")
-      ret = p.sub(colortags, ret)
-      print('<p>Markdown</p>')
-      print(f'<pre>{ret}</pre>')
+    # DONE: Reflect console color specification.
+    ret = subprocess.check_output(f'"{path}" "{f.name}"').decode("UTF-8")
+    ret = p.sub(colortags, ret)
+    print('<p>Markdown</p>')
+    print(f'<pre>{ret}</pre>')
 
   except:
     pass
+  finally:
+    os.close(fd)
+    os.remove(fn)
