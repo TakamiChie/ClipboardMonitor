@@ -87,7 +87,6 @@ var
 begin
   FStatusBar.Panels[0].Text:= STATUS_INPROGRESS;
   FMonitor.Text:= Clipboard.AsText;
-  Application.ProcessMessages;
   StatusHTML:= '';
   // DONE: Externalization because it is long
   for MI in RunOnCopyMenuRoot do

@@ -64,7 +64,6 @@ object MainForm: TMainForm
     Width = 320
     Panels = <    
       item
-        Text = 'in progress'
         Width = 70
       end    
       item
