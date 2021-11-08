@@ -82,6 +82,7 @@ end;
 procedure TMainForm.ClipboardChanged(Sender: TObject);
 var
   StatusHTML: String;
+  Errors: String;
   StdOut: String;
   StdErr: String;
   MI: TMenuItem;
@@ -90,6 +91,7 @@ begin
   FStatusBar.Panels[0].Text:= STATUS_INPROGRESS;
   FMonitor.Text:= Clipboard.AsText;
   StatusHTML:= '';
+  Errors:='';
   // DONE: Externalization because it is long
   for MI in RunOnCopyMenuRoot do
   begin
@@ -106,13 +108,14 @@ begin
           // TODO:Is it possible to classify the display by script name?
           StatusHTML:= StatusHTML + StdOut;
         end;
+        if StdErr <> '' then Errors:= Errors + StdErr;
       finally
         Script.Free;
       end;
     end;
   end;
   FStatusBar.Panels[0].Text:= STATUS_READY;
-  FStatusBar.Panels[1].Text:= '';
+  if Errors <> '' then FStatusBar.Panels[1].Text:=Errors else FStatusBar.Panels[1].Text:= '';
   UpdateStatus(StatusHTML);
 end;
 
