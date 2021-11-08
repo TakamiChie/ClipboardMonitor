@@ -50,6 +50,7 @@ begin
   if FIniFile.ValueExists(SECTION_WINDOW, 'Top') then Window.Top:= FIniFile.ReadInt64(SECTION_WINDOW, 'Top', Window.Top);
   if FIniFile.ValueExists(SECTION_WINDOW, 'Width') then Window.Width:= FIniFile.ReadInt64(SECTION_WINDOW, 'Width', Window.Width);
   if FIniFile.ValueExists(SECTION_WINDOW, 'Height') then Window.Height:= FIniFile.ReadInt64(SECTION_WINDOW, 'Height', Window.Height);
+  if FIniFile.ReadBool(SECTION_WINDOW, 'TopMost', False) then MainForm.WindowTopMost.Execute;
   if FIniFile.ValueExists(SECTION_WINDOW, 'SplitterPosition') then
     MainForm.FMonitor.Height:= FIniFile.ReadInt64(SECTION_WINDOW, 'SplitterPosition', MainForm.FMonitor.Height);
 end;
@@ -78,6 +79,7 @@ begin
   FIniFile.WriteInt64(SECTION_WINDOW, 'Top', Window.Top);
   FIniFile.WriteInt64(SECTION_WINDOW, 'Width', Window.Width);
   FIniFile.WriteInt64(SECTION_WINDOW, 'Height', Window.Height);
+  FIniFile.WriteBool(SECTION_WINDOW, 'TopMost', MainForm.WindowTopMost.Checked);
   FIniFile.WriteInt64(SECTION_WINDOW, 'SplitterPosition', MainForm.FMonitor.Height);
   for MI in MainForm.RunOnCopyMenuRoot do
   begin

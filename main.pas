@@ -14,6 +14,7 @@ type
  { TMainForm }
 
  TMainForm = class(TForm)
+  WindowTopMost: TAction;
   FStatus: TIpHtmlPanel;
   FSplitter: TSplitter;
   FStatusBar: TStatusBar;
@@ -30,6 +31,7 @@ type
   procedure FormDestroy(Sender: TObject);
   procedure UpdateScriptMenuExecute(Sender: TObject);
   procedure OpenScriptDirExecute(Sender: TObject);
+  procedure WindowTopMostExecute(Sender: TObject);
  private
   FClipboardListener: TClipboardListener;
   FOnRunScripts: TScriptList;
@@ -197,6 +199,17 @@ procedure TMainForm.UpdateScriptMenuExecute(Sender: TObject);
 begin
   LoadScriptMenus;
 end;
+
+/// <summary>Always toggle the display state to the forefront.</summary>
+procedure TMainForm.WindowTopMostExecute(Sender: TObject);
+begin
+  WindowTopMost.Checked:= Not WindowTopMost.Checked;
+  if WindowTopMost.Checked then
+    FormStyle:= fsSystemStayOnTop
+  else
+    FormStyle:= fsNormal;
+end;
+
 
 end.
 

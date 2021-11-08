@@ -83,6 +83,9 @@ object MainForm: TMainForm
     object MenuItem2: TMenuItem
       Action = UpdateScriptMenu
     end
+    object MenuItem3: TMenuItem
+      Action = WindowTopMost
+    end
   end
   object FActionList: TActionList
     Left = 168
@@ -96,6 +99,11 @@ object MainForm: TMainForm
       Category = 'Scripts'
       Caption = '&Update script menu'
       OnExecute = UpdateScriptMenuExecute
+    end
+    object WindowTopMost: TAction
+      Category = 'Display'
+      Caption = '&Pinned to the front'
+      OnExecute = WindowTopMostExecute
     end
   end
 end
