@@ -38,8 +38,7 @@ if not sys.stdin.isatty() or len(sys.argv) == 2:
     ret = p.sub(colortags, ret)
     print('<p>Markdown</p>')
     print(f'<pre>{ret}</pre>')
-
-  except:
+  except FileNotFoundError:
     pass
   finally:
     os.close(fd)
