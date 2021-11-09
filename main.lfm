@@ -67,9 +67,13 @@ object MainForm: TMainForm
         Width = 70
       end    
       item
+        Style = psOwnerDraw
         Width = 50
       end>
+    ParentFont = False
     SimplePanel = False
+    OnClick = FStatusBarClick
+    OnDrawPanel = FStatusBarDrawPanel
   end
   object FPopupMenu: TPopupMenu
     Left = 248

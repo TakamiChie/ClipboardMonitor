@@ -29,6 +29,9 @@ type
   procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
   procedure FormCreate(Sender: TObject);
   procedure FormDestroy(Sender: TObject);
+  procedure FStatusBarClick(Sender: TObject);
+  procedure FStatusBarDrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
+   const Rect: TRect);
   procedure UpdateScriptMenuExecute(Sender: TObject);
   procedure OpenScriptDirExecute(Sender: TObject);
   procedure WindowTopMostExecute(Sender: TObject);
@@ -36,6 +39,7 @@ type
   FClipboardListener: TClipboardListener;
   FOnRunScripts: TScriptList;
   FSetting: TSetting;
+  FLastError: String;
   procedure SetOnRunScripts(Value: TScriptList);
   procedure ClipboardChanged(Sender: TObject);
   procedure LoadScriptMenus;
@@ -47,6 +51,7 @@ type
 const
  STATUS_READY = 'Ready';
  STATUS_INPROGRESS = 'In progress';
+ STATUS_HASERROR = 'Error in script. Click to view.';
 var
  MainForm: TMainForm;
 
@@ -79,10 +84,31 @@ begin
   FClipboardListener.Free;
 end;
 
+procedure TMainForm.FStatusBarClick(Sender: TObject);
+begin
+  if FLastError <> '' then
+  begin
+    MessageDlg(FLastError, mtError, [mbOK], 0);
+  end;
+end;
+
+procedure TMainForm.FStatusBarDrawPanel(StatusBar: TStatusBar;
+ Panel: TStatusPanel; const Rect: TRect);
+var
+  ts: TTextStyle;
+begin
+  ts:= StatusBar.Canvas.TextStyle;
+  ts.EndEllipsis:=True;
+  ts.Wordbreak:= False;
+  StatusBar.Canvas.Brush.Color:= clDefault;
+  if FLastError <> '' then StatusBar.Canvas.Font.Color := clRed else StatusBar.Canvas.Font.Color := clDefault;
+  StatusBar.Canvas.FillRect(Rect);
+  StatusBar.Canvas.TextRect(Rect, 2 + Rect.Left, 2 + Rect.Top, Panel.Text, ts);
+end;
+
 procedure TMainForm.ClipboardChanged(Sender: TObject);
 var
   StatusHTML: String;
-  Errors: String;
   StdOut: String;
   StdErr: String;
   MI: TMenuItem;
@@ -91,7 +117,7 @@ begin
   FStatusBar.Panels[0].Text:= STATUS_INPROGRESS;
   FMonitor.Text:= Clipboard.AsText;
   StatusHTML:= '';
-  Errors:='';
+  FLastError:= '';
   // DONE: Externalization because it is long
   for MI in RunOnCopyMenuRoot do
   begin
@@ -108,14 +134,17 @@ begin
           // TODO:Is it possible to classify the display by script name?
           StatusHTML:= StatusHTML + StdOut;
         end;
-        if StdErr <> '' then Errors:= Errors + StdErr;
+        if StdErr <> '' then
+        begin
+          FLastError:= FLastError + '[' + TScriptFile(MI.Tag).FileName + ']' + #13#10 + StdErr + #13#10;
+        end;
       finally
         Script.Free;
       end;
     end;
   end;
   FStatusBar.Panels[0].Text:= STATUS_READY;
-  if Errors <> '' then FStatusBar.Panels[1].Text:=Errors else FStatusBar.Panels[1].Text:= '';
+  if FLastError <> '' then FStatusBar.Panels[1].Text:=STATUS_HASERROR else FStatusBar.Panels[1].Text:= '';
   UpdateStatus(StatusHTML);
 end;
 
