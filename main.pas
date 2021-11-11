@@ -14,6 +14,9 @@ type
  { TMainForm }
 
  TMainForm = class(TForm)
+  MenuItem3: TMenuItem;
+  MenuItem4: TMenuItem;
+  ConversionScriptsRoot: TMenuItem;
   WindowTopMost: TAction;
   FStatus: TIpHtmlPanel;
   FSplitter: TSplitter;
@@ -38,14 +41,17 @@ type
  private
   FClipboardListener: TClipboardListener;
   FOnRunScripts: TScriptList;
+  FConversionScripts: TScriptList;
   FSetting: TSetting;
   FLastError: String;
   procedure SetOnRunScripts(Value: TScriptList);
+  procedure SetConversionScripts(Value: TScriptList);
   procedure ClipboardChanged(Sender: TObject);
   procedure LoadScriptMenus;
   procedure UpdateStatus(HTML: String);
  public
   property OnRunScripts: TScriptList read FOnRunScripts write SetOnRunScripts;
+  property ConversionScripts: TScriptList read FConversionScripts write SetConversionScripts;
  end;
 
 const
@@ -156,25 +162,39 @@ begin
   FOnRunScripts:= Value;
 end;
 
+procedure TMainForm.SetConversionScripts(Value: TScriptList);
+var
+  S: TScriptFile;
+begin
+  for S in FConversionScripts do S.Free;
+  FConversionScripts := Value;
+end;
+
 /// <summary>
 /// Initialize the Run Script menu at copy time and the Extended Copy Script menu.
 /// </summary>
 procedure TMainForm.LoadScriptMenus;
 var
   S: TScriptFile;
-  MI: TMenuItem;
+  MI, MR: TMenuItem;
+  Menus: array[0..1] of TMenuItem;
 begin
+  Menus[0]:= RunOnCopyMenuRoot;
+  Menus[1]:= ConversionScriptsRoot;
   OnRunScripts := LoadScriptFiles(GetOnRunScriptDir);
-  RunOnCopyMenuRoot.Clear;
-  for S in OnRunScripts do
+  ConversionScripts := LoadScriptFiles(GetConversionScriptDir);
+  RunOnCopyMenuRoot.Tag := Int64(Pointer(OnRunScripts));
+  ConversionScriptsRoot.Tag := Int64(Pointer(ConversionScripts));
+  for MR in Menus do
   begin
-    // DONE: Is it possible to set a clear title (instead of a file name) for the script?
-    MI := TMenuItem.Create(RunOnCopyMenuRoot);
-    MI.Caption:= S.DisplayName;
-    MI.Checked:= True; // DONE: Memory of check status
-    MI.AutoCheck:= True;
-    MI.Tag:=PtrInt(S);
-    RunOnCopyMenuRoot.Add(MI);
+    for S in TScriptList(MR.Tag) do
+    begin
+      MI := TMenuItem.Create(MR);
+      MI.Caption:= S.DisplayName;
+      MI.AutoCheck:= True;
+      MI.Tag:=PtrInt(S);
+      MR.Add(MI);
+    end;
   end;
   FSetting.SetupOnRunMenu(RunOnCopyMenuRoot);
 end;

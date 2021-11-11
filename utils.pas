@@ -10,6 +10,7 @@ uses
 function GetSettingRootDir: String;
 function GetScriptRootDir: String;
 function GetOnRunScriptDir: String;
+function GetConversionScriptDir: String;
 function GetAppDir: String;
 function EscapeTags(HTML: string): String;
 procedure CopyToUnderscoreScripts;
@@ -19,6 +20,7 @@ implementation
 
 const SCRIPT_ROOT = 'Scripts';
 const SCRIPT_ONRUN = 'Run';
+const SCRIPT_CONVERSION = 'Conversion';
 
 /// <summary>Get Setting dir</summary>
 /// <returns>The directory path where you want to store application configuration information. Contains directory separator characters at the end.</returns>
@@ -47,6 +49,17 @@ end;
 function GetOnRunScriptDir: String;
 begin
   Result := GetScriptRootDir + SCRIPT_ONRUN + DirectorySeparator;
+  if not DirectoryExists(Result) then
+  begin
+    ForceDirectories(Result);
+  end;
+end;
+
+/// <summary>Get Conversion script dir</summary>
+/// <returns>The directory path where you want to store conversion script. Contains directory separator characters at the end.</returns>
+function GetConversionScriptDir: String;
+begin
+  Result := GetScriptRootDir + SCRIPT_CONVERSION + DirectorySeparator;
   if not DirectoryExists(Result) then
   begin
     ForceDirectories(Result);
@@ -82,15 +95,24 @@ end;
 /// </summary>
 procedure CopyToUnderscoreScripts;
 var
-  ScriptRoot, OnRunScriptDir, FN: String;
+  ScriptRoot, FN: String;
   FileList: TStringList;
+  Entry: array[0..1] of String;
+  Dirs: array[0..1,0..1] of String;
 begin
+  Dirs[0][0] := GetOnRunScriptDir;
+  Dirs[0][1] := SCRIPT_ONRUN;
+  Dirs[1][0] := GetConversionScriptDir;
+  Dirs[1][1] := SCRIPT_CONVERSION;
   ScriptRoot:= GetAppDir + LowerCase(SCRIPT_ROOT) + DirectorySeparator;
-  OnRunScriptDir:= GetOnRunScriptDir;
   FileList:= TStringList.Create;
   try
-    FindAllFiles(FileList, ScriptRoot + LowerCase(SCRIPT_ONRUN), '*.py', False);
-    for FN in FileList do CopyFile(FN, OnRunScriptDir + ExtractFileName(FN));
+    for Entry in Dirs do
+    begin
+      FindAllFiles(FileList, ScriptRoot + LowerCase(Entry[1]), '*.py', False);
+      for FN in FileList do CopyFile(FN, Entry[0] + ExtractFileName(FN));
+      FileList.Clear;
+    end;
   finally
     FileList.Free;
   end;

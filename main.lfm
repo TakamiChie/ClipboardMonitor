@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 2620
+  Left = 2762
   Height = 185
-  Top = 260
+  Top = 93
   Width = 320
   AlphaBlend = True
   Caption = 'MainForm'
@@ -78,8 +78,15 @@ object MainForm: TMainForm
   object FPopupMenu: TPopupMenu
     Left = 248
     Top = 40
+    object ConversionScriptsRoot: TMenuItem
+      Caption = '&Conversion Script'
+      ShortCut = 67
+    end
     object RunOnCopyMenuRoot: TMenuItem
       Caption = '&Run on copy'
+    end
+    object MenuItem4: TMenuItem
+      Caption = '-'
     end
     object MenuItem1: TMenuItem
       Action = OpenScriptDir
