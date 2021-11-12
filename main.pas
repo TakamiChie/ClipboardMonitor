@@ -29,6 +29,7 @@ type
   MenuItem1: TMenuItem;
   RunOnCopyMenuRoot: TMenuItem;
   FPopupMenu: TPopupMenu;
+  procedure ConversionScriptsClick(Sender: TObject);
   procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
   procedure FormCreate(Sender: TObject);
   procedure FormDestroy(Sender: TObject);
@@ -191,7 +192,8 @@ begin
     begin
       MI := TMenuItem.Create(MR);
       MI.Caption:= S.DisplayName;
-      MI.AutoCheck:= True;
+      if MR = RunOnCopyMenuRoot then MI.AutoCheck:= True;
+      if MR = ConversionScriptsRoot then MI.OnClick:=@ConversionScriptsClick;
       MI.Tag:=PtrInt(S);
       MR.Add(MI);
     end;
@@ -232,6 +234,27 @@ begin
   except
     on E: Exception do MessageDlg('Error:'+ E.Message, mtError, [mbCancel], 0);
   end;
+end;
+
+/// <summary>Run the conversion script.</summary>
+procedure TMainForm.ConversionScriptsClick(Sender: TObject);
+var
+  SF: TScriptFile;
+  Script: TScriptProcess;
+  StdOut, StdErr: String;
+begin
+  FLastError:= '';
+  SF:= TScriptFile(TMenuItem(Sender).Tag);
+  Script:= TScriptProcess.Create;
+  try
+    Script.Text:= FMonitor.Text;
+    Script.Execute(SF.FilePath, StdOut, StdErr);
+    if StdOut <> '' then Clipboard.AsText:=StdOut;
+    if StdErr <> '' then FLastError:= StdErr;
+  finally
+    Script.Free;
+  end;
+  if FLastError <> '' then FStatusBar.Panels[1].Text:=STATUS_HASERROR else FStatusBar.Panels[1].Text:= '';
 end;
 
 { Begin ActionList }
