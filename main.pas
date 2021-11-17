@@ -119,6 +119,7 @@ var
   StdOut: String;
   StdErr: String;
   MI: TMenuItem;
+  S: TScriptFile;
   Script: TScriptProcess;
 begin
   FStatusBar.Panels[0].Text:= STATUS_INPROGRESS;
@@ -130,12 +131,13 @@ begin
   begin
     if MI.Checked then
     begin
-      FStatusBar.Panels[1].Text:= TScriptFile(MI.Tag).FileName;
+      S := FOnRunScripts[MI.Tag];
+      FStatusBar.Panels[1].Text:= S.FileName;
       Application.ProcessMessages;
       Script:= TScriptProcess.Create;
       try
         Script.Text:= FMonitor.Text;
-        Script.Execute(TScriptFile(MI.Tag).FilePath, StdOut, StdErr);
+        Script.Execute(S.FilePath, StdOut, StdErr);
         if StdOut <> '' then
         begin
           // TODO:Is it possible to classify the display by script name?
@@ -143,7 +145,7 @@ begin
         end;
         if StdErr <> '' then
         begin
-          FLastError:= FLastError + '[' + TScriptFile(MI.Tag).FileName + ']' + #13#10 + StdErr + #13#10;
+          FLastError:= FLastError + '[' + S.FileName + ']' + #13#10 + StdErr + #13#10;
         end;
       finally
         Script.Free;
@@ -188,13 +190,14 @@ begin
   ConversionScriptsRoot.Tag := Int64(Pointer(ConversionScripts));
   for MR in Menus do
   begin
+    MR.Clear;
     for S in TScriptList(MR.Tag) do
     begin
       MI := TMenuItem.Create(MR);
       MI.Caption:= S.DisplayName;
       if MR = RunOnCopyMenuRoot then MI.AutoCheck:= True;
       if MR = ConversionScriptsRoot then MI.OnClick:=@ConversionScriptsClick;
-      MI.Tag:=PtrInt(S);
+      MI.Tag:=S.Index;
       MR.Add(MI);
     end;
   end;
@@ -244,7 +247,7 @@ var
   StdOut, StdErr: String;
 begin
   FLastError:= '';
-  SF:= TScriptFile(TMenuItem(Sender).Tag);
+  SF:= FConversionScripts[TMenuItem(Sender).Tag];
   Script:= TScriptProcess.Create;
   try
     Script.Text:= FMonitor.Text;

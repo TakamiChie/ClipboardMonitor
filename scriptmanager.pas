@@ -11,12 +11,14 @@ type
   /// <summary>A structure that manages individual script files.</summary>
   TScriptFile = class(TObject)
   private
+    FIndex: Integer;
     FOrder: Integer;
     FFilePath: String;
     FDisplayName: String;
     function GetFileName: String;
   public
     constructor Create(ScriptFile: String);
+    property Index: Integer read FIndex write FIndex;
     property Order: Integer read FOrder;
     property FilePath: String read FFilePath;
     property FileName: String read GetFileName;
@@ -45,7 +47,9 @@ begin
     try
       FindAllFiles(ScriptFiles, Dir, '*.py', False);
       for F in ScriptFiles do
+      begin
         Scripts.Add(TScriptFile.Create(F));
+      end;
     finally
       ScriptFiles.Free;
     end;
@@ -55,6 +59,7 @@ begin
     for S in Scripts do
     begin
       Result[Index]:= TScriptFile(S);
+      TScriptFile(S).Index := Index;
       Index:= Index + 1;
     end;
   finally

@@ -63,7 +63,7 @@ var
 begin
   for MI in MenuRoot do
   begin
-    MI.Checked:= FIniFile.ReadBool(SECTION_SCRIPTSTATE_ONRUN, TScriptFile(MI.Tag).FileName, True)
+    MI.Checked:= FIniFile.ReadBool(SECTION_SCRIPTSTATE_ONRUN, MainForm.OnRunScripts[MI.Tag].FileName, True)
   end;
 end;
 
@@ -83,7 +83,7 @@ begin
   FIniFile.WriteInt64(SECTION_WINDOW, 'SplitterPosition', MainForm.FMonitor.Height);
   for MI in MainForm.RunOnCopyMenuRoot do
   begin
-    FIniFile.WriteBool(SECTION_SCRIPTSTATE_ONRUN, TScriptFile(MI.Tag).FileName, MI.Checked)
+    FIniFile.WriteBool(SECTION_SCRIPTSTATE_ONRUN, MainForm.OnRunScripts[MI.Tag].FileName, MI.Checked)
   end;
   FIniFile.UpdateFile;
 end;
