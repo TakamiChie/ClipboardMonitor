@@ -5,7 +5,7 @@ unit Main;
 interface
 
 uses
- ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, LResources, FileUtil, IpHtml, SysUtils,
+ ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, SafeClipboard, LResources, FileUtil, IpHtml, SysUtils,
  Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Clipbrd, Menus, LCLType,
  ActnList, ComCtrls, Classes;
 
@@ -123,7 +123,7 @@ var
   Script: TScriptProcess;
 begin
   FStatusBar.Panels[0].Text:= STATUS_INPROGRESS;
-  FMonitor.Text:= Clipboard.AsText;
+  FMonitor.Text:= GetClipboardText;
   StatusHTML:= '';
   FLastError:= '';
   // DONE: Externalization because it is long
