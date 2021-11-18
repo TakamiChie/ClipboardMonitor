@@ -5,7 +5,7 @@ unit Main;
 interface
 
 uses
- ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, SafeClipboard, LResources, FileUtil, IpHtml, SysUtils,
+ ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, LResources, FileUtil, IpHtml, SysUtils,
  Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Clipbrd, Menus, LCLType,
  ActnList, ComCtrls, Classes;
 
