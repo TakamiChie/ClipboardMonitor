@@ -12,6 +12,8 @@
       <UseXPManifest Value="True"/>
       <XPManifest>
         <DpiAware Value="True"/>
+        <TextName Value="Yokohama IT Barely.ClipboardMonitor"/>
+        <TextDesc Value="A tool that monitors the text in the clipboard and displays additional information."/>
       </XPManifest>
       <Icon Value="0"/>
       <Resources Count="1">
