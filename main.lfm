@@ -4,7 +4,7 @@ object MainForm: TMainForm
   Top = 93
   Width = 320
   AlphaBlend = True
-  Caption = 'MainForm'
+  Caption = 'ClipboardMonitor'
   ClientHeight = 185
   ClientWidth = 320
   OnClose = FormClose
