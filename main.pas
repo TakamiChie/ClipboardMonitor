@@ -123,7 +123,8 @@ var
   Script: TScriptProcess;
 begin
   FStatusBar.Panels[0].Text:= STATUS_INPROGRESS;
-  FMonitor.Text:= GetClipboardText;
+  Application.ProcessMessages;
+  FMonitor.Text:= Clipboard.AsText;
   StatusHTML:= '';
   FLastError:= '';
   // DONE: Externalization because it is long
