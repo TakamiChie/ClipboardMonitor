@@ -17,7 +17,7 @@ type
     FDisplayName: String;
     function GetFileName: String;
   public
-    constructor Create(ScriptFile: String);
+    constructor Create(ScriptFile: String; Language: String);
     property Index: Integer read FIndex write FIndex;
     property Order: Integer read FOrder;
     property FilePath: String read FFilePath;
@@ -25,15 +25,16 @@ type
     property DisplayName: String read FDisplayName;
   end;
   TScriptList = array of TScriptFile;
-  function LoadScriptFiles(Dir: String): TScriptList;
+  function LoadScriptFiles(Dir: String; Language: String): TScriptList;
   function CompareOrder(item1,item2:Pointer):Integer;
 
 implementation
 
 /// <summaryReads all script files in the specified folder and returns them as an array.</summary>
 /// <param name="Dir">Directory to be read</param>
+/// <param name="Language">Language code.</param>
 /// <returns>An array showing a list of scripts</returns>
-function LoadScriptFiles(Dir: String): TScriptList;
+function LoadScriptFiles(Dir: String; Language: String): TScriptList;
 var
   ScriptFiles: TStringList;
   S: Pointer;
@@ -48,7 +49,7 @@ begin
       FindAllFiles(ScriptFiles, Dir, '*.py', False);
       for F in ScriptFiles do
       begin
-        Scripts.Add(TScriptFile.Create(F));
+        Scripts.Add(TScriptFile.Create(F, Language));
       end;
     finally
       ScriptFiles.Free;
@@ -69,7 +70,8 @@ end;
 
 /// <summary>Initialize Object</summary>
 /// <param name="ScriptFile">Path of the script file to be loaded.</param>
-constructor TScriptFile.Create(ScriptFile: String);
+/// <param name="Language">Language code.</param>
+constructor TScriptFile.Create(ScriptFile: String; Language: String);
 var
   Script, IniBase: TStringList;
   Setting: TMemIniFile;
@@ -108,7 +110,7 @@ begin
     end;
 
     Self.FFilePath:=ScriptFile;
-    Self.FDisplayName:=Setting.ReadString('caption', 'def', FileName);
+    Self.FDisplayName:=Setting.ReadString('caption', Language, FileName);
     Self.FOrder:=Setting.ReadInteger('general', 'order', 100);
   finally
     Setting.Free;

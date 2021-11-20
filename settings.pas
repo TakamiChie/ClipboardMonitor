@@ -26,6 +26,7 @@ uses
  Main;
 
 const
+  SECTION_GENERAL = 'general';
   SECTION_WINDOW = 'window';
   SECTION_SCRIPTSTATE_ONRUN = 'onrunstate';
 
@@ -53,6 +54,7 @@ begin
   if FIniFile.ReadBool(SECTION_WINDOW, 'TopMost', False) then MainForm.WindowTopMost.Execute;
   if FIniFile.ValueExists(SECTION_WINDOW, 'SplitterPosition') then
     MainForm.FMonitor.Height:= FIniFile.ReadInt64(SECTION_WINDOW, 'SplitterPosition', MainForm.FMonitor.Height);
+  MainForm.Language.Language:=FIniFile.ReadString(SECTION_GENERAL, 'language', 'def');
 end;
 
 /// <summary>Update the check state of the script menu when copying.</summary>

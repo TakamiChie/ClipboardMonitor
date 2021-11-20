@@ -16,8 +16,9 @@
         <TextDesc Value="A tool that monitors the text in the clipboard and displays additional information."/>
       </XPManifest>
       <Icon Value="0"/>
-      <Resources Count="1">
+      <Resources Count="2">
         <Resource_0 FileName="style.css" Type="RCDATA" ResourceName="STYLE"/>
+        <Resource_1 FileName="lang.ini" Type="RCDATA" ResourceName="LANG"/>
       </Resources>
     </General>
     <BuildModes Count="1">
@@ -39,7 +40,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="13">
+    <Units Count="15">
       <Unit0>
         <Filename Value="CMon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -101,6 +102,15 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="ScriptManager"/>
       </Unit12>
+      <Unit13>
+        <Filename Value="lang.ini"/>
+        <IsPartOfProject Value="True"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="localization.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Localization"/>
+      </Unit14>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

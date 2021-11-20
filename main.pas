@@ -5,7 +5,7 @@ unit Main;
 interface
 
 uses
- ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, LResources, FileUtil, IpHtml, SysUtils,
+ ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, Localization, LResources, FileUtil, IpHtml, SysUtils,
  Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Clipbrd, Menus, LCLType,
  ActnList, ComCtrls, Classes;
 
@@ -45,6 +45,7 @@ type
   FConversionScripts: TScriptList;
   FSetting: TSetting;
   FLastError: String;
+  FLanguage: TLocalizer;
   procedure SetOnRunScripts(Value: TScriptList);
   procedure SetConversionScripts(Value: TScriptList);
   procedure ClipboardChanged(Sender: TObject);
@@ -53,12 +54,9 @@ type
  public
   property OnRunScripts: TScriptList read FOnRunScripts write SetOnRunScripts;
   property ConversionScripts: TScriptList read FConversionScripts write SetConversionScripts;
+  property Language: TLocalizer read FLanguage write FLanguage;
  end;
 
-const
- STATUS_READY = 'Ready';
- STATUS_INPROGRESS = 'In progress';
- STATUS_HASERROR = 'Error in script. Click to view.';
 var
  MainForm: TMainForm;
 
@@ -71,13 +69,19 @@ implementation
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
   FClipboardListener:= TClipboardListener.Create;
-  FClipboardListener.OnClipboardChange := @ClipboardChanged;
   FSetting:= TSetting.Create;
+  FLanguage:= TLocalizer.Create;
+  FSetting.SetupWindow(Self);
   CopyToUnderscoreScripts; // DONE: Added a process of collectively copying Python scripts named from the underscore to OnRunScriptDir.
   LoadScriptMenus; // DONE: Add a menu that calls this method at any timing.
-  FSetting.SetupWindow(Self);
+  FClipboardListener.OnClipboardChange := @ClipboardChanged;
   ClipboardChanged(Sender);
-  FStatusBar.Panels[0].Text:= STATUS_READY;
+  FStatusBar.Panels[0].Text:= Language.GetLanguageText('status', 'ready');;
+  ConversionScriptsRoot.Caption:=Language.GetLanguageText('gui', 'ConversionScriptsRoot');
+  RunOnCopyMenuRoot.Caption:=Language.GetLanguageText('gui', 'RunOnCopyMenuRoot');
+  OpenScriptDir.Caption:=Language.GetLanguageText('gui', 'OpenScriptDir');
+  UpdateScriptMenu.Caption:=Language.GetLanguageText('gui', 'UpdateScriptMenu');
+  WindowTopMost.Caption:=Language.GetLanguageText('gui', 'WindowTopMost');
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -122,7 +126,7 @@ var
   S: TScriptFile;
   Script: TScriptProcess;
 begin
-  FStatusBar.Panels[0].Text:= STATUS_INPROGRESS;
+  FStatusBar.Panels[0].Text:= Language.GetLanguageText('status', 'inprogress');
   Application.ProcessMessages;
   FMonitor.Text:= Clipboard.AsText;
   StatusHTML:= '';
@@ -153,8 +157,8 @@ begin
       end;
     end;
   end;
-  FStatusBar.Panels[0].Text:= STATUS_READY;
-  if FLastError <> '' then FStatusBar.Panels[1].Text:=STATUS_HASERROR else FStatusBar.Panels[1].Text:= '';
+  FStatusBar.Panels[0].Text:= Language.GetLanguageText('status', 'ready');
+  if FLastError <> '' then FStatusBar.Panels[1].Text:=Language.GetLanguageText('status', 'haserror') else FStatusBar.Panels[1].Text:= '';
   UpdateStatus(StatusHTML);
 end;
 
@@ -185,8 +189,8 @@ var
 begin
   Menus[0]:= RunOnCopyMenuRoot;
   Menus[1]:= ConversionScriptsRoot;
-  OnRunScripts := LoadScriptFiles(GetOnRunScriptDir);
-  ConversionScripts := LoadScriptFiles(GetConversionScriptDir);
+  OnRunScripts := LoadScriptFiles(GetOnRunScriptDir, Language.Language);
+  ConversionScripts := LoadScriptFiles(GetConversionScriptDir, Language.Language);
   RunOnCopyMenuRoot.Tag := Int64(Pointer(OnRunScripts));
   ConversionScriptsRoot.Tag := Int64(Pointer(ConversionScripts));
   for MR in Menus do
@@ -234,6 +238,7 @@ begin
         s.Free;
       end;
     finally
+      r.Free;
     end;
   except
     on E: Exception do MessageDlg('Error:'+ E.Message, mtError, [mbCancel], 0);
@@ -258,7 +263,7 @@ begin
   finally
     Script.Free;
   end;
-  if FLastError <> '' then FStatusBar.Panels[1].Text:=STATUS_HASERROR else FStatusBar.Panels[1].Text:= '';
+  if FLastError <> '' then FStatusBar.Panels[1].Text:=Language.GetLanguageText('status', 'haserror') else FStatusBar.Panels[1].Text:= '';
 end;
 
 { Begin ActionList }
