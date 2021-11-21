@@ -40,7 +40,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="16">
+    <Units Count="13">
       <Unit0>
         <Filename Value="CMon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -82,39 +82,27 @@
         <UnitName Value="Settings"/>
       </Unit7>
       <Unit8>
-        <Filename Value="scripts\run\_urlchecker.py"/>
+        <Filename Value="style.css"/>
         <IsPartOfProject Value="True"/>
       </Unit8>
       <Unit9>
-        <Filename Value="style.css"/>
-        <IsPartOfProject Value="True"/>
-      </Unit9>
-      <Unit10>
-        <Filename Value="scripts\run\_charcount.py"/>
-        <IsPartOfProject Value="True"/>
-      </Unit10>
-      <Unit11>
-        <Filename Value="scripts\run\_colorcode.py"/>
-        <IsPartOfProject Value="True"/>
-      </Unit11>
-      <Unit12>
         <Filename Value="scriptmanager.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ScriptManager"/>
-      </Unit12>
-      <Unit13>
+      </Unit9>
+      <Unit10>
         <Filename Value="lang.ini"/>
         <IsPartOfProject Value="True"/>
-      </Unit13>
-      <Unit14>
+      </Unit10>
+      <Unit11>
         <Filename Value="localization.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Localization"/>
-      </Unit14>
-      <Unit15>
+      </Unit11>
+      <Unit12>
         <Filename Value="resourcemaker.py"/>
         <IsPartOfProject Value="True"/>
-      </Unit15>
+      </Unit12>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
