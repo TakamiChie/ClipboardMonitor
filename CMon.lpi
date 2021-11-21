@@ -59,12 +59,14 @@
         <UnitName Value="ClipboardListener"/>
       </Unit2>
       <Unit3>
-        <Filename Value="README.md"/>
+        <Filename Value="scriptprocess.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="ScriptProcess"/>
       </Unit3>
       <Unit4>
-        <Filename Value="LICENSE"/>
+        <Filename Value="settings.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="Settings"/>
       </Unit4>
       <Unit5>
         <Filename Value="utils.pas"/>
@@ -72,35 +74,33 @@
         <UnitName Value="Utils"/>
       </Unit5>
       <Unit6>
-        <Filename Value="scriptprocess.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="ScriptProcess"/>
-      </Unit6>
-      <Unit7>
-        <Filename Value="settings.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="Settings"/>
-      </Unit7>
-      <Unit8>
-        <Filename Value="style.css"/>
-        <IsPartOfProject Value="True"/>
-      </Unit8>
-      <Unit9>
         <Filename Value="scriptmanager.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ScriptManager"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="localization.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Localization"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="resourcemaker.py"/>
+        <IsPartOfProject Value="True"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="style.css"/>
+        <IsPartOfProject Value="True"/>
       </Unit9>
       <Unit10>
         <Filename Value="lang.ini"/>
         <IsPartOfProject Value="True"/>
       </Unit10>
       <Unit11>
-        <Filename Value="localization.pas"/>
+        <Filename Value="README.md"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="Localization"/>
       </Unit11>
       <Unit12>
-        <Filename Value="resourcemaker.py"/>
+        <Filename Value="LICENSE"/>
         <IsPartOfProject Value="True"/>
       </Unit12>
     </Units>
