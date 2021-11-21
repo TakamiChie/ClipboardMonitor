@@ -5,7 +5,7 @@ unit Utils;
 interface
 
 uses
- LazFileUtils, FileUtil, Forms, Classes, SysUtils;
+ LazFileUtils, FileUtil, Forms, Classes, SysUtils, LResources;
 
 function GetSettingRootDir: String;
 function GetScriptRootDir: String;
@@ -95,26 +95,25 @@ end;
 /// </summary>
 procedure CopyToUnderscoreScripts;
 var
-  ScriptRoot, FN: String;
-  FileList: TStringList;
-  Entry: array[0..1] of String;
-  Dirs: array[0..1,0..1] of String;
+  i : Integer;
+  n, dir : String;
+  S : TStringList;
 begin
-  Dirs[0][0] := GetOnRunScriptDir;
-  Dirs[0][1] := SCRIPT_ONRUN;
-  Dirs[1][0] := GetConversionScriptDir;
-  Dirs[1][1] := SCRIPT_CONVERSION;
-  ScriptRoot:= GetAppDir + LowerCase(SCRIPT_ROOT) + DirectorySeparator;
-  FileList:= TStringList.Create;
-  try
-    for Entry in Dirs do
-    begin
-      FindAllFiles(FileList, ScriptRoot + LowerCase(Entry[1]), '*.py', False);
-      for FN in FileList do CopyFile(FN, Entry[0] + ExtractFileName(FN));
-      FileList.Clear;
+  for i := 0 to LazarusResources.Count - 1 do
+  begin
+    S := TStringList.Create;
+    try
+      n:= LazarusResources.Items[i].Name;
+      case n.Chars[0] of
+      'r': dir:= GetOnRunScriptDir;
+      'c': dir:= GetConversionScriptDir;
+      else raise Exception.Create('Invalid Resource Type!');
+      end;
+      S.AddText(LazarusResources.Items[i].Value);
+      S.SaveToFile(dir + '_' + Copy(n, 2, Length(n) - 1));
+    finally
+      S.Free;
     end;
-  finally
-    FileList.Free;
   end;
 end;
 
@@ -137,5 +136,7 @@ begin
   end;
 end;
 
+initialization
+{$i scripts.lrs}
 end.
 
