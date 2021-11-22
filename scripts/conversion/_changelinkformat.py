@@ -64,5 +64,8 @@ if not sys.stdin.isatty() or len(sys.argv) == 2:
   fromrexp = LINK_PATTERNS[LINK_FORMATS.index(dlg.fromvar.get())]
   toformat = LINK_TEXT[LINK_FORMATS.index(dlg.tovar.get())]
 
-  print(re.sub(fromrexp, lambda m: toformat.format(url=m["url"], text=m["text"].replace('\\', '')), text))
+  if dlg.result:
+    print(re.sub(fromrexp, lambda m: toformat.format(url=m["url"], text=m["text"].replace('\\', '')), text))
+  else:
+    print(text)
 
