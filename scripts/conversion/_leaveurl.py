@@ -1,6 +1,6 @@
 """
 [caption]
-def=Erase everything but the URL
+def=Leave a &URL
 ja=URL以外を消す
 """
 

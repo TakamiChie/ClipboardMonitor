@@ -1,7 +1,7 @@
 """
 [caption]
-def=Counting characters
-ja=文字数のカウント
+def=&Counting characters
+ja=文字数のカウント(&C)
 [general]
 order=100
 """

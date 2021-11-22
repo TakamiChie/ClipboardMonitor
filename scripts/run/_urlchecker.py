@@ -1,7 +1,7 @@
 """
 [caption]
-def=URL resolution
-ja=URLの解決
+def=URL &resolution
+ja=URLの解決(&R)
 [general]
 order=0
 """

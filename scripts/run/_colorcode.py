@@ -1,7 +1,7 @@
 """
 [caption]
-def=Display color codes
-ja=カラーコードの表示
+def=&Display color codes
+ja=カラーコードの表示(&D)
 [general]
 order=0
 """
