@@ -60,6 +60,7 @@
 scripts.lrs
 lib/
 backup/
+__pycache__/
 
 # Delphi history and backups
 __history/
