@@ -11,7 +11,7 @@ lazres = Path(args.lazarus_dir) / "tools" / "lazres"
 cmds = ["scripts.lrs"]
 
 for f in Path(__file__).parent.glob("**/_*.py"):
-  if f.parent.name != "backup":
+  if f.parent.name in ["conversion", "run"]:
     cmds.append(f"{f}={f.parent.name[0]}{f.name[1:]}")
 
 cmdline = f"{str(lazres)} {' '.join(cmds)}"
