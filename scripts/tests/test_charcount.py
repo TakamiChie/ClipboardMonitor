@@ -25,7 +25,7 @@ class TestCharCount(BaseClass):
     """
     self.assertRegex(self._checkscript("http://example.com/", "run/_charcount"), r"19 char\(s\)")
 
-  def test_charcount_url(self):
+  def test_charcount_mdwc_not_installed(self):
     """
     If you pass a string with the following conditions to _charcount.py, Make sure that no Markdown parsing is done.
     * Plain text.
