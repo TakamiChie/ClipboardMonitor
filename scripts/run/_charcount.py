@@ -25,9 +25,10 @@ sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 if not sys.stdin.isatty() or len(sys.argv) == 2:
   text = sys.argv[-1] if len(sys.argv) == 2 else sys.stdin.read()
+  print(text)
   p = re.compile(r"\x1b\[([3,9][0-7])m(.*?)\x1b\[([3,9])9m")
 
-  print(f"<p>{len(text) - 1} char(s)</p>")
+  print(f"<p>{len(text)} char(s)</p>")
   fd, fn = tempfile.mkstemp()
   try:
     path = subprocess.check_output("where mdwc").decode("UTF-8").split()[-1]
