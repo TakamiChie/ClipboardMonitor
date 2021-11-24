@@ -27,6 +27,13 @@ class TestRunScripts1(unittest.TestCase):
     exec(script)
     return sys.stdout.getvalue()
 
+  def test_charcount_blank(self):
+    """
+    If you pass a string with the following conditions to _charcount.py, Confirm that it is returned as 0 characters.
+    * No character string specified.
+    """
+    self.assertRegex(self._checkscript("", "run/_charcount"), r"0 char\(s\)")
+
   def test_charcount_string(self):
     """
     If you pass a string with the following conditions to _charcount.py, make sure that only the character count is returned.
