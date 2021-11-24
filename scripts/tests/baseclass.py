@@ -18,7 +18,7 @@ class BaseClass(unittest.TestCase):
     return super().tearDown()
 
   def _checkscript(self, inputstr: str, scriptname: str) -> str:
-    sys.stdin.write(f" {inputstr}")
+    sys.stdin.write(f"{inputstr}")
     sys.stdin.seek(0)
     script = ""
     with open(Path(__file__).parent.parent / f"{scriptname}.py", "r", encoding="utf-8") as f:
