@@ -27,6 +27,8 @@ class TestRunScripts1(unittest.TestCase):
     exec(script)
     return sys.stdout.getvalue()
 
+  #region _charcount test
+  
   def test_charcount_blank(self):
     """
     If you pass a string with the following conditions to _charcount.py, Confirm that it is returned as 0 characters.
@@ -47,3 +49,5 @@ class TestRunScripts1(unittest.TestCase):
     * URL
     """
     self.assertRegex(self._checkscript("http://example.com/", "run/_charcount"), r"19 char\(s\)")
+
+  #endregion
