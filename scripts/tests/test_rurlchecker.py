@@ -1,6 +1,6 @@
 from baseclass import BaseClass
 
-class TestURLChecker(BaseClass):
+class TestRURLChecker(BaseClass):
   
   FILE = "run/_urlchecker"
 

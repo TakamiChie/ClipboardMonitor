@@ -1,6 +1,6 @@
 from baseclass import BaseClass
 
-class TestColorCode(BaseClass):
+class TestRColorCode(BaseClass):
   
   FILE = "run/_colorcode"
 

@@ -2,7 +2,7 @@ from baseclass import BaseClass
 import os
 import subprocess
 
-class TestCharCount(BaseClass):
+class TestRCharCount(BaseClass):
   
   FILE = "run/_charcount"
   
