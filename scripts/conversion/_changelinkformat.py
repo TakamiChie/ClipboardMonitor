@@ -12,7 +12,7 @@ sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 LINK_FORMATS = ["Plain Text", "HTML", "Markdown", "MediaWiki", "PlainText+"]
 LINK_PATTERNS = [
-  r"(?P<text>.*)\s(?=http)(?P<url>https?://[\w/:%#\$&\?\(\)~\.=\+\-]+)",
+  r"(?P<text>.*)\s-\s(?=http)(?P<url>https?://[\w/:%#\$&\?\(\)~\.=\+\-]+)",
   r"<a[^>]*href=\"(?P<url>https?://[\w/:%#\$&\?\(\)~\.=\+\-]+)\"[^>]*>(?P<text>.*)</a>",
   r"\[(?P<text>.*?)\]\((?P<url>https?://[\w/:%#\$&\?\(\)~\.=\+\-]+)\)",
   r"\[(?P<url>https?://[\w/:%#\$&\?\(\)~\.=\+\-]+)\s(?P<text>.*?)\]",
@@ -55,16 +55,26 @@ class ChooseDialog(tkinter.simpledialog.Dialog):
 if not sys.stdin.isatty() or len(sys.argv) == 2:
   text = sys.argv[-1] if len(sys.argv) == 2 else sys.stdin.read()
 
-  owner = tkinter.Tk()
-  owner.withdraw()
-  dlg = ChooseDialog(owner, 'Choose Link Style')
+  format_from = None
+  format_to = None
+  result = True
+  if "params" in globals():
+    format_from = globals()["params"]["source"]
+    format_to = globals()["params"]["destination"]
+  else:
+    owner = tkinter.Tk()
+    owner.withdraw()
+    dlg = ChooseDialog(owner, 'Choose Link Style')
+    format_from = dlg.fromvar.get()
+    format_to = dlg.tovar.get()
+    result = dlg.result
 
   fromrexp = ''
   toformat = ''
-  fromrexp = LINK_PATTERNS[LINK_FORMATS.index(dlg.fromvar.get())]
-  toformat = LINK_TEXT[LINK_FORMATS.index(dlg.tovar.get())]
+  fromrexp = LINK_PATTERNS[LINK_FORMATS.index(format_from)]
+  toformat = LINK_TEXT[LINK_FORMATS.index(format_to)]
 
-  if dlg.result:
+  if result:
     print(re.sub(fromrexp, lambda m: toformat.format(url=m["url"], text=m["text"].replace('\\', '')), text))
   else:
     print(text)
