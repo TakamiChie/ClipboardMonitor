@@ -81,7 +81,6 @@ object MainForm: TMainForm
     Top = 40
     object ConversionScriptsRoot: TMenuItem
       Caption = '&Conversion Script'
-      ShortCut = 67
     end
     object RunOnCopyMenuRoot: TMenuItem
       Caption = '&Run on copy'
