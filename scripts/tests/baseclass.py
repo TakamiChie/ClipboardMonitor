@@ -1,3 +1,4 @@
+from typing import Any
 import unittest
 import io
 import sys
@@ -17,12 +18,12 @@ class BaseClass(unittest.TestCase):
     sys.stdout = self.naturestdout
     return super().tearDown()
 
-  def _checkscript(self, inputstr: str, scriptname: str) -> str:
+  def _checkscript(self, inputstr: str, scriptname: str, parameters: dict[str, Any] = None) -> str:
     sys.stdin.write(f"{inputstr}")
     sys.stdin.seek(0)
     script = ""
     with open(Path(__file__).parent.parent / f"{scriptname}.py", "r", encoding="utf-8") as f:
       for s in f.readlines():
         if not s.startswith("sys.std"): script += f"{s}\n";
-    exec(script)
+    exec(script, globals() if parameters is None else parameters)
     return sys.stdout.getvalue()
