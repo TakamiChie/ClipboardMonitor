@@ -96,11 +96,11 @@
         <IsPartOfProject Value="True"/>
       </Unit10>
       <Unit11>
-        <Filename Value="README.md"/>
+        <Filename Value="..\README.md"/>
         <IsPartOfProject Value="True"/>
       </Unit11>
       <Unit12>
-        <Filename Value="LICENSE"/>
+        <Filename Value="..\LICENSE"/>
         <IsPartOfProject Value="True"/>
       </Unit12>
     </Units>
