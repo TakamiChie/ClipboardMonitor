@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectGroup FileVersion="1">
-    <Targets Count="1">
-      <Target0 FileName="CMon.lpi">
+    <Targets Count="2">
+      <Target0 FileName="tests\CMonTest.lpi">
         <BuildModes Count="1"/>
         <Mode1 Name="Default"/>
       </Target0>
+      <Target1 FileName="src\CMon.lpi">
+        <BuildModes Count="1"/>
+        <Mode1 Name="Default"/>
+      </Target1>
     </Targets>
   </ProjectGroup>
 </CONFIG>

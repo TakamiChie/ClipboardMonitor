@@ -58,6 +58,7 @@
 *.tvsconfig
 *.dsk
 scripts.lrs
+*.fpcunit.ini
 lib/
 backup/
 __pycache__/
@@ -72,4 +73,3 @@ __recovery/
 
 # Boss dependency manager vendor folder https://github.com/HashLoad/boss
 modules/
-
