@@ -3,7 +3,7 @@ program CMonTest;
 {$mode objfpc}{$H+}
 
 uses
-  Interfaces, Forms, GuiTestRunner, scriptprocesstestcase;
+  Interfaces, Forms, GuiTestRunner, scriptprocesstestcase, localizertestcase;
 
 {$R *.res}
 

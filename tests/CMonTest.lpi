@@ -10,6 +10,9 @@
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <Icon Value="0"/>
+      <Resources Count="1">
+        <Resource_0 FileName="testlang.ini" Type="RCDATA" ResourceName="LANG"/>
+      </Resources>
     </General>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
@@ -33,7 +36,7 @@
         <PackageName Value="FCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="7">
       <Unit0>
         <Filename Value="CMonTest.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -51,6 +54,19 @@
         <Filename Value="TestScript.py"/>
         <IsPartOfProject Value="True"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="localizertestcase.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\src\localization.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Localization"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="testlang.ini"/>
+        <IsPartOfProject Value="True"/>
+      </Unit6>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
