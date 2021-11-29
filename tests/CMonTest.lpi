@@ -36,7 +36,7 @@
         <PackageName Value="FCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="8">
+    <Units Count="17">
       <Unit0>
         <Filename Value="CMonTest.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -68,9 +68,46 @@
         <IsPartOfProject Value="True"/>
       </Unit6>
       <Unit7>
+        <Filename Value="..\src\scriptmanager.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ScriptManager"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="scripts\SFTEST_HasCommentNoOrder.py"/>
+        <IsPartOfProject Value="True"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="scripts\SFTEST_HasNoComment.py"/>
+        <IsPartOfProject Value="True"/>
+      </Unit9>
+      <Unit10>
         <Filename Value="scripts\SPTEST_TestScript.py"/>
         <IsPartOfProject Value="True"/>
-      </Unit7>
+      </Unit10>
+      <Unit11>
+        <Filename Value="scripts\LSFTEST\Order50.py"/>
+        <IsPartOfProject Value="True"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="scripts\LSFTEST\Order20.py"/>
+        <IsPartOfProject Value="True"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="scripts\LSFTEST\Order0.py"/>
+        <IsPartOfProject Value="True"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="scripts\LSFTEST\Order100.py"/>
+        <IsPartOfProject Value="True"/>
+      </Unit14>
+      <Unit15>
+        <Filename Value="scripts\LSFTEST\Order101.py"/>
+        <IsPartOfProject Value="True"/>
+      </Unit15>
+      <Unit16>
+        <Filename Value="scripts\LSFTEST\NoOrder.py"/>
+        <IsPartOfProject Value="True"/>
+      </Unit16>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
