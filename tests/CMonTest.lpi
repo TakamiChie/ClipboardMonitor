@@ -42,12 +42,11 @@
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="..\src\scriptprocess.pas"/>
+        <Filename Value="scriptprocesstestcase.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="ScriptProcess"/>
       </Unit1>
       <Unit2>
-        <Filename Value="scriptprocesstestcase.pas"/>
+        <Filename Value="scriptmanagertestcase.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit2>
       <Unit3>
@@ -55,17 +54,18 @@
         <IsPartOfProject Value="True"/>
       </Unit3>
       <Unit4>
+        <Filename Value="testlang.ini"/>
+        <IsPartOfProject Value="True"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="..\src\scriptprocess.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ScriptProcess"/>
+      </Unit5>
+      <Unit6>
         <Filename Value="..\src\localization.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Localization"/>
-      </Unit4>
-      <Unit5>
-        <Filename Value="testlang.ini"/>
-        <IsPartOfProject Value="True"/>
-      </Unit5>
-      <Unit6>
-        <Filename Value="scriptmanagertestcase.pas"/>
-        <IsPartOfProject Value="True"/>
       </Unit6>
       <Unit7>
         <Filename Value="..\src\scriptmanager.pas"/>
