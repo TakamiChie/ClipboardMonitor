@@ -58,19 +58,17 @@
         <IsPartOfProject Value="True"/>
       </Unit4>
       <Unit5>
-        <Filename Value="..\src\scriptprocess.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="ScriptProcess"/>
-      </Unit5>
-      <Unit6>
         <Filename Value="..\src\localization.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Localization"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="..\src\scriptengine\scriptmanager.pas"/>
+        <IsPartOfProject Value="True"/>
       </Unit6>
       <Unit7>
-        <Filename Value="..\src\scriptmanager.pas"/>
+        <Filename Value="..\src\scriptengine\scriptprocess.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="ScriptManager"/>
       </Unit7>
       <Unit8>
         <Filename Value="scripts\SFTEST_HasCommentNoOrder.py"/>
@@ -118,7 +116,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="..\src"/>
+      <OtherUnitFiles Value="..\src;..\src\scriptengine"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

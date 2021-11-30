@@ -4,7 +4,7 @@ program CMonTest;
 
 uses
   Interfaces, Forms, GuiTestRunner, scriptprocesstestcase, localizertestcase,
-  scriptmanagertestcase, ScriptManager;
+  scriptmanagertestcase;
 
 {$R *.res}
 
