@@ -5,7 +5,7 @@ unit Main;
 interface
 
 uses
- ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, Localization, LResources, FileUtil, IpHtml, SysUtils,
+ ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, Localization, Preferences, LResources, FileUtil, IpHtml, SysUtils,
  Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Clipbrd, Menus, LCLType,
  ActnList, ComCtrls, Classes;
 
@@ -14,9 +14,11 @@ type
  { TMainForm }
 
  TMainForm = class(TForm)
+   ShowPreferences: TAction;
   MenuItem3: TMenuItem;
   MenuItem4: TMenuItem;
   ConversionScriptsRoot: TMenuItem;
+  MenuItem5: TMenuItem;
   WindowTopMost: TAction;
   FStatus: TIpHtmlPanel;
   FSplitter: TSplitter;
@@ -36,6 +38,7 @@ type
   procedure FStatusBarClick(Sender: TObject);
   procedure FStatusBarDrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
    const Rect: TRect);
+  procedure ShowPreferencesExecute(Sender: TObject);
   procedure UpdateScriptMenuExecute(Sender: TObject);
   procedure OpenScriptDirExecute(Sender: TObject);
   procedure WindowTopMostExecute(Sender: TObject);
@@ -67,6 +70,8 @@ implementation
 { TMainForm }
 
 procedure TMainForm.FormCreate(Sender: TObject);
+var
+  i: Integer;
 begin
   FClipboardListener:= TClipboardListener.Create;
   FSetting:= TSetting.Create;
@@ -79,9 +84,8 @@ begin
   FStatusBar.Panels[0].Text:= Language.GetLanguageText('status', 'ready');;
   ConversionScriptsRoot.Caption:=Language.GetLanguageText('gui', 'ConversionScriptsRoot');
   RunOnCopyMenuRoot.Caption:=Language.GetLanguageText('gui', 'RunOnCopyMenuRoot');
-  OpenScriptDir.Caption:=Language.GetLanguageText('gui', 'OpenScriptDir');
-  UpdateScriptMenu.Caption:=Language.GetLanguageText('gui', 'UpdateScriptMenu');
-  WindowTopMost.Caption:=Language.GetLanguageText('gui', 'WindowTopMost');
+  for i := 0 to FActionList.ActionCount - 1 do
+    TAction(FActionList.Actions[i]).Caption:=Language.GetLanguageText('gui', FActionList.Actions[i].Name);
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -294,6 +298,11 @@ begin
     FormStyle:= fsNormal;
 end;
 
+/// <summary>Show Preference</summary>
+procedure TMainForm.ShowPreferencesExecute(Sender: TObject);
+begin
+  PreferenceForm.ShowModal;
+end;
 
 end.
 

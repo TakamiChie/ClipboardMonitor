@@ -1,0 +1,115 @@
+object PreferenceForm: TPreferenceForm
+  Left = 2509
+  Height = 176
+  Top = 337
+  Width = 403
+  Caption = 'PreferenceForm'
+  ClientHeight = 176
+  ClientWidth = 403
+  LCLVersion = '2.0.12.0'
+  object Panel1: TPanel
+    Left = 0
+    Height = 50
+    Top = 126
+    Width = 403
+    Align = alBottom
+    ClientHeight = 50
+    ClientWidth = 403
+    ParentColor = False
+    TabOrder = 0
+    object CancelButton: TButton
+      Left = 299
+      Height = 36
+      Top = 8
+      Width = 91
+      Anchors = [akTop, akRight, akBottom]
+      Caption = 'Cancel'
+      ModalResult = 2
+      TabOrder = 0
+    end
+    object OKButton: TButton
+      Left = 203
+      Height = 36
+      Top = 8
+      Width = 91
+      Anchors = [akTop, akRight, akBottom]
+      Caption = 'OK'
+      ModalResult = 1
+      TabOrder = 1
+    end
+  end
+  object InterpreterGroups: TGroupBox
+    Left = 0
+    Height = 49
+    Top = 0
+    Width = 403
+    Align = alTop
+    Caption = 'Interpreter'
+    ClientHeight = 29
+    ClientWidth = 399
+    TabOrder = 1
+    object Label1: TLabel
+      Left = 8
+      Height = 23
+      Top = 0
+      Width = 38
+      AutoSize = False
+      Caption = '&Python'
+      FocusControl = PythonPath
+      Layout = tlCenter
+      ParentColor = False
+    end
+    object PythonPath: TEditButton
+      Left = 56
+      Height = 23
+      Top = 0
+      Width = 331
+      Anchors = [akTop, akLeft, akRight]
+      ButtonCaption = '...'
+      ButtonWidth = 23
+      MaxLength = 0
+      NumGlyphs = 1
+      PasswordChar = #0
+      TabOrder = 0
+    end
+  end
+  object Label2: TLabel
+    Left = 8
+    Height = 24
+    Top = 56
+    Width = 72
+    AutoSize = False
+    Caption = '&Transparency'
+    FocusControl = Transparency
+    Layout = tlCenter
+    ParentColor = False
+  end
+  object Transparency: TTrackBar
+    Left = 80
+    Height = 24
+    Top = 56
+    Width = 280
+    Position = 0
+    Anchors = [akTop, akLeft, akRight]
+    TabOrder = 2
+  end
+  object TransparencyValue: TLabel
+    Left = 363
+    Height = 24
+    Top = 56
+    Width = 32
+    Anchors = [akTop, akRight]
+    AutoSize = False
+    Layout = tlCenter
+    ParentColor = False
+  end
+  object Register4Startup: TButton
+    Left = 270
+    Height = 32
+    Top = 88
+    Width = 118
+    Anchors = [akTop, akRight]
+    Caption = '&Register for Startup'
+    TabOrder = 3
+  end
+end

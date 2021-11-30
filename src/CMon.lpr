@@ -8,7 +8,7 @@ uses
  {$ENDIF}{$ENDIF}
  Interfaces, // this includes the LCL widgetset
  Forms, Main, ClipboardListener, Utils, ScriptProcess, Settings, ScriptManager,
- Localization;
+ Localization, Preferences;
 
 {$R *.res}
 
@@ -17,6 +17,7 @@ begin
  Application.Scaled:=True;
  Application.Initialize;
  Application.CreateForm(TMainForm, MainForm);
+ Application.CreateForm(TPreferenceForm, PreferenceForm);
  Application.Run;
 end.
 

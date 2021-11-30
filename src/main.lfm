@@ -1,11 +1,11 @@
 object MainForm: TMainForm
-  Left = 2762
-  Height = 185
-  Top = 93
+  Left = 2520
+  Height = 186
+  Top = 191
   Width = 320
   AlphaBlend = True
   Caption = 'ClipboardMonitor'
-  ClientHeight = 185
+  ClientHeight = 186
   ClientWidth = 320
   OnClose = FormClose
   OnCreate = FormCreate
@@ -14,7 +14,7 @@ object MainForm: TMainForm
   LCLVersion = '2.0.12.0'
   object FMonitor: TMemo
     Left = 0
-    Height = 96
+    Height = 97
     Top = 0
     Width = 320
     Align = alTop
@@ -31,7 +31,7 @@ object MainForm: TMainForm
   object FStatus: TIpHtmlPanel
     Left = 0
     Height = 57
-    Top = 104
+    Top = 105
     Width = 320
     Align = alClient
     FixedTypeface = 'Courier New'
@@ -52,7 +52,7 @@ object MainForm: TMainForm
     Cursor = crVSplit
     Left = 0
     Height = 8
-    Top = 96
+    Top = 97
     Width = 320
     Align = alTop
     Beveled = True
@@ -61,7 +61,7 @@ object MainForm: TMainForm
   object FStatusBar: TStatusBar
     Left = 0
     Height = 24
-    Top = 161
+    Top = 162
     Width = 320
     Panels = <    
       item
@@ -97,6 +97,9 @@ object MainForm: TMainForm
     object MenuItem3: TMenuItem
       Action = WindowTopMost
     end
+    object MenuItem5: TMenuItem
+      Action = ShowPreferences
+    end
   end
   object FActionList: TActionList
     Left = 168
@@ -115,6 +118,11 @@ object MainForm: TMainForm
       Category = 'Display'
       Caption = '&Pinned to the front'
       OnExecute = WindowTopMostExecute
+    end
+    object ShowPreferences: TAction
+      Category = 'Others'
+      Caption = '&Preferences'
+      OnExecute = ShowPreferencesExecute
     end
   end
 end
