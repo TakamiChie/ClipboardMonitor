@@ -300,8 +300,15 @@ end;
 
 /// <summary>Show Preference</summary>
 procedure TMainForm.ShowPreferencesExecute(Sender: TObject);
+var
+  PreferenceForm: TPreferenceForm;
 begin
-  PreferenceForm.ShowModal;
+  PreferenceForm:= TPreferenceForm.Create(Self);
+  try
+    PreferenceForm.ShowModal;
+  finally
+    PreferenceForm.Free;
+  end;
 end;
 
 end.

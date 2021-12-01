@@ -16,6 +16,7 @@ type
     constructor Create;
     destructor Destroy; override;
     function GetLanguageText(Section: String; Key: String): String;
+    function GetLanguageList(Section: String; Key: String): TStringArray;
     function LanguageTextExists(Section: String; Key: String): Boolean;
     property Language: String read FLanguage write FLanguage;
   end;
@@ -62,6 +63,23 @@ begin
     Result:= FLocalizeFile.ReadString(Section + '_' + Key, Language, '')
   else
     raise Exception.Create('Localize File:' + Section + '_' + Key + ' Not found!');
+end;
+
+/// <summary>Get a list of languages that exist in the specified key.</summary>
+/// <param name='Section'>Section on language data.</param>
+/// <param name='Key'>Key on language data.</param>
+/// <returns>List of supported languages.</returns>
+function TLocalizer.GetLanguageList(Section: String; Key: String): TStringArray;
+var
+  List: TStringList;
+begin
+  List:= TStringList.Create;
+  try
+    FLocalizeFile.ReadSection(Section + '_' + Key, List);
+    Result:= List.ToStringArray;
+  finally
+    List.Free;
+  end;
 end;
 
 /// <summary>Check to see if any keys are present in the localization file.</summary>

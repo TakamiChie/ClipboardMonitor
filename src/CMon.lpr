@@ -17,7 +17,6 @@ begin
  Application.Scaled:=True;
  Application.Initialize;
  Application.CreateForm(TMainForm, MainForm);
- Application.CreateForm(TPreferenceForm, PreferenceForm);
  Application.Run;
 end.
 

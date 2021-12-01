@@ -12,6 +12,7 @@ type
   published
     procedure TestGetLanguageTextDefLanguage;
     procedure TestGetLanguageTextJaLanguage;
+    procedure TestGetLanguageList;
     procedure TestGetLanguageTextDefLanguageNoPartialKey;
     procedure TestGetLanguageTextJaLanguageNoPartialKey;
     procedure TestGetLanguageTextDefLanguageNonExistsKey;
@@ -49,6 +50,26 @@ begin
   try
     Localizer.Language:='ja';
     AssertEquals(Localizer.GetLanguageText('test', 'testmessage'), 'これは日本語のテストです')
+  finally
+    Localizer.Free;
+  end;
+end;
+
+/// <summary>
+/// TLocalizer.GetLanguageList method under the following conditions, the list of supported languages will be returned.
+/// * Keys that exist in the relevant section: def, ja
+/// </summary>
+procedure TLocalizerTestCase.TestGetLanguageList;
+var
+  Localizer: TLocalizer;
+  LL: TStringArray;
+begin
+  Localizer:=TLocalizer.Create;
+  try
+    LL:= Localizer.GetLanguageList('test', 'testmessage');
+    AssertEquals(Length(LL), 2);
+    AssertEquals(LL[0], 'def');
+    AssertEquals(LL[1], 'ja');
   finally
     Localizer.Free;
   end;
