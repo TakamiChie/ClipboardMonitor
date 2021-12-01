@@ -1,22 +1,22 @@
 object PreferenceForm: TPreferenceForm
-  Left = 2509
-  Height = 176
-  Top = 337
+  Left = 2538
+  Height = 209
+  Top = 196
   Width = 403
   Caption = 'PreferenceForm'
-  ClientHeight = 176
+  ClientHeight = 209
   ClientWidth = 403
   LCLVersion = '2.0.12.0'
   object Panel1: TPanel
     Left = 0
     Height = 50
-    Top = 126
+    Top = 159
     Width = 403
     Align = alBottom
     ClientHeight = 50
     ClientWidth = 403
     ParentColor = False
-    TabOrder = 0
+    TabOrder = 4
     object CancelButton: TButton
       Left = 299
       Height = 36
@@ -41,9 +41,9 @@ object PreferenceForm: TPreferenceForm
   object InterpreterGroups: TGroupBox
     Left = 0
     Height = 49
-    Top = 0
+    Top = 32
     Width = 403
-    Align = alTop
+    Align = alCustom
     Caption = 'Interpreter'
     ClientHeight = 29
     ClientWidth = 399
@@ -76,7 +76,7 @@ object PreferenceForm: TPreferenceForm
   object Label2: TLabel
     Left = 8
     Height = 24
-    Top = 56
+    Top = 88
     Width = 72
     AutoSize = False
     Caption = '&Transparency'
@@ -87,7 +87,7 @@ object PreferenceForm: TPreferenceForm
   object Transparency: TTrackBar
     Left = 80
     Height = 24
-    Top = 56
+    Top = 88
     Width = 280
     Frequency = 10
     Max = 255
@@ -100,7 +100,7 @@ object PreferenceForm: TPreferenceForm
   object TransparencyValue: TLabel
     Left = 363
     Height = 24
-    Top = 56
+    Top = 88
     Width = 32
     Anchors = [akTop, akRight]
     AutoSize = False
@@ -110,10 +110,30 @@ object PreferenceForm: TPreferenceForm
   object Register4Startup: TButton
     Left = 270
     Height = 32
-    Top = 88
+    Top = 120
     Width = 118
     Anchors = [akTop, akRight]
     Caption = '&Register for Startup'
     TabOrder = 3
+  end
+  object Label3: TLabel
+    Left = 8
+    Height = 23
+    Top = 8
+    Width = 70
+    AutoSize = False
+    Caption = '&Language'
+    FocusControl = PythonPath
+    Layout = tlCenter
+    ParentColor = False
+  end
+  object LanguageSelector: TComboBox
+    Left = 80
+    Height = 23
+    Top = 8
+    Width = 300
+    ItemHeight = 15
+    Style = csDropDownList
+    TabOrder = 0
   end
 end
