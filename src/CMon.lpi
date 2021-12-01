@@ -104,10 +104,12 @@
       <Unit12>
         <Filename Value="scriptengine\scriptmanager.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="ScriptManager"/>
       </Unit12>
       <Unit13>
         <Filename Value="scriptengine\scriptprocess.pas"/>
         <IsPartOfProject Value="True"/>
+        <UnitName Value="ScriptProcess"/>
       </Unit13>
     </Units>
   </ProjectOptions>

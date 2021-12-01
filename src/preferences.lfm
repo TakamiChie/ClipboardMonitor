@@ -89,7 +89,11 @@ object PreferenceForm: TPreferenceForm
     Height = 24
     Top = 56
     Width = 280
-    Position = 0
+    Frequency = 10
+    Max = 255
+    Min = 10
+    PageSize = 50
+    Position = 10
     Anchors = [akTop, akLeft, akRight]
     TabOrder = 2
   end
