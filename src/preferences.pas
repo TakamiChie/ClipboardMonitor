@@ -55,9 +55,13 @@ var
   LanguageIndex, i: Integer;
 begin
   ini := TMemIniFile.Create(GetSettingRootDir + 'setting.ini');
-  PythonPath.Text := ini.ReadString(SECTION_GENERAL, 'PythonPath', 'python');
-  Transparency.Position:=ini.ReadInteger(SECTION_GENERAL, 'FormTransparency', 255);
-  CurLanguage:= ini.ReadString(SECTION_GENERAL, 'Language', 'def');
+  try
+    PythonPath.Text := ini.ReadString(SECTION_GENERAL, 'PythonPath', 'python');
+    Transparency.Position:=ini.ReadInteger(SECTION_GENERAL, 'FormTransparency', 255);
+    CurLanguage:= ini.ReadString(SECTION_GENERAL, 'Language', 'def');
+  finally
+    ini.Free;
+  end;
   LanguageIndex:=0;
   L:= TLocalizer.Create;
   try
@@ -100,10 +104,13 @@ var
   ini: TMemIniFile;
 begin
   ini := TMemIniFile.Create(GetSettingRootDir + 'setting.ini');
-  ini.WriteString(SECTION_GENERAL, 'PythonPath', PythonPath.Text);
-  ini.WriteInteger(SECTION_GENERAL, 'FormTransparency', Transparency.Position);
-  ini.WriteString(SECTION_GENERAL, 'Language', String(LanguageSelector.Text).Split([':'])[0]);
-  ini.UpdateFile;
+  try
+    ini.WriteString(SECTION_GENERAL, 'PythonPath', PythonPath.Text);
+    ini.WriteInteger(SECTION_GENERAL, 'FormTransparency', Transparency.Position);
+    ini.WriteString(SECTION_GENERAL, 'Language', String(LanguageSelector.Text).Split([':'])[0]);
+  finally
+    ini.Free;
+  end;
 end;
 
 end.
