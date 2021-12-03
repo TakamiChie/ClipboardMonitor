@@ -5,7 +5,7 @@ unit Preferences;
 interface
 
 uses
-  Utils, Localization, Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
+  Windows, Utils, Localization, Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
   EditBtn, ComCtrls, IniFiles, LazFileUtils, shlobj, ActiveX, ComObj;
 
 type
@@ -124,11 +124,11 @@ procedure TPreferenceForm.Register4StartupClick(Sender: TObject);
       mtInformation, [mbOK], 0);
   end;
 var
-  path: String;
+  path: WideString;
   ISlink: IShellLink;
   IPFile: IPersistFile;
 begin
-  path := SHGetFolderPathUTF8(CSIDL_STARTUP) + 'CMon.lnk';
+  path := WideString(SHGetFolderPathUTF8(CSIDL_STARTUP) + 'CMon.lnk');
   if FileExists(path) then
   begin
     if Query('unregister_startup') = mrYes then
@@ -147,7 +147,7 @@ begin
       IPFile:= ISlink as IPersistFile;
       ISlink.SetPath(PChar(Application.ExeName));
       ISlink.SetWorkingDirectory(PChar(ExtractFileDir(Application.ExeName)));
-      if Succeeded(IPFile.Save(PWideChar(path), False)) then
+      if Succeeded(IPFile.Save(PWChar(path), False)) then
         Msg('startup_success')
       else
         Msg('startup_failed')
