@@ -46,8 +46,8 @@ type
   FClipboardListener: TClipboardListener;
   FOnRunScripts: TScriptList;
   FConversionScripts: TScriptList;
-  FSetting: TSetting;
   FLastError: String;
+  FPythonInterpreter: String;
   FLanguage: TLocalizer;
   procedure SetOnRunScripts(Value: TScriptList);
   procedure SetConversionScripts(Value: TScriptList);
@@ -58,6 +58,7 @@ type
   property OnRunScripts: TScriptList read FOnRunScripts write SetOnRunScripts;
   property ConversionScripts: TScriptList read FConversionScripts write SetConversionScripts;
   property Language: TLocalizer read FLanguage write FLanguage;
+  property PythonInterpreter: String read FPythonInterpreter write FPythonInterpreter;
  end;
 
 var
@@ -70,27 +71,19 @@ implementation
 { TMainForm }
 
 procedure TMainForm.FormCreate(Sender: TObject);
-var
-  i: Integer;
 begin
   FClipboardListener:= TClipboardListener.Create;
-  FSetting:= TSetting.Create;
   FLanguage:= TLocalizer.Create;
-  FSetting.SetupWindow(Self);
+  SetupWindow(Self);
   CopyToUnderscoreScripts; // DONE: Added a process of collectively copying Python scripts named from the underscore to OnRunScriptDir.
   LoadScriptMenus; // DONE: Add a menu that calls this method at any timing.
   FClipboardListener.OnClipboardChange := @ClipboardChanged;
   ClipboardChanged(Sender);
-  FStatusBar.Panels[0].Text:= Language.GetLanguageText('status', 'ready');;
-  ConversionScriptsRoot.Caption:=Language.GetLanguageText('gui', 'ConversionScriptsRoot');
-  RunOnCopyMenuRoot.Caption:=Language.GetLanguageText('gui', 'RunOnCopyMenuRoot');
-  for i := 0 to FActionList.ActionCount - 1 do
-    TAction(FActionList.Actions[i]).Caption:=Language.GetLanguageText('gui', FActionList.Actions[i].Name);
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  FSetting.SaveSettings(Self);
+  SaveSettings(Self);
   CloseAction:=caFree;
 end;
 
@@ -143,7 +136,7 @@ begin
       S := FOnRunScripts[MI.Tag];
       FStatusBar.Panels[1].Text:= S.FileName;
       Application.ProcessMessages;
-      Script:= TScriptProcess.Create;
+      Script:= TScriptProcess.Create(PythonInterpreter);
       try
         Script.Text:= FMonitor.Text;
         Script.Execute(S.FilePath, StdOut, StdErr);
@@ -210,7 +203,7 @@ begin
       MR.Add(MI);
     end;
   end;
-  FSetting.SetupOnRunMenu(RunOnCopyMenuRoot);
+  SetupOnRunMenu(RunOnCopyMenuRoot);
 end;
 
 /// <summary>Update Status text</summary>
@@ -258,7 +251,7 @@ var
 begin
   FLastError:= '';
   SF:= FConversionScripts[TMenuItem(Sender).Tag];
-  Script:= TScriptProcess.Create;
+  Script:= TScriptProcess.Create(PythonInterpreter);
   try
     Script.Text:= FMonitor.Text;
     Script.Execute(SF.FilePath, StdOut, StdErr);
@@ -305,7 +298,7 @@ var
 begin
   PreferenceForm:= TPreferenceForm.Create(Self);
   try
-    PreferenceForm.ShowModal;
+    if PreferenceForm.ShowModal = mrOK then SetupWindow(Self, True);
   finally
     PreferenceForm.Free;
   end;
