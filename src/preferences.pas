@@ -14,9 +14,9 @@ type
 
   TPreferenceForm = class(TForm)
     LanguageSelector: TComboBox;
-    Label3: TLabel;
+    LanguageSelectorLabel: TLabel;
     Register4Startup: TButton;
-    Label2: TLabel;
+    TransparencyLabel: TLabel;
     TransparencyValue: TLabel;
     PythonPath: TEditButton;
     Label1: TLabel;
@@ -74,6 +74,14 @@ begin
     Inc(i);
   end;
   LanguageSelector.ItemIndex:=LanguageIndex;
+  // Load Language
+  Self.Caption:=FLanguage.GetLanguageText('preferencedlg', 'PreferenceDialog');
+  LanguageSelectorLabel.Caption:=FLanguage.GetLanguageText('preferencedlg', 'LanguageSelectorLabel');
+  InterpreterGroups.Caption:=FLanguage.GetLanguageText('preferencedlg', 'InterpreterGroups');
+  TransparencyLabel.Caption:=FLanguage.GetLanguageText('preferencedlg', 'TransparencyLabel');
+  TransparencyLabel.Caption:=FLanguage.GetLanguageText('preferencedlg', 'TransparencyLabel');
+  Register4Startup.Caption:=FLanguage.GetLanguageText('preferencedlg', 'Register4Startup');
+
 end;
 
 procedure TPreferenceForm.FormDestroy(Sender: TObject);

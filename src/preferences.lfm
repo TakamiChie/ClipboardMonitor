@@ -1,7 +1,7 @@
 object PreferenceForm: TPreferenceForm
-  Left = 2620
+  Left = 2121
   Height = 209
-  Top = 266
+  Top = 253
   Width = 403
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -79,7 +79,7 @@ object PreferenceForm: TPreferenceForm
       TabOrder = 0
     end
   end
-  object Label2: TLabel
+  object TransparencyLabel: TLabel
     Left = 8
     Height = 24
     Top = 88
@@ -124,7 +124,7 @@ object PreferenceForm: TPreferenceForm
     OnClick = Register4StartupClick
     TabOrder = 3
   end
-  object Label3: TLabel
+  object LanguageSelectorLabel: TLabel
     Left = 8
     Height = 23
     Top = 8
