@@ -6,7 +6,7 @@ interface
 
 uses
   Utils, Localization, Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  EditBtn, ComCtrls, IniFiles;
+  EditBtn, ComCtrls, IniFiles, LazFileUtils, shlobj, ActiveX, ComObj;
 
 type
 
@@ -26,11 +26,12 @@ type
     Panel1: TPanel;
     Transparency: TTrackBar;
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure OKButtonClick(Sender: TObject);
     procedure PythonPathButtonClick(Sender: TObject);
     procedure TransparencyChange(Sender: TObject);
   private
-
+    FLanguage: TLocalizer;
   public
 
   end;
@@ -54,6 +55,7 @@ var
   S, CurLanguage: String;
   LanguageIndex, i: Integer;
 begin
+  FLanguage:=TLocalizer.Create;
   ini := TMemIniFile.Create(GetSettingRootDir + 'setting.ini');
   try
     PythonPath.Text := ini.ReadString(SECTION_GENERAL, 'PythonPath', 'python');
@@ -63,20 +65,20 @@ begin
     ini.Free;
   end;
   LanguageIndex:=0;
-  L:= TLocalizer.Create;
-  try
-    i:=0;
-    for S in L.GetLanguageList('gui', 'SupportedLanguages') do
-    begin
-      L.Language:=S;
-      if S = CurLanguage then LanguageIndex:=i;
-      LanguageSelector.Items.Add(S + ':' + L.GetLanguageText('gui', 'SupportedLanguages'));
-      Inc(i);
-    end;
-  finally
-    L.Free;
+  i := 0;
+  for S in FLanguage.GetLanguageList('gui', 'SupportedLanguages') do
+  begin
+    FLanguage.Language:=S;
+    if S = CurLanguage then LanguageIndex:=i;
+    LanguageSelector.Items.Add(S + ':' + FLanguage.GetLanguageText('gui', 'SupportedLanguages'));
+    Inc(i);
   end;
   LanguageSelector.ItemIndex:=LanguageIndex;
+end;
+
+procedure TPreferenceForm.FormDestroy(Sender: TObject);
+begin
+  FLanguage.Free;
 end;
 
 procedure TPreferenceForm.PythonPathButtonClick(Sender: TObject);

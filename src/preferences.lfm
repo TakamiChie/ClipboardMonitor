@@ -1,7 +1,7 @@
 object PreferenceForm: TPreferenceForm
-  Left = 2827
+  Left = 2620
   Height = 209
-  Top = 191
+  Top = 266
   Width = 403
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -9,6 +9,7 @@ object PreferenceForm: TPreferenceForm
   ClientHeight = 209
   ClientWidth = 403
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   LCLVersion = '2.0.12.0'
   object Panel1: TPanel
     Left = 0
@@ -120,6 +121,7 @@ object PreferenceForm: TPreferenceForm
     Width = 118
     Anchors = [akTop, akRight]
     Caption = '&Register for Startup'
+    OnClick = Register4StartupClick
     TabOrder = 3
   end
   object Label3: TLabel
