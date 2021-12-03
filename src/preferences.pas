@@ -29,6 +29,7 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure OKButtonClick(Sender: TObject);
     procedure PythonPathButtonClick(Sender: TObject);
+    procedure Register4StartupClick(Sender: TObject);
     procedure TransparencyChange(Sender: TObject);
   private
     FLanguage: TLocalizer;
@@ -51,7 +52,6 @@ const
 procedure TPreferenceForm.FormCreate(Sender: TObject);
 var
   ini: TMemIniFile;
-  L: TLocalizer;
   S, CurLanguage: String;
   LanguageIndex, i: Integer;
 begin
@@ -99,6 +99,54 @@ begin
   TransparencyValue.Caption := IntToStr(trunc((Transparency.Position / Transparency.Max) * 100)) + '%';
   Self.AlphaBlend:= Transparency.Position < 255;
   Self.AlphaBlendValue:=Transparency.Position;
+end;
+
+procedure TPreferenceForm.Register4StartupClick(Sender: TObject);
+  function Query(TextKey: String): Integer;
+  begin
+    Result:= QuestionDlg(FLanguage.GetLanguageText('prompt', 'confirmcaption'),
+      FLanguage.GetLanguageText('prompt', TextKey),
+      mtConfirmation,
+      [mrYes, mrNo], 0);
+  end;
+  procedure Msg(TextKey: String);
+  begin
+    MessageDlg(FLanguage.GetLanguageText('prompt', 'information'),
+      FLanguage.GetLanguageText('prompt', TextKey),
+      mtInformation, [mbOK], 0);
+  end;
+var
+  path: String;
+  ISlink: IShellLink;
+  IPFile: IPersistFile;
+begin
+  path := SHGetFolderPathUTF8(CSIDL_STARTUP) + 'CMon.lnk';
+  if FileExists(path) then
+  begin
+    if Query('unregister_startup') = mrYes then
+    begin
+      if DeleteFile(path) then
+        Msg('startup_success')
+      else
+        Msg('startup_failed')
+    end
+  end
+  else
+  begin
+    if Query('register_startup') = mrYes then
+    begin
+      ISlink:=CreateComObject(CLSID_ShellLink) as IShellLink;
+      IPFile:= ISlink as IPersistFile;
+      ISlink.SetPath(PChar(Application.ExeName));
+      ISlink.SetWorkingDirectory(PChar(ExtractFileDir(Application.ExeName)));
+      if Succeeded(IPFile.Save(PWideChar(path), False)) then
+        Msg('startup_success')
+      else
+        Msg('startup_failed')
+    end;
+  end;
+
+
 end;
 
 procedure TPreferenceForm.OKButtonClick(Sender: TObject);
