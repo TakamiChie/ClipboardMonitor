@@ -20,7 +20,7 @@ object PreferenceForm: TPreferenceForm
     ClientHeight = 50
     ClientWidth = 403
     ParentColor = False
-    TabOrder = 6
+    TabOrder = 7
     object CancelButton: TButton
       Left = 299
       Height = 36
@@ -156,7 +156,7 @@ object PreferenceForm: TPreferenceForm
     NumGlyphs = 1
     OnButtonClick = ReferButtonClick
     PasswordChar = #0
-    TabOrder = 4
+    TabOrder = 6
   end
   object PlaySoundEnabled: TCheckBox
     Left = 8
@@ -164,6 +164,15 @@ object PreferenceForm: TPreferenceForm
     Top = 120
     Width = 156
     Caption = 'Play sound &when copying'
+    TabOrder = 4
+  end
+  object TestPlayButton: TButton
+    Left = 8
+    Height = 25
+    Top = 143
+    Width = 40
+    Caption = 'Test'
+    OnClick = TestPlayButtonClick
     TabOrder = 5
   end
 end

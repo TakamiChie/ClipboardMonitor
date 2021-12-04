@@ -6,13 +6,14 @@ interface
 
 uses
   Windows, Utils, Localization, Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  EditBtn, ComCtrls, IniFiles, LazFileUtils, shlobj, ActiveX, ComObj;
+  EditBtn, ComCtrls, IniFiles, LazFileUtils, shlobj, ActiveX, ComObj, MMSystem;
 
 type
 
   { TPreferenceForm }
 
   TPreferenceForm = class(TForm)
+    TestPlayButton: TButton;
     PlaySoundEnabled: TCheckBox;
     LanguageSelector: TComboBox;
     LanguageSelectorLabel: TLabel;
@@ -32,6 +33,7 @@ type
     procedure OKButtonClick(Sender: TObject);
     procedure ReferButtonClick(Sender: TObject);
     procedure Register4StartupClick(Sender: TObject);
+    procedure TestPlayButtonClick(Sender: TObject);
     procedure TransparencyChange(Sender: TObject);
   private
     FLanguage: TLocalizer;
@@ -115,6 +117,12 @@ begin
   Self.AlphaBlendValue:=Transparency.Position;
 end;
 
+procedure TPreferenceForm.TestPlayButtonClick(Sender: TObject);
+begin
+  if FileExists(PlaySoundPath.Text) then
+    sndPlaySound(PChar(PlaySoundPath.Text), SND_ASYNC + SND_FILENAME + SND_NODEFAULT);
+end;
+
 procedure TPreferenceForm.Register4StartupClick(Sender: TObject);
   function Query(TextKey: String): Integer;
   begin
@@ -160,6 +168,7 @@ begin
     end;
   end;
 end;
+
 
 procedure TPreferenceForm.OKButtonClick(Sender: TObject);
 var
