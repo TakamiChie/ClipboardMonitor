@@ -13,8 +13,10 @@ type
   { TPreferenceForm }
 
   TPreferenceForm = class(TForm)
+    PlaySoundEnabled: TCheckBox;
     LanguageSelector: TComboBox;
     LanguageSelectorLabel: TLabel;
+    PlaySoundPath: TEditButton;
     Register4Startup: TButton;
     TransparencyLabel: TLabel;
     TransparencyValue: TLabel;
@@ -28,7 +30,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure OKButtonClick(Sender: TObject);
-    procedure PythonPathButtonClick(Sender: TObject);
+    procedure ReferButtonClick(Sender: TObject);
     procedure Register4StartupClick(Sender: TObject);
     procedure TransparencyChange(Sender: TObject);
   private
@@ -60,6 +62,8 @@ begin
   try
     PythonPath.Text := ini.ReadString(SECTION_GENERAL, 'PythonPath', 'python');
     Transparency.Position:=ini.ReadInteger(SECTION_GENERAL, 'FormTransparency', 255);
+    PlaySoundEnabled.Checked:= ini.ReadBool(SECTION_GENERAL, 'PlaySoundOnCopy', False);
+    PlaySoundPath.Text:= ini.ReadString(SECTION_GENERAL, 'PlaySoundPath', '');
     CurLanguage:= ini.ReadString(SECTION_GENERAL, 'Language', 'def');
   finally
     ini.Free;
@@ -86,14 +90,19 @@ begin
   FLanguage.Free;
 end;
 
-procedure TPreferenceForm.PythonPathButtonClick(Sender: TObject);
+procedure TPreferenceForm.ReferButtonClick(Sender: TObject);
 var
   OFD: TOpenDialog;
 begin
   OFD := TOpenDialog.Create(Self);
   try
-    OFD.Filter:='Python|python.exe';
-    if OFD.Execute then PythonPath.Text:=OFD.FileName;
+    if TControl(Sender) = PythonPath then OFD.Filter:= 'Python|python.exe';
+    if TControl(Sender) = PlaySoundPath then OFD.Filter:= FLanguage.GetLanguageText('filter', 'wavfile');
+    if TControl(Sender) = PlaySoundPath then OFD.InitialDir:=SHGetFolderPathUTF8(CSIDL_WINDOWS) + 'Media';
+    if OFD.Execute then
+    begin
+      TEditButton(Sender).Text:=OFD.FileName;
+    end;
   finally
     OFD.Free;
   end;
@@ -150,8 +159,6 @@ begin
         Msg('startup_failed')
     end;
   end;
-
-
 end;
 
 procedure TPreferenceForm.OKButtonClick(Sender: TObject);
@@ -162,6 +169,8 @@ begin
   try
     ini.WriteString(SECTION_GENERAL, 'PythonPath', PythonPath.Text);
     ini.WriteInteger(SECTION_GENERAL, 'FormTransparency', Transparency.Position);
+    ini.WriteBool(SECTION_GENERAL, 'PlaySoundOnCopy', PlaySoundEnabled.Checked);
+    ini.WriteString(SECTION_GENERAL, 'PlaySoundPath', PlaySoundPath.Text);
     ini.WriteString(SECTION_GENERAL, 'Language', String(LanguageSelector.Text).Split([':'])[0]);
   finally
     ini.Free;
