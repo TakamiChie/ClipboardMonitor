@@ -7,7 +7,7 @@ interface
 uses
  ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, Localization, Preferences, LResources, FileUtil, IpHtml, SysUtils,
  Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Clipbrd, Menus, LCLType,
- ActnList, ComCtrls, Classes;
+ ActnList, ComCtrls, Classes, MMSystem;
 
 type
 
@@ -48,6 +48,8 @@ type
   FConversionScripts: TScriptList;
   FLastError: String;
   FPythonInterpreter: String;
+  FPlaySoundEnabled: Boolean;
+  FPlaySoundPath: String;
   FLanguage: TLocalizer;
   procedure SetOnRunScripts(Value: TScriptList);
   procedure SetConversionScripts(Value: TScriptList);
@@ -59,6 +61,8 @@ type
   property ConversionScripts: TScriptList read FConversionScripts write SetConversionScripts;
   property Language: TLocalizer read FLanguage write FLanguage;
   property PythonInterpreter: String read FPythonInterpreter write FPythonInterpreter;
+  property PlaySoundEnabled: Boolean read FPlaySoundEnabled write FPlaySoundEnabled;
+  property PlaySoundPath: String read FPlaySoundPath write FPlaySoundPath;
  end;
 
 var
@@ -123,6 +127,8 @@ var
   S: TScriptFile;
   Script: TScriptProcess;
 begin
+  if PlaySoundEnabled and FileExists(PlaySoundPath) then
+    sndPlaySound(PChar(PlaySoundPath), SND_ASYNC + SND_FILENAME + SND_NODEFAULT);
   FStatusBar.Panels[0].Text:= Language.GetLanguageText('status', 'inprogress');
   Application.ProcessMessages;
   FMonitor.Text:= Clipboard.AsText;

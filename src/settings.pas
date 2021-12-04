@@ -56,6 +56,8 @@ begin
     MainForm.PythonInterpreter:=Ini.ReadString(SECTION_GENERAL, 'PythonPath', 'python');
     MainForm.AlphaBlendValue:=Ini.ReadInteger(SECTION_GENERAL, 'FormTransparency', 255);
     MainForm.AlphaBlend:=MainForm.AlphaBlendValue<255;
+    MainForm.PlaySoundEnabled:= ini.ReadBool(SECTION_GENERAL, 'PlaySoundOnCopy', False);
+    MainForm.PlaySoundPath:= ini.ReadString(SECTION_GENERAL, 'PlaySoundPath', '');
     MainForm.FStatusBar.Panels[0].Text:= MainForm.Language.GetLanguageText('status', 'ready');;
     MainForm.ConversionScriptsRoot.Caption:=MainForm.Language.GetLanguageText('gui', 'ConversionScriptsRoot');
     MainForm.RunOnCopyMenuRoot.Caption:=MainForm.Language.GetLanguageText('gui', 'RunOnCopyMenuRoot');
