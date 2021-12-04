@@ -76,12 +76,9 @@ begin
   LanguageSelector.ItemIndex:=LanguageIndex;
   // Load Language
   Self.Caption:=FLanguage.GetLanguageText('preferencedlg', 'PreferenceDialog');
-  LanguageSelectorLabel.Caption:=FLanguage.GetLanguageText('preferencedlg', 'LanguageSelectorLabel');
-  InterpreterGroups.Caption:=FLanguage.GetLanguageText('preferencedlg', 'InterpreterGroups');
-  TransparencyLabel.Caption:=FLanguage.GetLanguageText('preferencedlg', 'TransparencyLabel');
-  TransparencyLabel.Caption:=FLanguage.GetLanguageText('preferencedlg', 'TransparencyLabel');
-  Register4Startup.Caption:=FLanguage.GetLanguageText('preferencedlg', 'Register4Startup');
-
+  for S in FLanguage.GetSectionKeys('preferencedlg') do
+    if Self.FindChildControl(S) <> nil then
+      Self.FindChildControl(S).Caption:= FLanguage.GetLanguageText('preferencedlg', S);
 end;
 
 procedure TPreferenceForm.FormDestroy(Sender: TObject);
