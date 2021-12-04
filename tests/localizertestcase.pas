@@ -13,6 +13,8 @@ type
     procedure TestGetLanguageTextDefLanguage;
     procedure TestGetLanguageTextJaLanguage;
     procedure TestGetLanguageList;
+    procedure TestGetSectionKeys_HasKeys;
+    procedure TestGetSectionKeys_NoKeys;
     procedure TestGetLanguageTextDefLanguageNoPartialKey;
     procedure TestGetLanguageTextJaLanguageNoPartialKey;
     procedure TestGetLanguageTextDefLanguageNonExistsKey;
@@ -70,6 +72,48 @@ begin
     AssertEquals(Length(LL), 2);
     AssertEquals(LL[0], 'def');
     AssertEquals(LL[1], 'ja');
+  finally
+    Localizer.Free;
+  end;
+end;
+
+/// <summary>
+/// GetSectionKeys method is called with the following conditions,
+/// make sure that it returns an array that enumerates all the keys in the specified section.
+/// * An item with the specified section exists in the language file.
+/// </summary>
+procedure TLocalizerTestCase.TestGetSectionKeys_HasKeys;
+var
+  Localizer: TLocalizer;
+  LL: TStringArray;
+begin
+  Localizer:=TLocalizer.Create;
+  try
+    LL:= Localizer.GetSectionKeys('gsktest');
+    AssertEquals(4, Length(LL));
+    AssertEquals('test1', LL[0]);
+    AssertEquals('test2', LL[1]);
+    AssertEquals('test3_test5', LL[2]);
+    AssertEquals('test4', LL[3]);
+  finally
+    Localizer.Free;
+  end;
+end;
+
+/// <summary>
+/// GetSectionKeys method is called with the following conditions,
+/// Make sure to return an array with zero elements.
+/// * The item with the specified section is not in the language file.
+/// </summary>
+procedure TLocalizerTestCase.TestGetSectionKeys_NoKeys;
+var
+  Localizer: TLocalizer;
+  LL: TStringArray;
+begin
+  Localizer:=TLocalizer.Create;
+  try
+    LL:= Localizer.GetSectionKeys('unknown');
+    AssertEquals(0, Length(LL));
   finally
     Localizer.Free;
   end;

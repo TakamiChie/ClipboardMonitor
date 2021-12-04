@@ -17,6 +17,7 @@ type
     destructor Destroy; override;
     function GetLanguageText(Section: String; Key: String): String;
     function GetLanguageList(Section: String; Key: String): TStringArray;
+    function GetSectionKeys(Section: String): TStringArray;
     function LanguageTextExists(Section: String; Key: String): Boolean;
     property Language: String read FLanguage write FLanguage;
   end;
@@ -80,6 +81,31 @@ begin
   finally
     List.Free;
   end;
+end;
+
+/// <summary>Get a list of key strings contained in the specified section.</summary>
+/// <param name='Section'>Section on language data.</param>
+/// <returns>List of key strings to be included in the section.</returns>
+function TLocalizer.GetSectionKeys(Section: String): TStringArray;
+var
+  List: TStringList;
+  i: Integer;
+begin
+  List:= TStringList.Create;
+  try
+    FLocalizeFile.ReadSections(List);
+    for i := List.Count - 1 downto 0 do
+    begin
+      if List[i].StartsWith(Section, True) then
+        List[i] := List[i].Remove(0, Section.Length + 1)
+      else
+        List.Delete(i);
+    end;
+    Result:= List.ToStringArray;
+  finally
+    List.Free;
+  end;
+
 end;
 
 /// <summary>Check to see if any keys are present in the localization file.</summary>
