@@ -33,7 +33,7 @@ var
 begin
   Localizer:=TLocalizer.Create;
   try
-    AssertEquals(Localizer.GetLanguageText('test', 'testmessage'), 'This is a TEST')
+    AssertEquals('This is a TEST', Localizer.GetLanguageText('test', 'testmessage'))
   finally
     Localizer.Free;
   end;
@@ -51,7 +51,7 @@ begin
   Localizer:=TLocalizer.Create;
   try
     Localizer.Language:='ja';
-    AssertEquals(Localizer.GetLanguageText('test', 'testmessage'), 'これは日本語のテストです')
+    AssertEquals('これは日本語のテストです', Localizer.GetLanguageText('test', 'testmessage'))
   finally
     Localizer.Free;
   end;
@@ -69,9 +69,9 @@ begin
   Localizer:=TLocalizer.Create;
   try
     LL:= Localizer.GetLanguageList('test', 'testmessage');
-    AssertEquals(Length(LL), 2);
-    AssertEquals(LL[0], 'def');
-    AssertEquals(LL[1], 'ja');
+    AssertEquals(2, Length(LL));
+    AssertEquals('def', LL[0]);
+    AssertEquals('ja', LL[1]);
   finally
     Localizer.Free;
   end;
@@ -153,7 +153,7 @@ begin
   Localizer:=TLocalizer.Create;
   try
     Localizer.Language:='ja';
-    AssertEquals(Localizer.GetLanguageText('test', 'testmessagejaonly'), 'これは日本語のテストです')
+    AssertEquals('これは日本語のテストです', Localizer.GetLanguageText('test', 'testmessagejaonly'))
   finally
     Localizer.Free;
   end;

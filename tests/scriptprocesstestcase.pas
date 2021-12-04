@@ -32,7 +32,7 @@ begin
   Proc := TScriptProcess.Create();
   try
     Proc.Execute('scripts\\SPTEST_TestScript.py', StdOut, StdErr);
-    AssertEquals(StdOut, 'Hello This Is a TEST' + #13#10);
+    AssertEquals('Hello This Is a TEST' + #13#10, StdOut);
   finally
     Proc.Free;
   end;
@@ -54,7 +54,7 @@ begin
   try
     Proc.Text := 'Input Test';
     Proc.Execute('scripts\\SPTEST_TestScript.py', StdOut, StdErr);
-    AssertEquals(StdOut, 'Hello This Is a TEST' + #13#10 + 'Input Test' + #13#10);
+    AssertEquals('Hello This Is a TEST' + #13#10 + 'Input Test' + #13#10, StdOut);
   finally
     Proc.Free;
   end;

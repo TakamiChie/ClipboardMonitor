@@ -30,8 +30,8 @@ var
 begin
   SF := TScriptFile.Create('scripts\\SFTEST_HasCommentNoOrder.py', 'def');
   try
-    AssertEquals(SF.DisplayName, 'Test File');
-    AssertEquals(SF.Order, 100)
+    AssertEquals('Test File', SF.DisplayName);
+    AssertEquals(100, SF.Order)
   finally
     SF.Free;
   end;
@@ -49,8 +49,8 @@ var
 begin
   SF := TScriptFile.Create('scripts\\SFTEST_HasNoComment.py', 'def');
   try
-    AssertEquals(SF.DisplayName, 'SFTEST_HasNoComment.py');
-    AssertEquals(SF.Order, 100)
+    AssertEquals('SFTEST_HasNoComment.py', SF.DisplayName);
+    AssertEquals(100, SF.Order)
   finally
     SF.Free;
   end;
@@ -72,8 +72,8 @@ begin
   try
     for i := 0 to Length(Orders) - 1 do
     begin
-      AssertEquals(SFs[i].Order, Orders[i]);
-      AssertEquals(SFs[i].Index, i);
+      AssertEquals(Orders[i], SFs[i].Order);
+      AssertEquals(i, SFs[i].Index);
     end;
   finally
     for SF in SFs do SF.Free;
