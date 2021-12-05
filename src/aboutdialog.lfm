@@ -472,7 +472,6 @@ object AboutDialog: TAboutDialog
     Width = 136
     Anchors = [akTop, akRight, akBottom]
     Caption = 'Copy information'
-    ModalResult = 1
     OnClick = CopyToClipboardClick
     TabOrder = 0
   end
