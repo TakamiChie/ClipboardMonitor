@@ -14,6 +14,9 @@ type
  { TMainForm }
 
  TMainForm = class(TForm)
+   AppExit: TAction;
+   MenuItem6: TMenuItem;
+   MenuItem7: TMenuItem;
    ShowPreferences: TAction;
   MenuItem3: TMenuItem;
   MenuItem4: TMenuItem;
@@ -32,6 +35,7 @@ type
   MenuItem1: TMenuItem;
   RunOnCopyMenuRoot: TMenuItem;
   FPopupMenu: TPopupMenu;
+  procedure AppExitExecute(Sender: TObject);
   procedure ConversionScriptsClick(Sender: TObject);
   procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
   procedure FormCreate(Sender: TObject);
@@ -323,6 +327,12 @@ begin
   finally
     PreferenceForm.Free;
   end;
+end;
+
+/// <summary>Exit the application.</summary>
+procedure TMainForm.AppExitExecute(Sender: TObject);
+begin
+  Self.Close;
 end;
 
 end.

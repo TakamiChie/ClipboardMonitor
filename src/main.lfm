@@ -101,6 +101,12 @@ object MainForm: TMainForm
     object MenuItem5: TMenuItem
       Action = ShowPreferences
     end
+    object MenuItem7: TMenuItem
+      Caption = '-'
+    end
+    object MenuItem6: TMenuItem
+      Action = AppExit
+    end
   end
   object FActionList: TActionList
     Left = 168
@@ -124,6 +130,11 @@ object MainForm: TMainForm
       Category = 'Others'
       Caption = '&Preferences'
       OnExecute = ShowPreferencesExecute
+    end
+    object AppExit: TAction
+      Category = 'Others'
+      Caption = 'AppExit'
+      OnExecute = AppExitExecute
     end
   end
   object TrayIcon: TTrayIcon
