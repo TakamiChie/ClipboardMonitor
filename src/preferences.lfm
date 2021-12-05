@@ -1,7 +1,7 @@
 object PreferenceForm: TPreferenceForm
-  Left = 2595
+  Left = 3030
   Height = 264
-  Top = 294
+  Top = 219
   Width = 403
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -10,6 +10,7 @@ object PreferenceForm: TPreferenceForm
   ClientWidth = 403
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  Position = poOwnerFormCenter
   LCLVersion = '2.0.12.0'
   object Panel1: TPanel
     Left = 0
