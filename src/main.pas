@@ -5,7 +5,8 @@ unit Main;
 interface
 
 uses
- ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, Localization, Preferences, LResources, FileUtil, IpHtml, SysUtils,
+ ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, Localization, Preferences, AboutDialog,
+ LResources, FileUtil, IpHtml, SysUtils,
  Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Clipbrd, Menus, LCLType,
  ActnList, ComCtrls, Classes, MMSystem, Windows;
 
@@ -14,9 +15,11 @@ type
  { TMainForm }
 
  TMainForm = class(TForm)
+   AboutThisApp: TAction;
    AppExit: TAction;
    MenuItem6: TMenuItem;
    MenuItem7: TMenuItem;
+   MenuItem8: TMenuItem;
    ShowPreferences: TAction;
   MenuItem3: TMenuItem;
   MenuItem4: TMenuItem;
@@ -35,6 +38,7 @@ type
   MenuItem1: TMenuItem;
   RunOnCopyMenuRoot: TMenuItem;
   FPopupMenu: TPopupMenu;
+  procedure AboutThisAppExecute(Sender: TObject);
   procedure AppExitExecute(Sender: TObject);
   procedure ConversionScriptsClick(Sender: TObject);
   procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -326,6 +330,19 @@ begin
     if PreferenceForm.ShowModal = mrOK then SetupWindow(Self, True);
   finally
     PreferenceForm.Free;
+  end;
+end;
+
+/// <summary>Displaying the About dialog.</summary>
+procedure TMainForm.AboutThisAppExecute(Sender: TObject);
+var
+  Dialog: TAboutDialog;
+begin
+  Dialog:=TAboutDialog.Create(Self);
+  try
+    Dialog.ShowModal;
+  finally
+    Dialog.Free;
   end;
 end;
 
