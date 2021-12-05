@@ -7,7 +7,7 @@ interface
 uses
  ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, Localization, Preferences, LResources, FileUtil, IpHtml, SysUtils,
  Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Clipbrd, Menus, LCLType,
- ActnList, ComCtrls, Classes, MMSystem;
+ ActnList, ComCtrls, Classes, MMSystem, Windows;
 
 type
 
@@ -19,6 +19,7 @@ type
   MenuItem4: TMenuItem;
   ConversionScriptsRoot: TMenuItem;
   MenuItem5: TMenuItem;
+  TrayIcon: TTrayIcon;
   WindowTopMost: TAction;
   FStatus: TIpHtmlPanel;
   FSplitter: TSplitter;
@@ -39,6 +40,7 @@ type
   procedure FStatusBarDrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
    const Rect: TRect);
   procedure ShowPreferencesExecute(Sender: TObject);
+  procedure TrayIconDblClick(Sender: TObject);
   procedure UpdateScriptMenuExecute(Sender: TObject);
   procedure OpenScriptDirExecute(Sender: TObject);
   procedure WindowTopMostExecute(Sender: TObject);
@@ -78,6 +80,11 @@ procedure TMainForm.FormCreate(Sender: TObject);
 begin
   FClipboardListener:= TClipboardListener.Create;
   FLanguage:= TLocalizer.Create;
+  TrayIcon.Hint:= Self.Caption;
+  SetWindowLong(Application.Handle,
+    GWL_EXSTYLE,
+    GetWindowLong(Application.Handle, GWL_EXSTYLE)
+    or WS_EX_TOOLWINDOW and not WS_EX_APPWINDOW);
   SetupWindow(Self);
   CopyToUnderscoreScripts; // DONE: Added a process of collectively copying Python scripts named from the underscore to OnRunScriptDir.
   LoadScriptMenus; // DONE: Add a menu that calls this method at any timing.
@@ -267,6 +274,14 @@ begin
     Script.Free;
   end;
   if FLastError <> '' then FStatusBar.Panels[1].Text:=Language.GetLanguageText('status', 'haserror') else FStatusBar.Panels[1].Text:= '';
+end;
+
+procedure TMainForm.TrayIconDblClick(Sender: TObject);
+begin
+  if Self.Showing then
+    Self.Hide
+  else
+    Self.Show;
 end;
 
 { Begin ActionList }
