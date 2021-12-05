@@ -425,6 +425,7 @@ object AboutDialog: TAboutDialog
     ParentColor = False
   end
   object URLLinkLabel: TLabel
+    Cursor = crHandPoint
     Left = 32
     Height = 15
     Top = 152
@@ -446,6 +447,7 @@ object AboutDialog: TAboutDialog
     ParentColor = False
   end
   object URLLinkLabel1: TLabel
+    Cursor = crHandPoint
     Left = 32
     Height = 15
     Top = 208
