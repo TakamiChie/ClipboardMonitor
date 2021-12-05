@@ -457,6 +457,7 @@ object AboutDialog: TAboutDialog
     Font.Style = [fsUnderline]
     ParentColor = False
     ParentFont = False
+    OnClick = URLLinkLabelClick
   end
   object BuildDate: TLabel
     Left = 16
