@@ -11,15 +11,6 @@ object AboutDialog: TAboutDialog
   OnCreate = FormCreate
   Position = poOwnerFormCenter
   LCLVersion = '2.0.12.0'
-  object VersionString: TLabel
-    Left = 16
-    Height = 15
-    Top = 24
-    Width = 192
-    AutoSize = False
-    Caption = 'VersionString'
-    ParentColor = False
-  end
   object Image1: TImage
     Left = 216
     Height = 88
@@ -406,15 +397,6 @@ object AboutDialog: TAboutDialog
     }
     Stretch = True
   end
-  object CommitHash: TLabel
-    Left = 16
-    Height = 15
-    Top = 52
-    Width = 192
-    AutoSize = False
-    Caption = 'CommitHash'
-    ParentColor = False
-  end
   object URL: TLabel
     Left = 16
     Height = 15
@@ -459,15 +441,6 @@ object AboutDialog: TAboutDialog
     ParentFont = False
     OnClick = URLLinkLabelClick
   end
-  object BuildDate: TLabel
-    Left = 16
-    Height = 15
-    Top = 80
-    Width = 192
-    AutoSize = False
-    Caption = 'BuildDate'
-    ParentColor = False
-  end
   object CopyToClipboard: TButton
     Left = 24
     Height = 40
@@ -489,5 +462,23 @@ object AboutDialog: TAboutDialog
     ModalResult = 1
     OnClick = OKButtonClick
     TabOrder = 1
+  end
+  object VersionValues: TValueListEditor
+    Left = 16
+    Height = 100
+    Top = 16
+    Width = 192
+    BorderStyle = bsNone
+    Color = clBtnFace
+    DefaultColWidth = 80
+    FixedCols = 0
+    RowCount = 1
+    TabOrder = 2
+    DisplayOptions = [doAutoColResize, doKeyColFixed]
+    Options = []
+    ColWidths = (
+      80
+      112
+    )
   end
 end

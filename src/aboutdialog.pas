@@ -6,15 +6,13 @@ interface
 
 uses
   Classes, StrUtils, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, LCLIntf, Clipbrd,
-  IniFiles, FileInfo, LCLType, Utils, Localization;
+  IniFiles, FileInfo, LCLType, ValEdit, Grids, Utils, Localization;
 
 type
 
   { TAboutDialog }
 
   TAboutDialog = class(TForm)
-    CommitHash: TLabel;
-    BuildDate: TLabel;
     CopyToClipboard: TButton;
     Donate: TLabel;
     OKButton: TButton;
@@ -22,7 +20,7 @@ type
     URL: TLabel;
     Image1: TImage;
     URLLinkLabel1: TLabel;
-    VersionString: TLabel;
+    VersionValues: TValueListEditor;
     procedure CopyToClipboardClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure OKButtonClick(Sender: TObject);
@@ -71,15 +69,18 @@ begin
         end;
         VersionInfo.Load(HINSTANCE);
         Self.Caption:=Language.GetLanguageText('aboutdlg', 'Caption').Format([Application.Title]);
-        Self.VersionString.Caption:=Language.GetLanguageText('aboutdlg', 'VersionStringBase').
-          Format([VersionInfo.FixedInfo.FileVersion[0],
+        Self.VersionValues.InsertRow(
+          Language.GetLanguageText('aboutdlg', 'VersionString'),
+          '%d.%d.%d.%d'.Format([VersionInfo.FixedInfo.FileVersion[0],
             VersionInfo.FixedInfo.FileVersion[1],
             VersionInfo.FixedInfo.FileVersion[2],
-            VersionInfo.FixedInfo.FileVersion[3]]);
-        Self.CommitHash.Caption:= Language.GetLanguageText('aboutdlg', 'CommitHashBase').
-          Format([ini.ReadString('data', 'commit_hash', '')]);
-        Self.BuildDate.Caption:= Language.GetLanguageText('aboutdlg', 'BuildDateBase').
-          Format([ini.ReadString('data', 'build_date', '')]);
+            VersionInfo.FixedInfo.FileVersion[3]]), True);
+        Self.VersionValues.InsertRow(
+          Language.GetLanguageText('aboutdlg', 'CommitHash'),
+          ini.ReadString('data', 'commit_hash', ''), True);
+        Self.VersionValues.InsertRow(
+          Language.GetLanguageText('aboutdlg', 'BuildDate'),
+          ini.ReadString('data', 'build_date', ''), True);
 
         for S in Language.GetSectionKeys('aboutdlg') do
           if Self.FindChildControl(S) <> nil then
@@ -101,12 +102,20 @@ begin
 end;
 
 procedure TAboutDialog.CopyToClipboardClick(Sender: TObject);
+var
+  CopyString: TStringList;
+  i: Integer;
 begin
-  Clipboard.AsText:=Self.Caption + #13#10 +
-    DupeString('-', 30) + #13#10 +
-    VersionString.Caption + #13#10 +
-    CommitHash.Caption + #13#10 +
-    BuildDate.Caption + #13#10;
+  CopyString:= TStringList.Create;
+  try
+    CopyString.Add(Self.Caption);
+    CopyString.Add(DupeString('-', 30));
+    for i := 0 to Self.VersionValues.RowCount - 1 do
+      CopyString.Add(Self.VersionValues.Rows[i].CommaText.Replace(',', ':'));
+    Clipboard.AsText:= CopyString.Text;
+  finally
+    CopyString.Free;
+  end;
 end;
 
 procedure TAboutDialog.OKButtonClick(Sender: TObject);
