@@ -72,62 +72,62 @@
         <UnitName Value="Preferences"/>
       </Unit2>
       <Unit3>
-        <Filename Value="clipboardlistener.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="ClipboardListener"/>
-      </Unit3>
-      <Unit4>
-        <Filename Value="settings.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="Settings"/>
-      </Unit4>
-      <Unit5>
-        <Filename Value="utils.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="Utils"/>
-      </Unit5>
-      <Unit6>
-        <Filename Value="localization.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="Localization"/>
-      </Unit6>
-      <Unit7>
-        <Filename Value="resourcemaker.py"/>
-        <IsPartOfProject Value="True"/>
-      </Unit7>
-      <Unit8>
-        <Filename Value="style.css"/>
-        <IsPartOfProject Value="True"/>
-      </Unit8>
-      <Unit9>
-        <Filename Value="lang.ini"/>
-        <IsPartOfProject Value="True"/>
-      </Unit9>
-      <Unit10>
-        <Filename Value="..\README.md"/>
-        <IsPartOfProject Value="True"/>
-      </Unit10>
-      <Unit11>
-        <Filename Value="..\LICENSE"/>
-        <IsPartOfProject Value="True"/>
-      </Unit11>
-      <Unit12>
-        <Filename Value="scriptengine\scriptmanager.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="ScriptManager"/>
-      </Unit12>
-      <Unit13>
-        <Filename Value="scriptengine\scriptprocess.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="ScriptProcess"/>
-      </Unit13>
-      <Unit14>
         <Filename Value="aboutdialog.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="AboutDialog"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="AboutDialog"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="clipboardlistener.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ClipboardListener"/>
+      </Unit4>
+      <Unit5>
+        <Filename Value="settings.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Settings"/>
+      </Unit5>
+      <Unit6>
+        <Filename Value="utils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Utils"/>
+      </Unit6>
+      <Unit7>
+        <Filename Value="localization.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="Localization"/>
+      </Unit7>
+      <Unit8>
+        <Filename Value="resourcemaker.py"/>
+        <IsPartOfProject Value="True"/>
+      </Unit8>
+      <Unit9>
+        <Filename Value="style.css"/>
+        <IsPartOfProject Value="True"/>
+      </Unit9>
+      <Unit10>
+        <Filename Value="lang.ini"/>
+        <IsPartOfProject Value="True"/>
+      </Unit10>
+      <Unit11>
+        <Filename Value="..\README.md"/>
+        <IsPartOfProject Value="True"/>
+      </Unit11>
+      <Unit12>
+        <Filename Value="..\LICENSE"/>
+        <IsPartOfProject Value="True"/>
+      </Unit12>
+      <Unit13>
+        <Filename Value="scriptengine\scriptmanager.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ScriptManager"/>
+      </Unit13>
+      <Unit14>
+        <Filename Value="scriptengine\scriptprocess.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="ScriptProcess"/>
       </Unit14>
     </Units>
   </ProjectOptions>
