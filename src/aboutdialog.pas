@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, StrUtils, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, LCLIntf, Clipbrd,
-  IniFiles, FileInfo, Utils, Localization;
+  IniFiles, FileInfo, LCLType, Utils, Localization;
 
 type
 
@@ -45,6 +45,8 @@ var
   VersionInfo: TVersionInfo;
   S: String;
   ini: TMemIniFile;
+  BuildInfo: TResourceStream;
+  SL: TStringList;
 const
   SECTION_GENERAL = 'general';
 begin
@@ -55,6 +57,18 @@ begin
       VersionInfo := TVersionInfo.Create;
       try
         Language.Language:= ini.ReadString(SECTION_GENERAL, 'Language', 'def');
+        BuildInfo:= TResourceStream.Create(HINSTANCE, 'BUILDINFO', RT_RCDATA);
+        try
+          SL:= TStringList.Create;
+          try
+            SL.LoadFromStream(BuildInfo, TEncoding.UTF8);
+            ini.SetStrings(SL);
+          finally
+            SL.Free;
+          end;
+        finally
+          BuildInfo.Free;
+        end;
         VersionInfo.Load(HINSTANCE);
         Self.Caption:=Language.GetLanguageText('aboutdlg', 'Caption').Format([Application.Title]);
         Self.VersionString.Caption:=Language.GetLanguageText('aboutdlg', 'VersionStringBase').
@@ -62,8 +76,10 @@ begin
             VersionInfo.FixedInfo.FileVersion[1],
             VersionInfo.FixedInfo.FileVersion[2],
             VersionInfo.FixedInfo.FileVersion[3]]);
-        Self.CommitHash.Caption:= Language.GetLanguageText('aboutdlg', 'CommitHashBase');
-        Self.BuildDate.Caption:= Language.GetLanguageText('aboutdlg', 'BuildDateBase').Format([VersionInfo.FixedInfo.FileDate]);
+        Self.CommitHash.Caption:= Language.GetLanguageText('aboutdlg', 'CommitHashBase').
+          Format([ini.ReadString('data', 'commit_hash', '')]);
+        Self.BuildDate.Caption:= Language.GetLanguageText('aboutdlg', 'BuildDateBase').
+          Format([ini.ReadString('data', 'build_date', '')]);
 
         for S in Language.GetSectionKeys('aboutdlg') do
           if Self.FindChildControl(S) <> nil then
