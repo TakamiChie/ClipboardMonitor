@@ -3,12 +3,12 @@ program CMon;
 {$mode objfpc}{$H+}
 
 uses
- {$IFDEF UNIX}{$IFDEF UseCThreads}
- cthreads,
- {$ENDIF}{$ENDIF}
- Interfaces, // this includes the LCL widgetset
- Forms, Main, ClipboardListener, Utils, Settings,
- Localization, Preferences, ScriptManager, ScriptProcess, AboutDialog;
+  {$IFDEF UNIX}{$IFDEF UseCThreads}
+  cthreads,
+  {$ENDIF}{$ENDIF}
+  Interfaces, // this includes the LCL widgetset
+  Forms, Main, ClipboardListener, Utils, Settings,
+  Localization, Preferences, ScriptManager, ScriptProcess, AboutDialog;
 
 {$R *.res}
 
