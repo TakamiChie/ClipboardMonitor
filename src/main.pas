@@ -100,8 +100,8 @@ end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  SaveSettings(Self);
-  CloseAction:=caFree;
+  CloseAction:=caNone;
+  Self.Hide;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -347,7 +347,8 @@ end;
 /// <summary>Exit the application.</summary>
 procedure TMainForm.AppExitExecute(Sender: TObject);
 begin
-  Self.Close;
+  SaveSettings(Self);
+  Application.Terminate;
 end;
 
 end.
