@@ -5,7 +5,7 @@ unit Settings;
 interface
 
 uses
- ScriptManager, ActnList, Forms, Utils, Classes, Menus, SysUtils, IniFiles;
+  ScriptManager, ActnList, Forms, Utils, Classes, Menus, SysUtils, IniFiles;
 
 procedure SetupWindow(Window: TForm; GeneralOnly: Boolean=False);
 procedure SetupOnRunMenu(MenuRoot: TMenuItem);
@@ -14,7 +14,7 @@ procedure SaveSettings(Window: TForm);
 implementation
 
 uses
- Main;
+  Main;
 
 const
   SECTION_GENERAL = 'general';

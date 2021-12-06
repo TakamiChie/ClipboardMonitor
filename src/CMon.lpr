@@ -13,11 +13,11 @@ uses
 {$R *.res}
 
 begin
- RequireDerivedFormResource:=True;
+  RequireDerivedFormResource:=True;
   Application.Title:='ClipboardMonitor';
- Application.Scaled:=True;
- Application.Initialize;
- Application.CreateForm(TMainForm, MainForm);
- Application.Run;
+  Application.Scaled:=True;
+  Application.Initialize;
+  Application.CreateForm(TMainForm, MainForm);
+  Application.Run;
 end.
 

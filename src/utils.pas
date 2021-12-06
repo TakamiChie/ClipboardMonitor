@@ -5,7 +5,7 @@ unit Utils;
 interface
 
 uses
- LazFileUtils, FileUtil, Forms, Classes, SysUtils, LResources;
+  LazFileUtils, FileUtil, Forms, Classes, SysUtils, LResources;
 
 function GetSettingRootDir: String;
 function GetScriptRootDir: String;

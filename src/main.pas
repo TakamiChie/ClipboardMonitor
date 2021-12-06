@@ -5,78 +5,76 @@ unit Main;
 interface
 
 uses
- ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, Localization, Preferences, AboutDialog,
- LResources, FileUtil, IpHtml, SysUtils,
- Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Clipbrd, Menus, LCLType,
- ActnList, ComCtrls, Classes, MMSystem, Windows;
+  ClipboardListener, ScriptProcess, ScriptManager, Settings, Utils, Localization, Preferences, AboutDialog,
+  LResources, FileUtil, IpHtml, SysUtils,
+  Forms, Controls, Graphics, Dialogs, StdCtrls, ExtCtrls, Clipbrd, Menus, LCLType,
+  ActnList, ComCtrls, Classes, MMSystem, Windows;
 
 type
-
- { TMainForm }
-
- TMainForm = class(TForm)
-   AboutThisApp: TAction;
-   AppExit: TAction;
-   MenuItem6: TMenuItem;
-   MenuItem7: TMenuItem;
-   MenuItem8: TMenuItem;
-   ShowPreferences: TAction;
-  MenuItem3: TMenuItem;
-  MenuItem4: TMenuItem;
-  ConversionScriptsRoot: TMenuItem;
-  MenuItem5: TMenuItem;
-  TrayIcon: TTrayIcon;
-  WindowTopMost: TAction;
-  FStatus: TIpHtmlPanel;
-  FSplitter: TSplitter;
-  FStatusBar: TStatusBar;
-  UpdateScriptMenu: TAction;
-  MenuItem2: TMenuItem;
-  OpenScriptDir: TAction;
-  FActionList: TActionList;
-  FMonitor: TMemo;
-  MenuItem1: TMenuItem;
-  RunOnCopyMenuRoot: TMenuItem;
-  FPopupMenu: TPopupMenu;
-  procedure AboutThisAppExecute(Sender: TObject);
-  procedure AppExitExecute(Sender: TObject);
-  procedure ConversionScriptsClick(Sender: TObject);
-  procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
-  procedure FormCreate(Sender: TObject);
-  procedure FormDestroy(Sender: TObject);
-  procedure FStatusBarClick(Sender: TObject);
-  procedure FStatusBarDrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
-   const Rect: TRect);
-  procedure ShowPreferencesExecute(Sender: TObject);
-  procedure TrayIconDblClick(Sender: TObject);
-  procedure UpdateScriptMenuExecute(Sender: TObject);
-  procedure OpenScriptDirExecute(Sender: TObject);
-  procedure WindowTopMostExecute(Sender: TObject);
- private
-  FClipboardListener: TClipboardListener;
-  FOnRunScripts: TScriptList;
-  FConversionScripts: TScriptList;
-  FLastError: String;
-  FPythonInterpreter: String;
-  FPlaySoundEnabled: Boolean;
-  FPlaySoundPath: String;
-  FLanguage: TLocalizer;
-  procedure SetOnRunScripts(Value: TScriptList);
-  procedure SetConversionScripts(Value: TScriptList);
-  procedure ClipboardChanged(Sender: TObject);
-  procedure LoadScriptMenus;
-  procedure UpdateStatus(HTML: String);
- public
-  property OnRunScripts: TScriptList read FOnRunScripts write SetOnRunScripts;
-  property ConversionScripts: TScriptList read FConversionScripts write SetConversionScripts;
-  property Language: TLocalizer read FLanguage write FLanguage;
-  property PythonInterpreter: String read FPythonInterpreter write FPythonInterpreter;
-  property PlaySoundEnabled: Boolean read FPlaySoundEnabled write FPlaySoundEnabled;
-  property PlaySoundPath: String read FPlaySoundPath write FPlaySoundPath;
- end;
+  { TMainForm }
+  TMainForm = class(TForm)
+    AboutThisApp: TAction;
+    AppExit: TAction;
+    MenuItem6: TMenuItem;
+    MenuItem7: TMenuItem;
+    MenuItem8: TMenuItem;
+    ShowPreferences: TAction;
+    MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
+    ConversionScriptsRoot: TMenuItem;
+    MenuItem5: TMenuItem;
+    TrayIcon: TTrayIcon;
+    WindowTopMost: TAction;
+    FStatus: TIpHtmlPanel;
+    FSplitter: TSplitter;
+    FStatusBar: TStatusBar;
+    UpdateScriptMenu: TAction;
+    MenuItem2: TMenuItem;
+    OpenScriptDir: TAction;
+    FActionList: TActionList;
+    FMonitor: TMemo;
+    MenuItem1: TMenuItem;
+    RunOnCopyMenuRoot: TMenuItem;
+    FPopupMenu: TPopupMenu;
+    procedure AboutThisAppExecute(Sender: TObject);
+    procedure AppExitExecute(Sender: TObject);
+    procedure ConversionScriptsClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+    procedure FStatusBarClick(Sender: TObject);
+    procedure FStatusBarDrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
+     const Rect: TRect);
+    procedure ShowPreferencesExecute(Sender: TObject);
+    procedure TrayIconDblClick(Sender: TObject);
+    procedure UpdateScriptMenuExecute(Sender: TObject);
+    procedure OpenScriptDirExecute(Sender: TObject);
+    procedure WindowTopMostExecute(Sender: TObject);
+  private
+    FClipboardListener: TClipboardListener;
+    FOnRunScripts: TScriptList;
+    FConversionScripts: TScriptList;
+    FLastError: String;
+    FPythonInterpreter: String;
+    FPlaySoundEnabled: Boolean;
+    FPlaySoundPath: String;
+    FLanguage: TLocalizer;
+    procedure SetOnRunScripts(Value: TScriptList);
+    procedure SetConversionScripts(Value: TScriptList);
+    procedure ClipboardChanged(Sender: TObject);
+    procedure LoadScriptMenus;
+    procedure UpdateStatus(HTML: String);
+  public
+    property OnRunScripts: TScriptList read FOnRunScripts write SetOnRunScripts;
+    property ConversionScripts: TScriptList read FConversionScripts write SetConversionScripts;
+    property Language: TLocalizer read FLanguage write FLanguage;
+    property PythonInterpreter: String read FPythonInterpreter write FPythonInterpreter;
+    property PlaySoundEnabled: Boolean read FPlaySoundEnabled write FPlaySoundEnabled;
+    property PlaySoundPath: String read FPlaySoundPath write FPlaySoundPath;
+  end;
 
 var
- MainForm: TMainForm;
+  MainForm: TMainForm;
 
 implementation
 

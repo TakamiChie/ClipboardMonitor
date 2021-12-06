@@ -63,7 +63,7 @@ begin
             VersionInfo.FixedInfo.FileVersion[2],
             VersionInfo.FixedInfo.FileVersion[3]]);
         Self.CommitHash.Caption:= Language.GetLanguageText('aboutdlg', 'CommitHashBase');
-        Self.BuildDate.Caption:= Language.GetLanguageText('aboutdlg', 'BuildDateBase');
+        Self.BuildDate.Caption:= Language.GetLanguageText('aboutdlg', 'BuildDateBase').Format([VersionInfo.FixedInfo.FileDate]);
 
         for S in Language.GetSectionKeys('aboutdlg') do
           if Self.FindChildControl(S) <> nil then
