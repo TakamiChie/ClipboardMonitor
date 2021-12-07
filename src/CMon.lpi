@@ -16,9 +16,10 @@
         <TextDesc Value="A tool that monitors the text in the clipboard and displays additional information."/>
       </XPManifest>
       <Icon Value="0"/>
-      <Resources Count="2">
+      <Resources Count="3">
         <Resource_0 FileName="style.css" Type="RCDATA" ResourceName="STYLE"/>
         <Resource_1 FileName="lang.ini" Type="RCDATA" ResourceName="LANG"/>
+        <Resource_2 FileName="..\buildinfo.ini" Type="RCDATA" ResourceName="BUILDINFO"/>
       </Resources>
     </General>
     <VersionInfo>
