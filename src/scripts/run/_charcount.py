@@ -23,23 +23,22 @@ sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
-if not sys.stdin.isatty() or len(sys.argv) == 2:
-  text = sys.argv[-1] if len(sys.argv) == 2 else sys.stdin.read()
-  p = re.compile(r"\x1b\[([3,9][0-7])m(.*?)\x1b\[([3,9])9m")
+text = sys.stdin.read()
+p = re.compile(r"\x1b\[([3,9][0-7])m(.*?)\x1b\[([3,9])9m")
 
-  print(f"<p>{len(text)} char(s)</p>")
-  fd, fn = tempfile.mkstemp()
-  try:
-    path = subprocess.check_output("where mdwc").decode("UTF-8").split()[-1]
-    with open(fn, "w", encoding="utf-8") as f:
-      f.write(text)
-    # DONE: Reflect console color specification.
-    ret = subprocess.check_output(f'"{path}" "{f.name}"').decode("UTF-8")
-    ret = p.sub(colortags, ret)
-    print('<p>Markdown</p>')
-    print(f'<pre>{ret}</pre>')
-  except FileNotFoundError:
-    pass
-  finally:
-    os.close(fd)
-    os.remove(fn)
+print(f"<p>{len(text)} char(s)</p>")
+fd, fn = tempfile.mkstemp()
+try:
+  path = subprocess.check_output("where mdwc").decode("UTF-8").split()[-1]
+  with open(fn, "w", encoding="utf-8") as f:
+    f.write(text)
+  # DONE: Reflect console color specification.
+  ret = subprocess.check_output(f'"{path}" "{f.name}"').decode("UTF-8")
+  ret = p.sub(colortags, ret)
+  print('<p>Markdown</p>')
+  print(f'<pre>{ret}</pre>')
+except FileNotFoundError:
+  pass
+finally:
+  os.close(fd)
+  os.remove(fn)
