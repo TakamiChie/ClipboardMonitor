@@ -63,7 +63,7 @@ begin
   FProcess.Options:= FProcess.Options + [poUsePipes];
   FProcess.ShowWindow:=swoHIDE;
   FProcess.Execute;
-  InText:= FText + #10;
+  InText:= FText;
   FProcess.Input.Write(InText[1], Length(InText));
   FProcess.CloseInput;
   FProcess.WaitOnExit(FTimeout);
