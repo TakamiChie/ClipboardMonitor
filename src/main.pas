@@ -311,7 +311,7 @@ begin
   try
     Script.Text:= FMonitor.Text;
     Script.Execute(SF.FilePath, StdOut, StdErr);
-    if StdOut <> '' then Clipboard.AsText:=StdOut;
+    if StdOut <> '' then Clipboard.AsText:=StdOut.TrimRight([#13, #10]);
     if StdErr <> '' then FLastError:= StdErr;
   finally
     Script.Free;
