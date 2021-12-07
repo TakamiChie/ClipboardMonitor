@@ -1,12 +1,12 @@
 object PreferenceForm: TPreferenceForm
-  Left = 3030
-  Height = 264
-  Top = 219
+  Left = 2451
+  Height = 288
+  Top = 364
   Width = 403
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
   Caption = 'PreferenceForm'
-  ClientHeight = 264
+  ClientHeight = 288
   ClientWidth = 403
   OnCreate = FormCreate
   OnDestroy = FormDestroy
@@ -15,7 +15,7 @@ object PreferenceForm: TPreferenceForm
   object Panel1: TPanel
     Left = 0
     Height = 50
-    Top = 214
+    Top = 238
     Width = 403
     Align = alBottom
     ClientHeight = 50
@@ -118,7 +118,7 @@ object PreferenceForm: TPreferenceForm
   object Register4Startup: TButton
     Left = 270
     Height = 32
-    Top = 174
+    Top = 198
     Width = 118
     Anchors = [akRight, akBottom]
     Caption = '&Register for Startup'
@@ -175,5 +175,13 @@ object PreferenceForm: TPreferenceForm
     Caption = 'Test'
     OnClick = TestPlayButtonClick
     TabOrder = 5
+  end
+  object Residestasltray: TCheckBox
+    Left = 8
+    Height = 19
+    Top = 176
+    Width = 139
+    Caption = 'Resides in the &task tray'
+    TabOrder = 8
   end
 end

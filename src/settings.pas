@@ -58,6 +58,7 @@ begin
     MainForm.AlphaBlend:=MainForm.AlphaBlendValue<255;
     MainForm.PlaySoundEnabled:= ini.ReadBool(SECTION_GENERAL, 'PlaySoundOnCopy', False);
     MainForm.PlaySoundPath:= ini.ReadString(SECTION_GENERAL, 'PlaySoundPath', '');
+    MainForm.ResidesTT:=ini.ReadBool(SECTION_GENERAL, 'ResidesTasktray', True);
     MainForm.FStatusBar.Panels[0].Text:= MainForm.Language.GetLanguageText('status', 'ready');;
     MainForm.ConversionScriptsRoot.Caption:=MainForm.Language.GetLanguageText('gui', 'ConversionScriptsRoot');
     MainForm.RunOnCopyMenuRoot.Caption:=MainForm.Language.GetLanguageText('gui', 'RunOnCopyMenuRoot');

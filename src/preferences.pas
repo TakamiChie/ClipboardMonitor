@@ -13,6 +13,7 @@ type
   { TPreferenceForm }
 
   TPreferenceForm = class(TForm)
+    Residestasltray: TCheckBox;
     TestPlayButton: TButton;
     PlaySoundEnabled: TCheckBox;
     LanguageSelector: TComboBox;
@@ -67,6 +68,7 @@ begin
     PlaySoundEnabled.Checked:= ini.ReadBool(SECTION_GENERAL, 'PlaySoundOnCopy', False);
     PlaySoundPath.Text:= ini.ReadString(SECTION_GENERAL, 'PlaySoundPath', '');
     CurLanguage:= ini.ReadString(SECTION_GENERAL, 'Language', 'def');
+    Residestasltray.Checked:= ini.ReadBool(SECTION_GENERAL, 'ResidesTasktray', True);
   finally
     ini.Free;
   end;
@@ -181,6 +183,7 @@ begin
     ini.WriteBool(SECTION_GENERAL, 'PlaySoundOnCopy', PlaySoundEnabled.Checked);
     ini.WriteString(SECTION_GENERAL, 'PlaySoundPath', PlaySoundPath.Text);
     ini.WriteString(SECTION_GENERAL, 'Language', String(LanguageSelector.Text).Split([':'])[0]);
+    ini.WriteBool(SECTION_GENERAL, 'ResidesTasktray', Residestasltray.Checked);
   finally
     ini.Free;
   end;

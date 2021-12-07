@@ -59,11 +59,15 @@ type
     FPlaySoundEnabled: Boolean;
     FPlaySoundPath: String;
     FLanguage: TLocalizer;
+    FDisplayedTBLong: LongInt; // WindowLong in the state that the icon is displayed on the taskbar
+    FTasktrayIconLong: LongInt; // WindowLong of the resident state in the task tray
     procedure SetOnRunScripts(Value: TScriptList);
     procedure SetConversionScripts(Value: TScriptList);
     procedure ClipboardChanged(Sender: TObject);
     procedure LoadScriptMenus;
     procedure UpdateStatus(HTML: String);
+    function GetResidesTT: Boolean;
+    procedure SetResidesTT(Value: Boolean);
   public
     property OnRunScripts: TScriptList read FOnRunScripts write SetOnRunScripts;
     property ConversionScripts: TScriptList read FConversionScripts write SetConversionScripts;
@@ -71,6 +75,7 @@ type
     property PythonInterpreter: String read FPythonInterpreter write FPythonInterpreter;
     property PlaySoundEnabled: Boolean read FPlaySoundEnabled write FPlaySoundEnabled;
     property PlaySoundPath: String read FPlaySoundPath write FPlaySoundPath;
+    property ResidesTT: Boolean read GetResidesTT write SetResidesTT;
   end;
 
 var
@@ -87,10 +92,8 @@ begin
   FClipboardListener:= TClipboardListener.Create;
   FLanguage:= TLocalizer.Create;
   TrayIcon.Hint:= Self.Caption;
-  SetWindowLong(Application.Handle,
-    GWL_EXSTYLE,
-    GetWindowLong(Application.Handle, GWL_EXSTYLE)
-    or WS_EX_TOOLWINDOW and not WS_EX_APPWINDOW);
+  FDisplayedTBLong:=GetWindowLong(Application.Handle, GWL_EXSTYLE);
+  FTasktrayIconLong:=FDisplayedTBLong or WS_EX_TOOLWINDOW and not WS_EX_APPWINDOW;
   SetupWindow(Self);
   CopyToUnderscoreScripts; // DONE: Added a process of collectively copying Python scripts named from the underscore to OnRunScriptDir.
   LoadScriptMenus; // DONE: Add a menu that calls this method at any timing.
@@ -100,8 +103,16 @@ end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  CloseAction:=caNone;
-  Self.Hide;
+  if ResidesTT then
+  begin
+    CloseAction:=caNone;
+    Self.Hide;
+  end
+  else
+  begin
+    SaveSettings(Self);
+    CloseAction:=caFree;
+  end;
 end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
@@ -258,6 +269,32 @@ begin
     end;
   except
     on E: Exception do MessageDlg('Error:'+ E.Message, mtError, [mbCancel], 0);
+  end;
+end;
+
+/// <summary>Method called to get a value indicating whether or not to reside in the task tray.</summary>
+/// <returns>Value indicating whether the application should be resident in the task tray.</returns>
+function TMainForm.GetResidesTT: Boolean;
+begin
+  Result:= TrayIcon.Visible;
+end;
+
+/// <summary>Method called when the value indicating whether or not to reside in the task tray is updated.</summary>
+/// <params name="Value">Value indicating whether the application should be resident in the task tray.</param>
+procedure TMainForm.SetResidesTT(Value: Boolean);
+begin
+  TrayIcon.Visible := Value;
+  if Value then
+  begin
+    Self.BorderIcons:=[biSystemMenu];
+    SetWindowLong(Application.Handle,
+      GWL_EXSTYLE, FTasktrayIconLong);
+  end
+  else
+  begin
+    Self.BorderIcons:=[biMinimize, biSystemMenu];
+    SetWindowLong(Application.Handle,
+      GWL_EXSTYLE, FDisplayedTBLong);
   end;
 end;
 
