@@ -63,8 +63,11 @@ begin
   FProcess.Options:= FProcess.Options + [poUsePipes];
   FProcess.ShowWindow:=swoHIDE;
   FProcess.Execute;
-  InText:= FText;
-  FProcess.Input.Write(InText[1], Length(InText));
+  if FText.Length > 0 then
+  begin
+    InText:= FText;
+    FProcess.Input.Write(InText[1], Length(InText));
+  end;
   FProcess.CloseInput;
   FProcess.WaitOnExit(FTimeout);
   TextResult:= TStringList.Create;
