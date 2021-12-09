@@ -11,7 +11,7 @@
       <UseXPManifest Value="True"/>
       <Icon Value="0"/>
       <Resources Count="1">
-        <Resource_0 FileName="testlang.ini" Type="RCDATA" ResourceName="LANG"/>
+        <Resource_0 FileName="tests\testlang.ini" Type="RCDATA" ResourceName="LANG"/>
       </Resources>
     </General>
     <BuildModes Count="1">
@@ -42,68 +42,68 @@
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="scriptprocesstestcase.pas"/>
+        <Filename Value="tests\scriptprocesstestcase.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit1>
       <Unit2>
-        <Filename Value="scriptmanagertestcase.pas"/>
+        <Filename Value="tests\scriptmanagertestcase.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit2>
       <Unit3>
-        <Filename Value="localizertestcase.pas"/>
+        <Filename Value="tests\localizertestcase.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="testlang.ini"/>
+        <Filename Value="tests\testlang.ini"/>
         <IsPartOfProject Value="True"/>
       </Unit4>
       <Unit5>
-        <Filename Value="..\src\localization.pas"/>
+        <Filename Value="src\localization.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Localization"/>
       </Unit5>
       <Unit6>
-        <Filename Value="..\src\scriptengine\scriptmanager.pas"/>
+        <Filename Value="src\scriptengine\scriptmanager.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit6>
       <Unit7>
-        <Filename Value="..\src\scriptengine\scriptprocess.pas"/>
+        <Filename Value="src\scriptengine\scriptprocess.pas"/>
         <IsPartOfProject Value="True"/>
       </Unit7>
       <Unit8>
-        <Filename Value="scripts\SFTEST_HasCommentNoOrder.py"/>
+        <Filename Value="tests\scripts\SFTEST_HasCommentNoOrder.py"/>
         <IsPartOfProject Value="True"/>
       </Unit8>
       <Unit9>
-        <Filename Value="scripts\SFTEST_HasNoComment.py"/>
+        <Filename Value="tests\scripts\SFTEST_HasNoComment.py"/>
         <IsPartOfProject Value="True"/>
       </Unit9>
       <Unit10>
-        <Filename Value="scripts\SPTEST_TestScript.py"/>
+        <Filename Value="tests\scripts\SPTEST_TestScript.py"/>
         <IsPartOfProject Value="True"/>
       </Unit10>
       <Unit11>
-        <Filename Value="scripts\LSFTEST\Order50.py"/>
+        <Filename Value="tests\scripts\LSFTEST\Order50.py"/>
         <IsPartOfProject Value="True"/>
       </Unit11>
       <Unit12>
-        <Filename Value="scripts\LSFTEST\Order20.py"/>
+        <Filename Value="tests\scripts\LSFTEST\Order20.py"/>
         <IsPartOfProject Value="True"/>
       </Unit12>
       <Unit13>
-        <Filename Value="scripts\LSFTEST\Order0.py"/>
+        <Filename Value="tests\scripts\LSFTEST\Order0.py"/>
         <IsPartOfProject Value="True"/>
       </Unit13>
       <Unit14>
-        <Filename Value="scripts\LSFTEST\Order100.py"/>
+        <Filename Value="tests\scripts\LSFTEST\Order100.py"/>
         <IsPartOfProject Value="True"/>
       </Unit14>
       <Unit15>
-        <Filename Value="scripts\LSFTEST\Order101.py"/>
+        <Filename Value="tests\scripts\LSFTEST\Order101.py"/>
         <IsPartOfProject Value="True"/>
       </Unit15>
       <Unit16>
-        <Filename Value="scripts\LSFTEST\NoOrder.py"/>
+        <Filename Value="tests\scripts\LSFTEST\NoOrder.py"/>
         <IsPartOfProject Value="True"/>
       </Unit16>
     </Units>
@@ -116,7 +116,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="..\src;..\src\scriptengine"/>
+      <OtherUnitFiles Value="src;src\scriptengine;tests"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

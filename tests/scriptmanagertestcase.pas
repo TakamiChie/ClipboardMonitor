@@ -28,7 +28,7 @@ procedure TScriptManagerTestCase.TestLoadScript;
 var
   SF: TScriptFile;
 begin
-  SF := TScriptFile.Create('scripts\\SFTEST_HasCommentNoOrder.py', 'def');
+  SF := TScriptFile.Create('tests\\scripts\\SFTEST_HasCommentNoOrder.py', 'def');
   try
     AssertEquals('Test File', SF.DisplayName);
     AssertEquals(100, SF.Order)
@@ -47,7 +47,7 @@ procedure TScriptManagerTestCase.TestLoadScriptNoComment;
 var
   SF: TScriptFile;
 begin
-  SF := TScriptFile.Create('scripts\\SFTEST_HasNoComment.py', 'def');
+  SF := TScriptFile.Create('tests\\scripts\\SFTEST_HasNoComment.py', 'def');
   try
     AssertEquals('SFTEST_HasNoComment.py', SF.DisplayName);
     AssertEquals(100, SF.Order)
@@ -68,7 +68,7 @@ var
   Orders: array of Integer = (0, 20, 50, 100, 100, 101);
   i: Integer;
 begin
-  SFs:= LoadScriptFiles('scripts\\LSFTEST\\', 'def');
+  SFs:= LoadScriptFiles('tests\\scripts\\LSFTEST\\', 'def');
   try
     for i := 0 to Length(Orders) - 1 do
     begin

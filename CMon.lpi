@@ -17,9 +17,9 @@
       </XPManifest>
       <Icon Value="0"/>
       <Resources Count="3">
-        <Resource_0 FileName="style.css" Type="RCDATA" ResourceName="STYLE"/>
-        <Resource_1 FileName="lang.ini" Type="RCDATA" ResourceName="LANG"/>
-        <Resource_2 FileName="..\buildinfo.ini" Type="RCDATA" ResourceName="BUILDINFO"/>
+        <Resource_0 FileName="src\lang.ini" Type="RCDATA" ResourceName="LANG"/>
+        <Resource_1 FileName="src\style.css" Type="RCDATA" ResourceName="STYLE"/>
+        <Resource_2 FileName="buildinfo.ini" Type="RCDATA" ResourceName="BUILDINFO"/>
       </Resources>
     </General>
     <VersionInfo>
@@ -37,11 +37,11 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="..\CMon"/>
+            <Filename Value="CMon"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="scriptengine"/>
+            <OtherUnitFiles Value="src\scriptengine;src"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -73,7 +73,7 @@
           </Linking>
           <Other>
             <ExecuteBefore>
-              <Command Value="python .\resourcemaker.py --lazarus_dir $(LazarusDir)"/>
+              <Command Value="python .\src\resourcemaker.py --lazarus_dir $(LazarusDir)"/>
               <ShowAllMessages Value="True"/>
             </ExecuteBefore>
           </Other>
@@ -84,11 +84,11 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="..\CMon"/>
+            <Filename Value="CMon"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
-            <OtherUnitFiles Value="scriptengine"/>
+            <OtherUnitFiles Value="src\scriptengine;src"/>
             <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -115,7 +115,7 @@
               <ShowHints Value="False"/>
             </Verbosity>
             <ExecuteBefore>
-              <Command Value="python .\resourcemaker.py --lazarus_dir $(LazarusDir)"/>
+              <Command Value="python .\src\resourcemaker.py --lazarus_dir $(LazarusDir)"/>
               <ShowAllMessages Value="True"/>
             </ExecuteBefore>
           </Other>
@@ -147,7 +147,7 @@
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
-        <Filename Value="main.pas"/>
+        <Filename Value="src\main.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
@@ -155,7 +155,7 @@
         <UnitName Value="Main"/>
       </Unit1>
       <Unit2>
-        <Filename Value="preferences.pas"/>
+        <Filename Value="src\preferences.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PreferenceForm"/>
         <HasResources Value="True"/>
@@ -163,7 +163,7 @@
         <UnitName Value="Preferences"/>
       </Unit2>
       <Unit3>
-        <Filename Value="aboutdialog.pas"/>
+        <Filename Value="src\aboutdialog.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="AboutDialog"/>
         <HasResources Value="True"/>
@@ -171,52 +171,52 @@
         <UnitName Value="AboutDialog"/>
       </Unit3>
       <Unit4>
-        <Filename Value="clipboardlistener.pas"/>
+        <Filename Value="src\clipboardlistener.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ClipboardListener"/>
       </Unit4>
       <Unit5>
-        <Filename Value="settings.pas"/>
+        <Filename Value="src\settings.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Settings"/>
       </Unit5>
       <Unit6>
-        <Filename Value="utils.pas"/>
+        <Filename Value="src\utils.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Utils"/>
       </Unit6>
       <Unit7>
-        <Filename Value="localization.pas"/>
+        <Filename Value="src\localization.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Localization"/>
       </Unit7>
       <Unit8>
-        <Filename Value="resourcemaker.py"/>
+        <Filename Value="src\resourcemaker.py"/>
         <IsPartOfProject Value="True"/>
       </Unit8>
       <Unit9>
-        <Filename Value="style.css"/>
+        <Filename Value="src\style.css"/>
         <IsPartOfProject Value="True"/>
       </Unit9>
       <Unit10>
-        <Filename Value="lang.ini"/>
+        <Filename Value="src\lang.ini"/>
         <IsPartOfProject Value="True"/>
       </Unit10>
       <Unit11>
-        <Filename Value="..\README.md"/>
+        <Filename Value="README.md"/>
         <IsPartOfProject Value="True"/>
       </Unit11>
       <Unit12>
-        <Filename Value="..\LICENSE"/>
+        <Filename Value="LICENSE"/>
         <IsPartOfProject Value="True"/>
       </Unit12>
       <Unit13>
-        <Filename Value="scriptengine\scriptmanager.pas"/>
+        <Filename Value="src\scriptengine\scriptmanager.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ScriptManager"/>
       </Unit13>
       <Unit14>
-        <Filename Value="scriptengine\scriptprocess.pas"/>
+        <Filename Value="src\scriptengine\scriptprocess.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ScriptProcess"/>
       </Unit14>
@@ -226,11 +226,11 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="..\CMon"/>
+      <Filename Value="CMon"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="scriptengine"/>
+      <OtherUnitFiles Value="src\scriptengine;src"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>
@@ -242,7 +242,7 @@
     </Linking>
     <Other>
       <ExecuteBefore>
-        <Command Value="python .\resourcemaker.py --lazarus_dir $(LazarusDir)"/>
+        <Command Value="python .\src\resourcemaker.py --lazarus_dir $(LazarusDir)"/>
         <ShowAllMessages Value="True"/>
       </ExecuteBefore>
     </Other>

@@ -31,7 +31,7 @@ var
 begin
   Proc := TScriptProcess.Create();
   try
-    Proc.Execute('scripts\\SPTEST_TestScript.py', StdOut, StdErr);
+    Proc.Execute('tests\\scripts\\SPTEST_TestScript.py', StdOut, StdErr);
     AssertEquals('Hello This Is a TEST' + #13#10, StdOut);
   finally
     Proc.Free;
@@ -53,7 +53,7 @@ begin
   Proc := TScriptProcess.Create();
   try
     Proc.Text := 'Input Test';
-    Proc.Execute('scripts\\SPTEST_TestScript.py', StdOut, StdErr);
+    Proc.Execute('tests\\scripts\\SPTEST_TestScript.py', StdOut, StdErr);
     AssertEquals('Hello This Is a TEST' + #13#10 + 'Input Test' + #13#10, StdOut);
   finally
     Proc.Free;
@@ -75,7 +75,7 @@ var
 begin
   Proc := TScriptProcess.Create();
   try
-    Proc.Execute('"scripts\\SPTEST_TestScript.py" "--raiseerror"', StdOut, StdErr);
+    Proc.Execute('"tests\\scripts\\SPTEST_TestScript.py" "--raiseerror"', StdOut, StdErr);
     AssertTrue(Pos('This Is Test Error', StdErr) > 0);
   finally
     Proc.Free;
