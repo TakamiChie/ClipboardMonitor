@@ -2,11 +2,13 @@
 <CONFIG>
   <ProjectGroup FileVersion="1">
     <Targets Count="2">
-      <Target0 FileName="tests\CMonTest.lpi">
-        <BuildModes Count="1"/>
-        <Mode1 Name="Default"/>
+      <Target0 FileName="CMon.lpi">
+        <BuildModes Count="3"/>
+        <Mode1 Name="Default" Compile="True"/>
+        <Mode2 Name="Debug"/>
+        <Mode3 Name="Release"/>
       </Target0>
-      <Target1 FileName="src\CMon.lpi">
+      <Target1 FileName="CMonTest.lpi">
         <BuildModes Count="1"/>
         <Mode1 Name="Default"/>
       </Target1>
