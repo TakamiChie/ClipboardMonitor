@@ -24,6 +24,20 @@ tree = ElementTree.parse(APPLICTAION_LPIFILE)
 vi = tree.find("ProjectOptions").find("VersionInfo")
 ver = lambda n: 0 if n is None else int(n.get('Value')) 
 vn = f"{ver(vi.find('MajorVersionNr'))}.{ver(vi.find('MinorVersionNr'))}.{ver(vi.find('RevisionNr'))}.{ver(vi.find('BuildNr'))}"
+buildnr = vi.find("BuildNr")
+if buildnr is None: buildnr = ElementTree.SubElement(vi, "BuildNr")
+newbn = int(datetime.datetime.now().strftime("%y%m%d")[1:]) // 2
+buildnr.set("Value", str(newbn))
+tree.write(APPLICTAION_LPIFILE, encoding="UTF-8", xml_declaration=True)
+# Repair format
+with open(APPLICTAION_LPIFILE, "r") as f:
+  lines = f.read().splitlines()
+with open(APPLICTAION_LPIFILE, "w") as f:
+  for line in lines:
+    if line.startswith("<?xml"): f.write(line.replace("'", '"'))
+    elif " />" in line: f.write(line.replace(" />", "/>"))
+    else: f.write(line)
+    f.write("\n")
 print((f"Version:{vn}"))
 
 ch = subprocess.check_output("git log -n 1 --pretty=format:%h".split(" ")).decode("UTF-8")
