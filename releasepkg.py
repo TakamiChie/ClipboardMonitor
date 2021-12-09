@@ -3,6 +3,7 @@ import winreg
 from pathlib import Path
 import xml.etree.ElementTree as ElementTree
 import subprocess
+import datetime
 import zipfile
 
 APPLICATION_NAME = "CMon"
@@ -44,7 +45,7 @@ ch = subprocess.check_output("git log -n 1 --pretty=format:%h".split(" ")).decod
 print((f"CommitHash:{ch}"))
 
 print(">> Create Release Package")
-proc = subprocess.Popen(f"{lazarus_root}\\lazbuild --build-mode=Release {APPLICTAION_LPIFILE}", shell=True);
+proc = subprocess.Popen(f"{lazarus_root}\\lazbuild --build-mode=Release --no-write-project {APPLICTAION_LPIFILE}", shell=True);
 proc.communicate()
 
 rootdir = Path(__file__).parent
