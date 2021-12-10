@@ -26,7 +26,7 @@
       <UseVersionInfo Value="True"/>
       <AutoIncrementBuild Value="True"/>
       <MajorVersionNr Value="1"/>
-      <BuildNr Value="5604"/>
+      <BuildNr Value="5605"/>
       <Attributes pvaPreRelease="True"/>
       <StringTable Comments="A tool that monitors the text in the clipboard and displays additional information." CompanyName="Yokohama IT Workshop" FileDescription="Yokohama IT Barely.ClipboardMonitor"/>
     </VersionInfo>
