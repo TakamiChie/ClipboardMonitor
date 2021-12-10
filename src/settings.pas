@@ -7,8 +7,19 @@ interface
 uses
   ScriptManager, ActnList, Forms, Utils, Classes, Menus, SysUtils, IniFiles;
 
+/// <summary>Read the window information from the Ini file.</summary>
+/// <param name="Window">Main Window object</param>
+/// <param name="GeneralOnly">
+/// Specify True when not reading values other than the GENERAL section
+/// when reading configuration dialog settings.
+/// Default False.
+/// </param>
 procedure SetupWindow(Window: TForm; GeneralOnly: Boolean=False);
+/// <summary>Update the check state of the script menu when copying.</summary>
+/// <param name="MenuRoot">OnrunScript Menu Root object</param>
 procedure SetupOnRunMenu(MenuRoot: TMenuItem);
+/// <summary>Save Ini file</summary>
+/// <param name="Window">Main Window object</param>
 procedure SaveSettings(Window: TForm);
 
 implementation
@@ -26,13 +37,6 @@ begin
   Result:= TMemIniFile.Create(GetSettingRootDir + 'setting.ini');
 end;
 
-/// <summary>Read the window information from the Ini file.</summary>
-/// <param name="Window">Main Window object</param>
-/// <param name="GeneralOnly">
-/// Specify True when not reading values other than the GENERAL section
-/// when reading configuration dialog settings.
-/// Default False.
-/// </param>
 procedure SetupWindow(Window: TForm; GeneralOnly: Boolean=False);
 var
   MainForm: TMainForm;
@@ -70,8 +74,6 @@ begin
   end;
 end;
 
-/// <summary>Update the check state of the script menu when copying.</summary>
-/// <param name="MenuRoot">OnrunScript Menu Root object</param>
 procedure SetupOnRunMenu(MenuRoot: TMenuItem);
 var
   MI: TMenuItem;
@@ -88,8 +90,6 @@ begin
   end;
 end;
 
-/// <summary>Save Ini file</summary>
-/// <param name="Window">Main Window object</param>
 procedure SaveSettings(Window: TForm);
 var
   MI: TMenuItem;

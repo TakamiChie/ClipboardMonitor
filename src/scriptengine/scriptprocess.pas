@@ -19,8 +19,16 @@ type
     FText: String;
     FProcess: TProcess;
   public
+    /// <summary>Constructer</summary>
+    /// <param name="Interpreter">Specify the interpreter name and path to run the script. The default value is Python.</param>
     constructor Create(const Interpreter: String='python');
+    /// <summary>Destructor</summary>
     destructor Destroy; override;
+    /// <summary>Run the script.</summary>
+    /// <param name="ScriptFile">The path of the script file to run.</param>
+    /// <param name="StdOut">Standard output.</param>
+    /// <param name="StdOut">Standard error.</param>
+    /// <returns>Exit Code.</returns>
     function Execute(ScriptFile: String; out StdOut: String; out StdErr: String): Integer;
     property Timeout: Integer read FTimeout write FTimeout;
     property Text: String read FText write FText;
@@ -29,9 +37,6 @@ type
 
 implementation
 
-
-/// <summary>Constructer</summary>
-/// <param name="Interpreter">Specify the interpreter name and path to run the script. The default value is Python.</param>
 constructor TScriptProcess.Create(const Interpreter: String='python');
 begin
   FInterpreter:=Interpreter;
@@ -40,17 +45,11 @@ begin
   FProcess:= TProcess.Create(nil);
 end;
 
-/// <summary>Destructor</summary>
 destructor TScriptProcess.Destroy;
 begin
   FProcess.Free;
 end;
 
-/// <summary>Run the script.</summary>
-/// <param name="ScriptFile">The path of the script file to run.</param>
-/// <param name="StdOut">Standard output.</param>
-/// <param name="StdOut">Standard error.</param>
-/// <returns>Exit Code.</returns>
 function TScriptProcess.Execute(ScriptFile: String; out StdOut:String; out StdErr: String): Integer;
 var
   InText: String;

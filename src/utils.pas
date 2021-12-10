@@ -7,13 +7,32 @@ interface
 uses
   LazFileUtils, FileUtil, Forms, Classes, SysUtils, LResources;
 
+/// <summary>Get Setting dir</summary>
+/// <returns>The directory path where you want to store application configuration information. Contains directory separator characters at the end.</returns>
 function GetSettingRootDir: String;
+/// <summary>Get Script root dir</summary>
+/// <returns>The directory path where you want to store script root. Contains directory separator characters at the end.</returns>
 function GetScriptRootDir: String;
+/// <summary>Get On run script dir</summary>
+/// <returns>The directory path where you want to store on run script. Contains directory separator characters at the end.</returns>
 function GetOnRunScriptDir: String;
+/// <summary>Get Conversion script dir</summary>
+/// <returns>The directory path where you want to store conversion script. Contains directory separator characters at the end.</returns>
 function GetConversionScriptDir: String;
+/// <summary>Get Application EXE dir</summary>
+/// <returns>The directory path where the application executable is located. Contains directory separator characters at the end.</returns>
 function GetAppDir: String;
+/// <summary>Invalidate HTML tags by converting them to actual references. Some tags will be left intact.</summary>
+/// <param name="HTML">HTML for escaping</param>
+/// <returns>Escaped HTML</returns>
 function EscapeTags(HTML: string): String;
+/// <summary>
+/// Copy the script file starting from _ from the project folder to the script folder.
+/// </summary>
 procedure CopyToUnderscoreScripts;
+/// <summary>Copy the file.</summary>
+/// <param name="FromFile">The path of the file to copy from.</param>
+/// <param name="ToFile">The path of the file to copy to.</param>
 procedure CopyFile(const FromFile: String; const ToFile: String);
 
 implementation
@@ -22,8 +41,6 @@ const SCRIPT_ROOT = 'Scripts';
 const SCRIPT_ONRUN = 'Run';
 const SCRIPT_CONVERSION = 'Conversion';
 
-/// <summary>Get Setting dir</summary>
-/// <returns>The directory path where you want to store application configuration information. Contains directory separator characters at the end.</returns>
 function GetSettingRootDir: String;
 begin
   Result := GetAppConfigDir(False);
@@ -33,8 +50,6 @@ begin
   end;
 end;
 
-/// <summary>Get Script root dir</summary>
-/// <returns>The directory path where you want to store script root. Contains directory separator characters at the end.</returns>
 function GetScriptRootDir: String;
 begin
   Result := GetAppConfigDir(False) + SCRIPT_ROOT + DirectorySeparator;
@@ -44,8 +59,6 @@ begin
   end;
 end;
 
-/// <summary>Get On run script dir</summary>
-/// <returns>The directory path where you want to store on run script. Contains directory separator characters at the end.</returns>
 function GetOnRunScriptDir: String;
 begin
   Result := GetScriptRootDir + SCRIPT_ONRUN + DirectorySeparator;
@@ -55,8 +68,6 @@ begin
   end;
 end;
 
-/// <summary>Get Conversion script dir</summary>
-/// <returns>The directory path where you want to store conversion script. Contains directory separator characters at the end.</returns>
 function GetConversionScriptDir: String;
 begin
   Result := GetScriptRootDir + SCRIPT_CONVERSION + DirectorySeparator;
@@ -66,16 +77,11 @@ begin
   end;
 end;
 
-/// <summary>Get Application EXE dir</summary>
-/// <returns>The directory path where the application executable is located. Contains directory separator characters at the end.</returns>
 function GetAppDir: String;
 begin
   Result:= ExtractFileDir(Application.ExeName) + DirectorySeparator;
 end;
 
-/// <summary>Invalidate HTML tags by converting them to actual references. Some tags will be left intact.</summary>
-/// <param name="HTML">HTML for escaping</param>
-/// <returns>Escaped HTML</returns>
 function EscapeTags(HTML: string): String;
 const
   UnescapeTags: array of string = ('p', 'a', 'b', 'i', 'pre', 'ul', 'ol', 'li', 'dl', 'dt', 'dd', 'br', 'span', 'div');
@@ -90,9 +96,6 @@ begin
   end;
 end;
 
-/// <summary>
-/// Copy the script file starting from _ from the project folder to the script folder.
-/// </summary>
 procedure CopyToUnderscoreScripts;
 var
   i : Integer;
@@ -117,11 +120,6 @@ begin
   end;
 end;
 
-/// <summary>
-/// Copy the file.
-/// </summary>
-/// <param name="FromFile">The path of the file to copy from.</param>
-/// <param name="ToFile">The path of the file to copy to.</param>
 procedure CopyFile(const FromFile: String; const ToFile: String);
 var
   MemBuffer: TMemoryStream;

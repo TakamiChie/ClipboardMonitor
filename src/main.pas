@@ -36,20 +36,27 @@ type
     MenuItem1: TMenuItem;
     RunOnCopyMenuRoot: TMenuItem;
     FPopupMenu: TPopupMenu;
-    procedure AboutThisAppExecute(Sender: TObject);
-    procedure AppExitExecute(Sender: TObject);
-    procedure ConversionScriptsClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FStatusBarClick(Sender: TObject);
     procedure FStatusBarDrawPanel(StatusBar: TStatusBar; Panel: TStatusPanel;
      const Rect: TRect);
-    procedure ShowPreferencesExecute(Sender: TObject);
+    /// <summary>Run the conversion script.</summary>
+    procedure ConversionScriptsClick(Sender: TObject);
     procedure TrayIconDblClick(Sender: TObject);
-    procedure UpdateScriptMenuExecute(Sender: TObject);
+    /// <summary>Open the scripts folder</summary>
     procedure OpenScriptDirExecute(Sender: TObject);
+    /// <summary>Update script menu</summary>
+    procedure UpdateScriptMenuExecute(Sender: TObject);
+    /// <summary>Always toggle the display state to the forefront.</summary>
     procedure WindowTopMostExecute(Sender: TObject);
+    /// <summary>Show Preference</summary>
+    procedure ShowPreferencesExecute(Sender: TObject);
+    /// <summary>Displaying the About dialog.</summary>
+    procedure AboutThisAppExecute(Sender: TObject);
+    /// <summary>Exit the application.</summary>
+    procedure AppExitExecute(Sender: TObject);
   private
     FClipboardListener: TClipboardListener;
     FOnRunScripts: TScriptList;
@@ -64,9 +71,18 @@ type
     procedure SetOnRunScripts(Value: TScriptList);
     procedure SetConversionScripts(Value: TScriptList);
     procedure ClipboardChanged(Sender: TObject);
+    /// <summary>
+    /// Initialize the Run Script menu at copy time and the Extended Copy Script menu.
+    /// </summary>
     procedure LoadScriptMenus;
+    /// <summary>Update Status text</summary>
+    /// <param name="HTML">HTML Text</param>
     procedure UpdateStatus(HTML: String);
+    /// <summary>Method called to get a value indicating whether or not to reside in the task tray.</summary>
+    /// <returns>Value indicating whether the application should be resident in the task tray.</returns>
     function GetResidesTT: Boolean;
+    /// <summary>Method called when the value indicating whether or not to reside in the task tray is updated.</summary>
+    /// <params name="Value">Value indicating whether the application should be resident in the task tray.</param>
     procedure SetResidesTT(Value: Boolean);
   public
     property OnRunScripts: TScriptList read FOnRunScripts write SetOnRunScripts;
@@ -205,9 +221,6 @@ begin
   FConversionScripts := Value;
 end;
 
-/// <summary>
-/// Initialize the Run Script menu at copy time and the Extended Copy Script menu.
-/// </summary>
 procedure TMainForm.LoadScriptMenus;
 var
   S: TScriptFile;
@@ -236,8 +249,6 @@ begin
   SetupOnRunMenu(RunOnCopyMenuRoot);
 end;
 
-/// <summary>Update Status text</summary>
-/// <param name="HTML">HTML Text</param>
 procedure TMainForm.UpdateStatus(HTML: String);
 var
   r: TResourceStream;
@@ -272,15 +283,11 @@ begin
   end;
 end;
 
-/// <summary>Method called to get a value indicating whether or not to reside in the task tray.</summary>
-/// <returns>Value indicating whether the application should be resident in the task tray.</returns>
 function TMainForm.GetResidesTT: Boolean;
 begin
   Result:= TrayIcon.Visible;
 end;
 
-/// <summary>Method called when the value indicating whether or not to reside in the task tray is updated.</summary>
-/// <params name="Value">Value indicating whether the application should be resident in the task tray.</param>
 procedure TMainForm.SetResidesTT(Value: Boolean);
 begin
   TrayIcon.Visible := Value;
@@ -298,7 +305,6 @@ begin
   end;
 end;
 
-/// <summary>Run the conversion script.</summary>
 procedure TMainForm.ConversionScriptsClick(Sender: TObject);
 var
   SF: TScriptFile;
@@ -329,23 +335,16 @@ end;
 
 { Begin ActionList }
 
-/// <summary>
-/// Open the scripts folder
-/// </summary>
 procedure TMainForm.OpenScriptDirExecute(Sender: TObject);
 begin
   ExecuteProcess('explorer', '"' + GetScriptRootDir + '"');
 end;
 
-/// <summary>
-/// Update script menu
-/// </summary>
 procedure TMainForm.UpdateScriptMenuExecute(Sender: TObject);
 begin
   LoadScriptMenus;
 end;
 
-/// <summary>Always toggle the display state to the forefront.</summary>
 procedure TMainForm.WindowTopMostExecute(Sender: TObject);
 begin
   WindowTopMost.Checked:= Not WindowTopMost.Checked;
@@ -355,7 +354,6 @@ begin
     FormStyle:= fsNormal;
 end;
 
-/// <summary>Show Preference</summary>
 procedure TMainForm.ShowPreferencesExecute(Sender: TObject);
 var
   PreferenceForm: TPreferenceForm;
@@ -368,7 +366,6 @@ begin
   end;
 end;
 
-/// <summary>Displaying the About dialog.</summary>
 procedure TMainForm.AboutThisAppExecute(Sender: TObject);
 var
   Dialog: TAboutDialog;
@@ -381,7 +378,6 @@ begin
   end;
 end;
 
-/// <summary>Exit the application.</summary>
 procedure TMainForm.AppExitExecute(Sender: TObject);
 begin
   SaveSettings(Self);

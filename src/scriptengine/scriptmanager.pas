@@ -15,8 +15,13 @@ type
     FOrder: Integer;
     FFilePath: String;
     FDisplayName: String;
+    /// <summary>Get file name (not including directory path).</summary>
+    /// <returns>File name.</returns>
     function GetFileName: String;
   public
+    /// <summary>Initialize Object</summary>
+    /// <param name="ScriptFile">Path of the script file to be loaded.</param>
+    /// <param name="Language">Language code.</param>
     constructor Create(ScriptFile: String; Language: String);
     property Index: Integer read FIndex write FIndex;
     property Order: Integer read FOrder;
@@ -25,15 +30,15 @@ type
     property DisplayName: String read FDisplayName;
   end;
   TScriptList = array of TScriptFile;
+  /// <summary>Reads all script files in the specified folder and returns them as an array.</summary>
+  /// <param name="Dir">Directory to be read</param>
+  /// <param name="Language">Language code.</param>
+  /// <returns>An array showing a list of scripts</returns>
   function LoadScriptFiles(Dir: String; Language: String): TScriptList;
   function CompareOrder(item1,item2:Pointer):Integer;
 
 implementation
 
-/// <summaryReads all script files in the specified folder and returns them as an array.</summary>
-/// <param name="Dir">Directory to be read</param>
-/// <param name="Language">Language code.</param>
-/// <returns>An array showing a list of scripts</returns>
 function LoadScriptFiles(Dir: String; Language: String): TScriptList;
 var
   ScriptFiles: TStringList;
@@ -68,9 +73,6 @@ begin
   end;
 end;
 
-/// <summary>Initialize Object</summary>
-/// <param name="ScriptFile">Path of the script file to be loaded.</param>
-/// <param name="Language">Language code.</param>
 constructor TScriptFile.Create(ScriptFile: String; Language: String);
 var
   Script, IniBase: TStringList;
@@ -117,8 +119,6 @@ begin
   end;
 end;
 
-/// <summary>Get file name (not including directory path).</summary>
-/// <returns>File name.</returns>
 function TScriptFile.GetFileName: String;
 begin
   Result:= ExtractFileName(FFilePath);
