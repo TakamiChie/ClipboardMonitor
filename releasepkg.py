@@ -49,13 +49,11 @@ proc = subprocess.Popen(f"{lazarus_root}\\lazbuild --build-mode=Release --no-wri
 proc.communicate()
 
 rootdir = Path(__file__).parent
-fn = rootdir / f"{APPLICATION_NAME}-{vn}-{ch}.zip"
+if not (rootdir / "Release").exists(): (rootdir / "Release").mkdir()
+fn = rootdir / "Release" / f"{APPLICATION_NAME}-{vn}-{ch}.zip"
 with zipfile.ZipFile(fn, "w", 
   compression=zipfile.ZIP_DEFLATED) as zfile:
-  if (rootdir / f"R{APPLICATION_EXENAME}").exists():
-    zfile.write(f"R{APPLICATION_EXENAME}", arcname=f"{APPLICATION_EXENAME}")
-  else:
-    zfile.write(f"{APPLICATION_EXENAME}")
+  zfile.write(f"Release/{APPLICATION_EXENAME}", arcname=f"{APPLICATION_EXENAME}")
   for f in rootdir.iterdir():
     if f.is_file():
       if f.name in ["LICENSE"] or f.name.endswith(".md"):
