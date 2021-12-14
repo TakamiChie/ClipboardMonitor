@@ -141,7 +141,7 @@
         <PackageName Value="LCL"/>
       </Item3>
     </RequiredPackages>
-    <Units Count="15">
+    <Units Count="14">
       <Unit0>
         <Filename Value="CMon.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -191,35 +191,31 @@
         <UnitName Value="Localization"/>
       </Unit7>
       <Unit8>
-        <Filename Value="src\resourcemaker.py"/>
+        <Filename Value="src\style.css"/>
         <IsPartOfProject Value="True"/>
       </Unit8>
       <Unit9>
-        <Filename Value="src\style.css"/>
+        <Filename Value="src\lang.ini"/>
         <IsPartOfProject Value="True"/>
       </Unit9>
       <Unit10>
-        <Filename Value="src\lang.ini"/>
+        <Filename Value="README.md"/>
         <IsPartOfProject Value="True"/>
       </Unit10>
       <Unit11>
-        <Filename Value="README.md"/>
+        <Filename Value="LICENSE"/>
         <IsPartOfProject Value="True"/>
       </Unit11>
       <Unit12>
-        <Filename Value="LICENSE"/>
-        <IsPartOfProject Value="True"/>
-      </Unit12>
-      <Unit13>
         <Filename Value="src\scriptengine\scriptmanager.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ScriptManager"/>
-      </Unit13>
-      <Unit14>
+      </Unit12>
+      <Unit13>
         <Filename Value="src\scriptengine\scriptprocess.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="ScriptProcess"/>
-      </Unit14>
+      </Unit13>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
