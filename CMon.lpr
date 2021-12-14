@@ -7,12 +7,15 @@ uses
   cthreads,
   {$ENDIF}{$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, Main, ClipboardListener, Utils, Settings,
-  Localization, Preferences, ScriptManager, ScriptProcess, AboutDialog;
+  Forms, Main, ClipboardListener, Utils, Settings, Localization, Preferences,
+  ScriptManager, ScriptProcess, AboutDialog;
 
 {$R *.res}
 
 begin
+{$IFOPT D+}
+  setHeapTraceOutput('trace.log');
+{$ENDIF}
   RequireDerivedFormResource:=True;
   Application.Title:='ClipboardMonitor';
   Application.Scaled:=True;

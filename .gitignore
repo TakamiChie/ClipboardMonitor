@@ -61,6 +61,7 @@
 *.dsk
 scripts.lrs
 *.fpcunit.ini
+*.log
 lib/
 backup/
 __pycache__/
