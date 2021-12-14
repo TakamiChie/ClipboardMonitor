@@ -73,7 +73,7 @@
           </Linking>
           <Other>
             <ExecuteBefore>
-              <Command Value="python .\src\resourcemaker.py --lazarus_dir $(LazarusDir)"/>
+              <Command Value="python .\resourcemaker.py --lazarus_dir $(LazarusDir)"/>
               <ShowAllMessages Value="True"/>
             </ExecuteBefore>
           </Other>
@@ -115,7 +115,7 @@
               <ShowHints Value="False"/>
             </Verbosity>
             <ExecuteBefore>
-              <Command Value="python .\src\resourcemaker.py --lazarus_dir $(LazarusDir)"/>
+              <Command Value="python .\resourcemaker.py --lazarus_dir $(LazarusDir)"/>
               <ShowAllMessages Value="True"/>
             </ExecuteBefore>
           </Other>
@@ -242,7 +242,7 @@
     </Linking>
     <Other>
       <ExecuteBefore>
-        <Command Value="python .\src\resourcemaker.py --lazarus_dir $(LazarusDir)"/>
+        <Command Value="python .\resourcemaker.py --lazarus_dir $(LazarusDir)"/>
         <ShowAllMessages Value="True"/>
       </ExecuteBefore>
     </Other>
