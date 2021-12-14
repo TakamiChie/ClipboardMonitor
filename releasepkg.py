@@ -1,4 +1,5 @@
 ## Search Lazarus Root
+import argparse
 import winreg
 from pathlib import Path
 import shutil
@@ -6,12 +7,18 @@ import xml.etree.ElementTree as ElementTree
 import subprocess
 import datetime
 import zipfile
+from argparse import ArgumentParser
 
 APPLICATION_NAME = "CMon"
 APPLICATION_EXENAME = f"{APPLICATION_NAME}.exe"
 APPLICTAION_LPIFILE = f"{APPLICATION_NAME}.lpi"
 
 lazarus_root = None
+argp = ArgumentParser()
+argp.add_argument("-t", default=False, action="store_true", 
+  help="Enter script test mode. Do not update the build number of the lpi file in test mode.")
+argv = argp.parse_args()
+
 print(">> Clean up")
 rootdir = Path(__file__).parent
 releasedir = rootdir / "Release"
@@ -32,21 +39,24 @@ tree = ElementTree.parse(APPLICTAION_LPIFILE)
 vi = tree.find("ProjectOptions").find("VersionInfo")
 ver = lambda n: 0 if n is None else int(n.get('Value')) 
 vn = f"{ver(vi.find('MajorVersionNr'))}.{ver(vi.find('MinorVersionNr'))}.{ver(vi.find('RevisionNr'))}.{ver(vi.find('BuildNr'))}"
-buildnr = vi.find("BuildNr")
-if buildnr is None: buildnr = ElementTree.SubElement(vi, "BuildNr")
-newbn = int(datetime.datetime.now().strftime("%y%m%d")[1:]) // 2
-buildnr.set("Value", str(newbn))
-tree.write(APPLICTAION_LPIFILE, encoding="UTF-8", xml_declaration=True)
-# Repair format
-with open(APPLICTAION_LPIFILE, "r") as f:
-  lines = f.read().splitlines()
-with open(APPLICTAION_LPIFILE, "w") as f:
-  for line in lines:
-    if line.startswith("<?xml"): f.write(line.replace("'", '"'))
-    elif " />" in line: f.write(line.replace(" />", "/>"))
-    else: f.write(line)
-    f.write("\n")
-print((f"Version:{vn}"))
+if argv.t:
+  print("Since it is in test mode, the build number is not updated.")
+else:
+  buildnr = vi.find("BuildNr")
+  if buildnr is None: buildnr = ElementTree.SubElement(vi, "BuildNr")
+  newbn = int(datetime.datetime.now().strftime("%y%m%d")[1:]) // 2
+  buildnr.set("Value", str(newbn))
+  tree.write(APPLICTAION_LPIFILE, encoding="UTF-8", xml_declaration=True)
+  # Repair format
+  with open(APPLICTAION_LPIFILE, "r") as f:
+    lines = f.read().splitlines()
+  with open(APPLICTAION_LPIFILE, "w") as f:
+    for line in lines:
+      if line.startswith("<?xml"): f.write(line.replace("'", '"'))
+      elif " />" in line: f.write(line.replace(" />", "/>"))
+      else: f.write(line)
+      f.write("\n")
+  print((f"Version:{vn}"))
 
 ch = subprocess.check_output("git log -n 1 --pretty=format:%h".split(" ")).decode("UTF-8")
 print((f"CommitHash:{ch}"))
