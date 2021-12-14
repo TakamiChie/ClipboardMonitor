@@ -65,16 +65,28 @@ print(">> Create Release Package")
 proc = subprocess.Popen(f"{lazarus_root}\\lazbuild --build-mode=Release --no-write-project {APPLICTAION_LPIFILE}", shell=True);
 proc.communicate()
 
+print(">> Create HTML Readme")
+for f in rootdir.iterdir():
+  if f.is_file() and f.name.endswith(".md"):
+    print(f"> {f.name}")
+    subprocess.check_call(f"pandoc -f markdown -t html -o Release/{f.stem}.html {f.name}".split(" "))
+
+
 fn = rootdir / f"{APPLICATION_NAME}-{vn}-{ch}.zip"
+print(f">> Create {APPLICATION_NAME}-{vn}-{ch}.zip")
 with zipfile.ZipFile(fn, "w", 
   compression=zipfile.ZIP_DEFLATED) as zfile:
-  zfile.write(f"Release/{APPLICATION_EXENAME}", arcname=f"{APPLICATION_EXENAME}")
+  for f in releasedir.iterdir():
+    print(f"> {f.name}")
+    zfile.write(f"Release/{f.name}", arcname=f"{f.name}")
   for f in rootdir.iterdir():
     if f.is_file():
       if f.name in ["LICENSE"] or f.name.endswith(".md"):
+        print(f"> {f.name}")
         zfile.write(f.name)
     if f.is_dir():
       if f.name.endswith(".assets"):
+        print(f"> {f.name}")
         zfile.write(f.name)
         for d in f.iterdir():
           if d.is_file():
