@@ -1,6 +1,7 @@
 ## Search Lazarus Root
 import winreg
 from pathlib import Path
+import shutil
 import xml.etree.ElementTree as ElementTree
 import subprocess
 import datetime
@@ -11,6 +12,12 @@ APPLICATION_EXENAME = f"{APPLICATION_NAME}.exe"
 APPLICTAION_LPIFILE = f"{APPLICATION_NAME}.lpi"
 
 lazarus_root = None
+print(">> Clean up")
+rootdir = Path(__file__).parent
+releasedir = rootdir / "Release"
+if releasedir.exists(): shutil.rmtree(releasedir)
+releasedir.mkdir()
+
 print(">> Find Lazarus")
 with winreg.OpenKeyEx(winreg.HKEY_LOCAL_MACHINE, r'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\lazarus_is1',
   access=winreg.KEY_READ | winreg.KEY_WOW64_64KEY) as k:
@@ -48,9 +55,7 @@ print(">> Create Release Package")
 proc = subprocess.Popen(f"{lazarus_root}\\lazbuild --build-mode=Release --no-write-project {APPLICTAION_LPIFILE}", shell=True);
 proc.communicate()
 
-rootdir = Path(__file__).parent
-if not (rootdir / "Release").exists(): (rootdir / "Release").mkdir()
-fn = rootdir / "Release" / f"{APPLICATION_NAME}-{vn}-{ch}.zip"
+fn = rootdir / f"{APPLICATION_NAME}-{vn}-{ch}.zip"
 with zipfile.ZipFile(fn, "w", 
   compression=zipfile.ZIP_DEFLATED) as zfile:
   zfile.write(f"Release/{APPLICATION_EXENAME}", arcname=f"{APPLICATION_EXENAME}")
