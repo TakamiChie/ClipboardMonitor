@@ -19,8 +19,8 @@ for f in parentdir.glob("scripts/**/_*.py"):
     cmds.append(f"{f}={f.parent.name[0]}{f.name[1:]}")
 
 cmdline = f"{str(lazres)} {' '.join(cmds)}"
-print(f"> {cmdline}")
-print(subprocess.check_output(cmdline).decode("UTF-8"))
+print(f"> {cmdline}", flush=True)
+subprocess.Popen(cmdline, shell=True).communicate()
 
 ### Add Version Information
 
