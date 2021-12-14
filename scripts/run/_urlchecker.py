@@ -32,7 +32,8 @@ url = sys.stdin.read()
 if url.startswith("http://") or url.startswith("https://"):
   try:
     ssl._create_default_https_context = ssl._create_unverified_context
-    with urllib.request.urlopen(url) as responce:
+    req = urllib.request.Request(url, headers={'User-Agent': "Mozilla/5.0"}) 
+    with urllib.request.urlopen(req) as responce:
       ct = responce.info()["Content-Type"]
       if "text/html" in ct:
         charset = ct.split("charset=")[-1]if "charset" in ct else "UTF-8"
