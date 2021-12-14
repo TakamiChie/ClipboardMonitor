@@ -133,6 +133,9 @@ end;
 
 procedure TMainForm.FormDestroy(Sender: TObject);
 begin
+  OnRunScripts:= nil;
+  ConversionScripts:= nil;
+  FLanguage.Free;
   FClipboardListener.Free;
 end;
 

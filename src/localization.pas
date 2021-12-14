@@ -38,30 +38,19 @@ type
     property Language: String read FLanguage write FLanguage;
   end;
 
-var
-  Localizer: TLocalizer = nil;
 implementation
 
 constructor TLocalizer.Create;
 var
   r: TResourceStream;
-  s: TStringList;
 begin
   FLanguage:='def';
   r := TResourceStream.Create(HINSTANCE, 'LANG', RT_RCDATA);
   try
-    s := TStringList.Create;
-    try
-      FLocalizeFile := TMemIniFile.Create('');
-      s.LoadFromStream(r, TEncoding.UTF8);
-      FLocalizeFile.SetStrings(s);
-    finally
-      s.Free;
-    end;
+    FLocalizeFile := TMemIniFile.Create(r, []);
   finally
     r.Free;
   end;
-
 end;
 
 destructor TLocalizer.Destroy;
