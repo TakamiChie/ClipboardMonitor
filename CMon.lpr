@@ -14,7 +14,9 @@ uses
 
 begin
 {$IFOPT D+}
+{$IFNDEF DEFAULT}
   setHeapTraceOutput('trace.log');
+{$ENDIF}
 {$ENDIF}
   RequireDerivedFormResource:=True;
   Application.Title:='ClipboardMonitor';
