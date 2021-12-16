@@ -17,7 +17,6 @@ type
     FTimeout: Integer;
     FInterpreter: String;
     FText: String;
-    FProcess: TProcess;
   public
     /// <summary>Constructer</summary>
     /// <param name="Interpreter">Specify the interpreter name and path to run the script. The default value is Python.</param>
@@ -60,7 +59,7 @@ begin
   try
     Proc.Executable:=FInterpreter;
     Proc.Parameters.Add(ScriptFile);
-    Proc.Options:= FProcess.Options + [poUsePipes];
+    Proc.Options:= Proc.Options + [poUsePipes];
     Proc.ShowWindow:=swoHIDE;
     Proc.Execute;
     if FText.Length > 0 then
