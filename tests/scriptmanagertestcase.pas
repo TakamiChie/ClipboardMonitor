@@ -76,7 +76,7 @@ begin
       AssertEquals(i, SFs[i].Index);
     end;
   finally
-    for SF in SFs do SF.Free;
+    SFs.Free;
   end;
 end;
 

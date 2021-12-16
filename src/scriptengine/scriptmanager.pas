@@ -5,13 +5,12 @@ unit ScriptManager;
 interface
 
 uses
- Classes, SysUtils, RegExpr, IniFiles, FileUtil;
+ Classes, SysUtils, RegExpr, IniFiles, FileUtil, fgl;
 
 type
   /// <summary>A structure that manages individual script files.</summary>
   TScriptFile = class(TObject)
   private
-    FIndex: Integer;
     FOrder: Integer;
     FFilePath: String;
     FDisplayName: String;
@@ -23,54 +22,40 @@ type
     /// <param name="ScriptFile">Path of the script file to be loaded.</param>
     /// <param name="Language">Language code.</param>
     constructor Create(ScriptFile: String; Language: String);
-    property Index: Integer read FIndex write FIndex;
     property Order: Integer read FOrder;
     property FilePath: String read FFilePath;
     property FileName: String read GetFileName;
     property DisplayName: String read FDisplayName;
   end;
-  TScriptList = array of TScriptFile;
+  TScriptList = specialize TFPGObjectList<TScriptFile>;
   /// <summary>Reads all script files in the specified folder and returns them as an array.</summary>
   /// <param name="Dir">Directory to be read</param>
   /// <param name="Language">Language code.</param>
   /// <returns>An array showing a list of scripts</returns>
   function LoadScriptFiles(Dir: String; Language: String): TScriptList;
-  function CompareOrder(item1,item2:Pointer):Integer;
+  function CompareOrder(const item1,item2: TScriptFile):Integer;
 
 implementation
 
 function LoadScriptFiles(Dir: String; Language: String): TScriptList;
 var
   ScriptFiles: TStringList;
-  S: Pointer;
+  S: TScriptFile;
   F: String;
-  Scripts: TList;
   Index: Integer;
 begin
-  Scripts:= TList.Create;
+  Result:= TScriptList.Create;
+  ScriptFiles:= TStringList.Create;
   try
-    ScriptFiles:= TStringList.Create;
-    try
-      FindAllFiles(ScriptFiles, Dir, '*.py', False);
-      for F in ScriptFiles do
-      begin
-        Scripts.Add(TScriptFile.Create(F, Language));
-      end;
-    finally
-      ScriptFiles.Free;
-    end;
-    Scripts.Sort(@CompareOrder);
-    SetLength(Result, Scripts.Count);
-    Index:=0;
-    for S in Scripts do
+    FindAllFiles(ScriptFiles, Dir, '*.py', False);
+    for F in ScriptFiles do
     begin
-      Result[Index]:= TScriptFile(S);
-      TScriptFile(S).Index := Index;
-      Index:= Index + 1;
+      Result.Add(TScriptFile.Create(F, Language));
     end;
   finally
-    Scripts.Free;
+    ScriptFiles.Free;
   end;
+  Result.Sort(@CompareOrder);
 end;
 
 constructor TScriptFile.Create(ScriptFile: String; Language: String);
@@ -124,9 +109,9 @@ begin
   Result:= ExtractFileName(FFilePath);
 end;
 
-function CompareOrder(item1,item2:Pointer):Integer;
+function CompareOrder(const Item1, Item2: TScriptFile):Integer;
 begin
-  Result:= TScriptFile(item1).Order - TScriptFile(item2).Order;
+  Result:= Item1.Order - Item2.Order;
 end;
 
 end.
