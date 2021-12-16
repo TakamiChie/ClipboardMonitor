@@ -229,17 +229,18 @@ var
   S: TScriptFile;
   MI, MR: TMenuItem;
   Menus: array[0..1] of TMenuItem;
+  SL: TScriptList;
 begin
   Menus[0]:= RunOnCopyMenuRoot;
   Menus[1]:= ConversionScriptsRoot;
   OnRunScripts := LoadScriptFiles(GetOnRunScriptDir, Language.Language);
   ConversionScripts := LoadScriptFiles(GetConversionScriptDir, Language.Language);
-  RunOnCopyMenuRoot.Tag := Int64(Pointer(OnRunScripts));
-  ConversionScriptsRoot.Tag := Int64(Pointer(ConversionScripts));
   for MR in Menus do
   begin
     MR.Clear;
-    for S in TScriptList(MR.Tag) do
+    if MR = RunOnCopyMenuRoot then SL := OnRunScripts;
+    if MR = ConversionScriptsRoot then SL := ConversionScripts;
+    for S in SL do
     begin
       MI := TMenuItem.Create(MR);
       MI.Caption:= S.DisplayName;
