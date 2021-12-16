@@ -42,49 +42,53 @@ begin
   FInterpreter:=Interpreter;
   FTimeout:= 10000;
   FText:='';
-  FProcess:= TProcess.Create(nil);
 end;
 
 destructor TScriptProcess.Destroy;
 begin
-  FProcess.Free;
 end;
 
 function TScriptProcess.Execute(ScriptFile: String; out StdOut:String; out StdErr: String): Integer;
 var
   InText: String;
   TextResult: TStringList;
+  Proc: TProcess;
 begin
   StdOut:= '';
   StdErr:= '';
-  FProcess.Executable:=FInterpreter;
-  FProcess.Parameters.Add(ScriptFile);
-  FProcess.Options:= FProcess.Options + [poUsePipes];
-  FProcess.ShowWindow:=swoHIDE;
-  FProcess.Execute;
-  if FText.Length > 0 then
-  begin
-    InText:= FText;
-    FProcess.Input.Write(InText[1], Length(InText));
-  end;
-  FProcess.CloseInput;
-  FProcess.WaitOnExit(FTimeout);
-  TextResult:= TStringList.Create;
+  Proc:= TProcess.Create(nil);
   try
-    if FProcess.Output.NumBytesAvailable > 0 then
+    Proc.Executable:=FInterpreter;
+    Proc.Parameters.Add(ScriptFile);
+    Proc.Options:= FProcess.Options + [poUsePipes];
+    Proc.ShowWindow:=swoHIDE;
+    Proc.Execute;
+    if FText.Length > 0 then
     begin
-      TextResult.LoadFromStream(FProcess.Output, TEncoding.UTF8);
-      StdOut:=TextResult.Text;
+      InText:= FText;
+      Proc.Input.Write(InText[1], Length(InText));
     end;
-    if FProcess.Stderr.NumBytesAvailable > 0 then
-    begin
-      TextResult.LoadFromStream(FProcess.Stderr, TEncoding.UTF8);
-      StdErr:=TextResult.Text;
+    Proc.CloseInput;
+    Proc.WaitOnExit(FTimeout);
+    TextResult:= TStringList.Create;
+    try
+      if Proc.Output.NumBytesAvailable > 0 then
+      begin
+        TextResult.LoadFromStream(Proc.Output, TEncoding.UTF8);
+        StdOut:=TextResult.Text;
+      end;
+      if Proc.Stderr.NumBytesAvailable > 0 then
+      begin
+        TextResult.LoadFromStream(Proc.Stderr, TEncoding.UTF8);
+        StdErr:=TextResult.Text;
+      end;
+    finally
+      TextResult.Free;
     end;
+    Result:=Proc.ExitCode;
   finally
-    TextResult.Free;
+    Proc.Free;
   end;
-  Result:=FProcess.ExitCode;
 end;
 
 end.
