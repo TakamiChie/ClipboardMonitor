@@ -14,6 +14,7 @@ type
     procedure TestLoadScript;
     procedure TestLoadScriptNoComment;
     procedure TestLoadScriptFilesOrderd;
+    procedure TestLoadScriptFilesDouble;
   end;
 
 implementation
@@ -64,24 +65,44 @@ end;
 procedure TScriptManagerTestCase.TestLoadScriptFilesOrderd;
 var
   SFs: TScriptList;
-  SF: TScriptFile;
   Orders: array of Integer = (0, 20, 50, 100, 100, 101);
   i: Integer;
 begin
   SFs:= LoadScriptFiles('tests\\scripts\\LSFTEST\\', 'def');
   try
+    AssertEquals(Length(Orders), SFs.Count);
     for i := 0 to Length(Orders) - 1 do
     begin
       AssertEquals(Orders[i], SFs[i].Order);
-      AssertEquals(i, SFs[i].Index);
     end;
   finally
     SFs.Free;
   end;
 end;
 
-initialization
 
+/// <summary>
+/// Make sure that the first list retrieved is not cleared when the LoadScriptFiles method is called twice in a row.
+/// </summary>
+procedure TScriptManagerTestCase.TestLoadScriptFilesDouble;
+var
+  SFs, SFs2: TScriptList;
+begin
+  SFs:= LoadScriptFiles('tests\\scripts\\LSFTEST(2)\\', 'def');
+  try
+	  SFs2:= LoadScriptFiles('tests\\scripts\\LSFTEST(3)\\', 'def');
+	  try
+	    AssertEquals(3, SFs.Count);
+	    AssertEquals(1, SFs2.Count);
+		finally
+      SFs2.Free;
+		end;
+	finally
+    SFs.Free;
+  end;
+end;
+
+initialization
   RegisterTest(TScriptManagerTestCase);
 end.
 
