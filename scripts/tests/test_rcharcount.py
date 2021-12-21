@@ -36,10 +36,7 @@ class TestRCharCount(BaseClass):
     p = os.environ["PATH"]
     try:
       os.environ["PATH"] = ';'.join(filter(lambda s: not r"\npm" in s, os.environ["PATH"].split(";")))
-      try:
-        self.assertEqual(self._checkscript("test", self.FILE).split("\n")[1], "<p>Markdown</p>")
-      except subprocess.CalledProcessError: # CalledProcessError = mdwc not installed
-        pass        
+      self.assertEqual(self._checkscript("test", self.FILE), "<p>4 char(s)</p>\n")
     finally:
       os.environ["PATH"] = p
 

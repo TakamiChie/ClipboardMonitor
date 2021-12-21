@@ -37,6 +37,8 @@ try:
   ret = p.sub(colortags, ret)
   print('<p>Markdown</p>')
   print(f'<pre>{ret}</pre>')
+except subprocess.CalledProcessError:
+  pass
 except FileNotFoundError:
   pass
 finally:
