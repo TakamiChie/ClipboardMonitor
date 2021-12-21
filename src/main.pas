@@ -182,7 +182,7 @@ begin
   begin
     if MI.Checked then
     begin
-      S := FOnRunScripts[MI.Tag];
+      S := FOnRunScripts.Items[RunOnCopyMenuRoot.IndexOf(MI)];
       FStatusBar.Panels[1].Text:= S.FileName;
       Application.ProcessMessages;
       Script:= TScriptProcess.Create(PythonInterpreter);
@@ -209,18 +209,14 @@ begin
 end;
 
 procedure TMainForm.SetOnRunScripts(Value: TScriptList);
-var
-  S: TScriptFile;
 begin
-  for S in FOnRunScripts do S.Free;
+  if Assigned(FOnRunScripts) then FOnRunScripts.Free;
   FOnRunScripts:= Value;
 end;
 
 procedure TMainForm.SetConversionScripts(Value: TScriptList);
-var
-  S: TScriptFile;
 begin
-  for S in FConversionScripts do S.Free;
+  if Assigned(FConversionScripts) then FConversionScripts.Free;
   FConversionScripts := Value;
 end;
 
@@ -246,7 +242,6 @@ begin
       MI.Caption:= S.DisplayName;
       if MR = RunOnCopyMenuRoot then MI.AutoCheck:= True;
       if MR = ConversionScriptsRoot then MI.OnClick:=@ConversionScriptsClick;
-      MI.Tag:=S.Index;
       MR.Add(MI);
     end;
   end;
@@ -316,7 +311,7 @@ var
   StdOut, StdErr: String;
 begin
   FLastError:= '';
-  SF:= FConversionScripts[TMenuItem(Sender).Tag];
+  SF:= FConversionScripts.Items[ConversionScriptsRoot.IndexOf(TMenuItem(Sender))];
   Script:= TScriptProcess.Create(PythonInterpreter);
   try
     Script.Text:= FMonitor.Text;
