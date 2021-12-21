@@ -79,3 +79,4 @@ modules/
 *.zip
 buildinfo.ini
 Release/
+CMon*/
