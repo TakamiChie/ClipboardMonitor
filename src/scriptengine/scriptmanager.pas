@@ -5,7 +5,7 @@ unit ScriptManager;
 interface
 
 uses
- Classes, SysUtils, RegExpr, IniFiles, FileUtil, fgl;
+ Classes, SysUtils, RegExpr, IniFiles, FileUtil, fgl, Dialogs;
 
 type
   /// <summary>A structure that manages individual script files.</summary>
@@ -40,9 +40,7 @@ implementation
 function LoadScriptFiles(Dir: String; Language: String): TScriptList;
 var
   ScriptFiles: TStringList;
-  S: TScriptFile;
   F: String;
-  Index: Integer;
 begin
   Result:= TScriptList.Create;
   ScriptFiles:= TStringList.Create;
