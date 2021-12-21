@@ -78,12 +78,15 @@ procedure SetupOnRunMenu(MenuRoot: TMenuItem);
 var
   MI: TMenuItem;
   Ini: TMemIniFile;
+  i: Integer;
 begin
   Ini:= GetIniFile;
   try
+    i := 0;
     for MI in MenuRoot do
     begin
-      MI.Checked:= Ini.ReadBool(SECTION_SCRIPTSTATE_ONRUN, MainForm.OnRunScripts[MI.Tag].FileName, True)
+      MI.Checked:= Ini.ReadBool(SECTION_SCRIPTSTATE_ONRUN, MainForm.OnRunScripts[MI.Tag].FileName, True);
+      Inc(i);
     end;
   finally
     Ini.Free;
@@ -92,9 +95,9 @@ end;
 
 procedure SaveSettings(Window: TForm);
 var
-  MI: TMenuItem;
   MainForm: TMainForm;
   Ini: TMemIniFile;
+  i: Integer;
 begin
   Ini:= GetIniFile;
   try
@@ -105,9 +108,9 @@ begin
     Ini.WriteInt64(SECTION_WINDOW, 'Height', Window.Height);
     Ini.WriteBool(SECTION_WINDOW, 'TopMost', MainForm.WindowTopMost.Checked);
     Ini.WriteInt64(SECTION_WINDOW, 'SplitterPosition', MainForm.FMonitor.Height);
-    for MI in MainForm.RunOnCopyMenuRoot do
+    for i := 0 to MainForm.RunOnCopyMenuRoot.Count - 1 do
     begin
-      Ini.WriteBool(SECTION_SCRIPTSTATE_ONRUN, MainForm.OnRunScripts[MI.Tag].FileName, MI.Checked)
+      Ini.WriteBool(SECTION_SCRIPTSTATE_ONRUN, MainForm.OnRunScripts[i].FileName, MainForm.RunOnCopyMenuRoot[i].Checked)
     end;
   finally
     Ini.Free;
