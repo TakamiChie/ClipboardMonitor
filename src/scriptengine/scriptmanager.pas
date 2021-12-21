@@ -5,7 +5,7 @@ unit ScriptManager;
 interface
 
 uses
- Classes, SysUtils, RegExpr, IniFiles, FileUtil, fgl, Dialogs;
+ Classes, SysUtils, RegExpr, IniFiles, FileUtil, fgl;
 
 type
   /// <summary>A structure that manages individual script files.</summary>
