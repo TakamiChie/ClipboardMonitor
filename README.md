@@ -4,7 +4,7 @@ A tool that monitors the clipboard and displays the text data stored in the clip
 
 You can get the number of characters stored in the clipboard and display the title pointed to by the URL.
 
-![Screenshot](README.assets\2021-12-14_12h35_16.gif)
+![Screenshot](README.assets/2021-12-14_12h35_16.gif)
 
 ## Install and uninstall
 
@@ -32,7 +32,7 @@ If you copy the text to the clipboard while Clipboard Monitor is running, the co
 
 These functions are realized by the Python script file under the Run folder created in the script folder.
 
-![Parsing the copied string](README.assets\2021-12-14-12-30-39.png)
+![Parsing the copied string](README.assets/2021-12-14-12-30-39.png)
 
 You can also add any processing you like (see [Reference.md](Reference.md) for the processing content).
 
@@ -46,7 +46,7 @@ In addition, Web access is not performed except when `_urlchecker.py` gets the t
 
 It is also possible to use a conversion script that performs some processing on the character string on the clipboard from the menu.
 
-![Conversion script](README.assets\2021-12-14-12-29-23.png)
+![Conversion script](README.assets/2021-12-14-12-29-23.png)
 
 These functions are realized by the Python script file under the Conversion folder created in the script folder.
 
