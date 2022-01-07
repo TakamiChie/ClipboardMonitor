@@ -24,7 +24,7 @@ class TestCChangeLinkFormatURL(BaseClass):
     If you pass a string with the following conditions to _bullet.py, Confirm that the URL format is changed.
     * Contains plain text URLs.
     * Source link format: Plain Text
-    * Destination link format：HTML
+    * Destination link format: HTML
     """
     pretext = "plaintext link Example Domain - http://example.com/ abcde"
     expectedtext = '<a href="http://example.com/">plaintext link Example Domain</a> abcde\n'
@@ -41,7 +41,7 @@ class TestCChangeLinkFormatURL(BaseClass):
     If you pass a string with the following conditions to _bullet.py, Confirm that the URL format is changed.
     * Contains plain text URLs.
     * Source link format: Plain Text
-    * Destination link format：Markdown
+    * Destination link format: Markdown
     """
     pretext = "plaintext link Example Domain - http://example.com/ abcde"
     expectedtext = '[plaintext link Example Domain](http://example.com/) abcde\n'
@@ -58,7 +58,7 @@ class TestCChangeLinkFormatURL(BaseClass):
     If you pass a string with the following conditions to _bullet.py, Confirm that the URL format is changed.
     * Contains plain text URLs.
     * Source link format: Plain Text
-    * Destination link format：MediaWiki
+    * Destination link format: MediaWiki
     """
     pretext = "plaintext link Example Domain - http://example.com/ abcde"
     expectedtext = '[http://example.com/ plaintext link Example Domain] abcde\n'
@@ -75,7 +75,7 @@ class TestCChangeLinkFormatURL(BaseClass):
     If you pass a string with the following conditions to _bullet.py, Confirm that the URL format is changed.
     * Contains plain text URLs.
     * Source link format: Plain Text
-    * Destination link format：Plain Text+
+    * Destination link format: Plain Text+
     """
     pretext = "plaintext link Example Domain - http://example.com/ abcde"
     expectedtext = 'plaintext link Example Domain [http://example.com/](http://example.com/) abcde\n'
@@ -92,7 +92,7 @@ class TestCChangeLinkFormatURL(BaseClass):
     If you pass a string with the following conditions to _bullet.py, Confirm that the URL format is changed.
     * Contains HTML URLs.
     * Source link format: HTML
-    * Destination link format：Plain Text
+    * Destination link format: Plain Text
     """
     pretext = 'plaintext link <a href="http://example.com/">Example Domain</a> abcde'
     expectedtext = 'plaintext link Example Domain - http://example.com/ abcde\n'
@@ -109,7 +109,7 @@ class TestCChangeLinkFormatURL(BaseClass):
     If you pass a string with the following conditions to _bullet.py, Confirm that the URL format is changed.
     * Contains Markdown URLs.
     * Source link format: Markdown
-    * Destination link format：Plain Text
+    * Destination link format: Plain Text
     """
     pretext = 'plaintext link [Example Domain](http://example.com/) abcde'
     expectedtext = 'plaintext link Example Domain - http://example.com/ abcde\n'
@@ -126,7 +126,7 @@ class TestCChangeLinkFormatURL(BaseClass):
     If you pass a string with the following conditions to _bullet.py, Confirm that the URL format is changed.
     * Contains MediaWiki URLs.
     * Source link format: MediaWiki
-    * Destination link format：Plain Text
+    * Destination link format: Plain Text
     """
     pretext = 'plaintext link [http://example.com/ Example Domain] abcde'
     expectedtext = 'plaintext link Example Domain - http://example.com/ abcde\n'
@@ -143,7 +143,7 @@ class TestCChangeLinkFormatURL(BaseClass):
     If you pass a string with the following conditions to _bullet.py, Confirm that the URL format is changed.
     * Contains PlainText+ URLs.
     * Source link format: PlainText+
-    * Destination link format：Plain Text
+    * Destination link format: Plain Text
     """
     pretext = 'plaintext link Example Domain [http://example.com/](http://example.com/) abcde'
     expectedtext = 'plaintext link Example Domain - http://example.com/ abcde\n'
